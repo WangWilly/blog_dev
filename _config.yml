@@ -90,3 +90,10 @@ marked:
     breaks: false
     smartLists: false
     smartypants: false
+    
+math:
+    engine: mathjax
+    mathjax:
+        src: custom_mathjax_source
+        config:
+        # MathJax config
