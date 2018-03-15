@@ -1,8 +1,11 @@
----
 title: MathJax 文法測試
-date: 2018-03-06 20:36:08
-tags: test
+tags:
+  - test
+categories: []
+author: Willy Wang
+date: 2018-03-06 20:36:00
 ---
+# Admin測試
 
 $$
 \begin{eqnarray}

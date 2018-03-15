@@ -97,3 +97,9 @@ math:
         src: custom_mathjax_source
         config:
         # MathJax config
+
+# hexo-admin authentification
+admin:
+  username: willywangkaa
+  password_hash: $2a$10$9f8cr2uswqa0Qp8zaYT3POT5ZFfexO9XRedhrdtiCYZzNd0Y5XMHS
+  secret: 0960747838
