@@ -1,7 +1,8 @@
 title: MathJax 文法測試
 tags:
-  - test
-categories: []
+  - MathJax
+categories:
+  - Test
 author: Willy Wang
 date: 2018-03-06 20:36:00
 ---
