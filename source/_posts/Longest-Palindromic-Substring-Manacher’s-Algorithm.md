@@ -86,7 +86,7 @@ $String ：$
 
 #### Subcase3
 
-若 $String[i  \ldots  i+Z[i']-1]$ 突出了 $Right$，根據 $Z[j]$ 可知 $String[j-Z[j]$ 與 $String[j+Z[j]$ 一定是不同字元，根據 $Z[i']$ 可知 $String[j-Z[j]]$ 與其鏡射位置是相同字元。對於 $i$ 來說， $String[j+Z[j]]$ 與其鏡射位置就會是不同字元，不可能形成更長的迴文，因此可以直接算出 $Z[i]$ 的值，就是 $j+z[j]-i$ 。
+若 $String[i  \ldots  i+Z[i']-1]$ 突出了 $Right$，根據 $Z[j]$ 可知 $String[j-Z[j]]$ 與 $String[j+Z[j]]$ 一定是不同字元，根據 $Z[i']$ 可知 $String[j-Z[j]]$ 與其鏡射位置是相同字元。對於 $i$ 來說， $String[j+Z[j]]$ 與其鏡射位置就會是不同字元，不可能形成更長的迴文，因此可以直接算出 $Z[i]$ 的值，就是 $j+z[j]-i$ 。
 
 
 ![Palindromic Substring_6](\blog\images\Palindromic Substring_6.png)<br>
@@ -202,6 +202,12 @@ void longest_palindromic_substring()
     cout << "最長迴文子字串的長度是" << (n-1) / 2;
 }
 ```
+
+# 相關題目
+
+---
+[Timus-1297](http://acm.timus.ru/problem.aspx?space=1&num=1297)<br>
+[LeetCode](https://leetcode.com/problems/longest-palindromic-substring/description/)
 
 # 參考
 

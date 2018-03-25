@@ -98,6 +98,12 @@ math:
         config:
         # MathJax config
 
+search:
+    path: search.xml
+    field: post
+    format: html
+    limit: 10000
+        
 # hexo-admin authentification
 admin:
   username: willywangkaa

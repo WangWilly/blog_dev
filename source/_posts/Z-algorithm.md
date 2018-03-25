@@ -316,7 +316,3 @@ void z_build(const char* S,int *z){
 
 ## KMP 字串比對演算法
 http://mropengate.blogspot.tw/2016/01/leetcode-kmpimplement-strstr.html
-
-## manacher’s-algorithm
-http://xpower2888.pixnet.net/blog/post/221920327-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%9C%80%E9%95%B7%E5%9B%9E%E6%96%87%E4%B8%B2%EF%BC%9Amanacher%E2%80%99s-algorithm
-http://www.csie.ntnu.edu.tw/~u91029/Palindrome.html#3
