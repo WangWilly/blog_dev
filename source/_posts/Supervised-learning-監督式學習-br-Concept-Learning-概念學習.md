@@ -345,20 +345,26 @@ General boundary to:	$G_0 = \{(?,?,?,?,?,?) \}$
 #### 1’st instance: (Sunny,Warm,Normal,Strong,Warm,Same) = Yes
 
 **Positive** example *generalizes* Specific boundary
+
 $S_1 = \{ (Sunny,Warm,Normal,Strong,Warm,Same) \}$
+
 $G_1 = \{ (?,?,?,?,?,?) \}$
 
 #### 2’nd instance: (Sunny,Warm,High,Strong,Warm,Same) = Yes
 
 **Positive** example *generalizes* Specific boundary
+
 $S_2 = \{(Sunny,Warm,?,Strong,Warm,Same) \}$
+
 $G2 = \{ (?,?,?,?,?,?) \}$
 
 #### 3’rd instance: (Rainy,Cold,High,Strong,Warm,Change) = No
 
 **Negative** example *specializes* General boundary
-$S_3 = \{ (Sunny,Warm,?,Strong,Warm,Same) \}$ 
-$G_3 = \{	(Sunny,?,?,?,?,?), \quad	O.K.$<br>
+
+$S_3 = \left{ (Sunny,Warm,?,Strong,Warm,Same) \right}$ 
+
+$G_3 = \{	(Sunny,?,?,?,?,?), \quad	O.K.$ <br>
 
 $(Cloudy,?,?,?,?,?), \quad Not \; more \; general \; than \; S_3$<br>
 
