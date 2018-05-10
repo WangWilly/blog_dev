@@ -14,18 +14,6 @@ date: 2018-04-20 16:15:00
 
 ![machinelearningconcept](\blog\images\machinelearningconcept.png)
 
-
-
-
-
-
-
-
-
-
-
-
-
 ## 機器學習簡介<br>( 節錄自 [Mr' OpenGate](http://mropengate.blogspot.tw/2015/05/ai-supervised-learning.html) )
 
 機器學習是近20多年興起的一門多領域交叉學科，涉及**機率論**、**統計學**、**逼近論**、**凸分析**、**計算複雜性理論**等多門學科。機器學習理論主要是設計和分析一些讓計算機可以自動「學習」的演算法。機器學習算法是一類從資料中**自動分析獲得規律**，並利用規律對**未知資料進行預測**的算法。
@@ -33,9 +21,11 @@ date: 2018-04-20 16:15:00
 機器學習已廣泛應用於**數據挖掘**、**計算機視覺**、**自然語言處理**、**生物特徵識別**、**搜尋引擎**、**醫學診斷**、**檢測信用卡欺詐**、**證券市場分析**、**DNA序列測序**、**語音和手寫識別**、**戰略遊戲**和**機器人**等領域。
 
 **＜定義＞** 機器學習定義如下
+
 ```A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E.```
 
 ### $Ex.$
+
 - T(任務)：將郵件分類為垃圾或非垃圾。
 - E(經驗)：觀察目前信箱的信是把哪些種類的郵件標記為垃圾，而哪些是非垃圾。
 - P(效能)：被正確分類成垃圾或非垃圾的郵件的數量。
@@ -64,14 +54,7 @@ date: 2018-04-20 16:15:00
  - 輸入 - 欲判斷的狀態 (Attributes)。
  - 輸出 - 對(TURE)、錯(FALSE)。
 
-
 ![learningfunction](\blog\images\learningfunction.png)
-
-
-
-
-
-
 
 
 
@@ -91,93 +74,105 @@ date: 2018-04-20 16:15:00
 
 
 
- - 六個會影響的**環境狀態 ( Attribute )**
- - 四個**案例 ( Instance )**
- - 學習目標：**判斷**當時是否很享受運動。$EnjoySport = \\{Yes, No\\}$
+- 六個會影響的**環境狀態 ( Attribute )**
+- 四個**案例 ( Instance )**
+- 學習目標：**判斷**當時是否很享受運動。$EnjoySport = \{Yes, No\}$
 
 #### 環境狀態( Attribute )
+
 - 每個事件(instance)發生時會引響結果的*基本元素*。
 - 倘若現在有一事件會被影響的環境狀態為 $N$ 個。
 - 每個環境狀態可能出現的狀態個數為 $n_i$ 。(第 $i$ 個環境狀態)
 - **(Nominal values; symbolic values; Discretized values)**(? 待了解)
 
 #### 案例( Instance ) - 已知結果的一群環境狀態
+
 - 令 $x$ 為已知結果的一群環境狀態。
 - 那我們稱所有可能產生的案例為一個空間(Space)並稱它 $X$。
 - 若 $M$ 等於此空間 $X$ 的大小，則 $ M = n_1 \cdot n_2 \ldots n_{N-1} \cdot n_N$。
 - 我們其實可以將 $M$ 視為此環境狀態所有組合的方法數。
 
 #### 學習目標( Target Concept )
+
 - 要學到的想法(在這裡我們給機器訓練的想法也可視為一個函式)。
- - $c(x)=1 \qquad if \; EnjoySport=Yes$
- - $c(x)=0 \qquad if \; EnjoySport=No$
+	 - $c(x)=1 \qquad if \; EnjoySport=Yes$
+	 - $c(x)=0 \qquad if \; EnjoySport=No$
 
 - $c$ 是一個定義再**案例空間(Instance Space)**的布林函數。 
- - $c:X \rightarrow \{  0, 1 \}$
+	 - $c:X \rightarrow \left\{ 0, 1 \right\}$
 
 - 訓練集合 "$D$"
- - 所有已知想法的案例集合
- - $Ex.$
- $$<x_1, c(x_1)>, <x_2, c(x_2)> \ldots <x_m, c(x_m)>$$
+	 - 所有已知想法的案例集合
+	 - $Ex.$
+     
+ $$
+ <x_1, c(x_1)>, <x_2, c(x_2)> \ldots <x_m, c(x_m)>
+ $$
 
 #### 假說( Hypotheses ) - 在這裡我們標記為 $H$
+
 - 定義：所有**環境狀態( Attributes )**之**限制( Constraints )** 的**交集( Conjunction )**。
 - 限制( Constraints )的種類
- - Specific value ( **針對**值 ) $\qquad e.g. \; ( sky = sunny )$
- - Don't care value ( **不在意**值 ) $\qquad e.g. \; ( sky = "？" )$
- - No value allow ( **無**值 ) $\qquad e.g. \; ( sky = "\phi" )$
+	 - Specific value ( **針對**值 ) $\qquad e.g. \; ( sky = sunny )$
+	 - Don't care value ( **不在意**值 ) $\qquad e.g. \; ( sky = "？" )$
+	 - No value allow ( **無**值 ) $\qquad e.g. \; ( sky = "\phi" )$
 
 - 若今天有一**案例( Instance )**符合了我們的假說，也就是說它每個**環境狀態( Attributes )**全部都不逾越我們假說中的所有**限制( Constraints )**。
 - $Ex.$
 
-$$h \leftarrow < Sunny, Warm, ?, Strong, ?, ? >$$
+$$
+h \leftarrow < Sunny, Warm, ?, Strong, ?, ? >
+$$
 
 - 假說空間( Hypotheses Space )的大小
- - 語意上來說( Syntactically distinct number )
+	 - 語意上來說( Syntactically distinct number )
 
-$$M_H = ( n_1 + 2 ) \cdot ( n_2 + 2 ) \cdot \ldots \cdot ( n_{N-1} + 2 ) \cdot ( n_{N} + 2 )$$
+$$
+M_H = ( n_1 + 2 ) \cdot ( n_2 + 2 ) \cdot \ldots \cdot ( n_{N-1} + 2 ) \cdot ( n_{N} + 2 )
+$$
 
-$$( Two \; more \; "values" \; have \; been \; added, "?" and "\phi" )$$
+$$
+( Two \; more \; "values" \; have \; been \; added, "?" and "\phi" )
+$$
 
  - 實際上來說( Semantically distinct number )
 
 
-$$M_H = 1+ ( n_1 + 1 ) \cdot ( n_2 + 1 ) \cdot \ldots \cdot ( n_{N-1} + 1 ) \cdot ( n_{N} + 1 )​$$
+$$
+M_H = 1+ ( n_1 + 1 ) \cdot ( n_2 + 1 ) \cdot \ldots \cdot ( n_{N-1} + 1 ) \cdot ( n_{N} + 1 )
+$$
 
-$$因為如果該假說的限制交集裡，有一個以上的"\phi"存在於集合中，$$
-
-$$代表所有的案例( Instances )絕對都不可能不逾越我們的假說$$
-
-$$，全部的案例都會判定為錯誤(False)。$$
+因為如果該假說的限制交集裡，有一個以上的"\phi"存在於集合中，代表所有的案例( Instances )絕對都不可能不逾越我們的假說，全部的案例都會判定為錯誤(False)。
 
 #### 小節論
+
 - $c:EnjoySport : X \rightarrow \{  0, 1 \}$ 是我們的**學習目標( Target Concept )**。
 
 - 六個**環境狀態( Attributes )**：
 
- - Sky ( 可能的變數有三種 )
+	- Sky ( 可能的變數有三種 )
 
-    $$\\{ Sunny, Cloudy, Rainy \\}$$
+    $$\{ Sunny, Cloudy, Rainy \}$$
 
- - Airtamp ( 可能的變數有兩種 )
+	- Airtamp ( 可能的變數有兩種 )
 
-     $$\\{ Warm, Cold \\}$$
+    $$\{ Warm, Cold \}$$
 
- -  Humidity ( 可能的變數有兩種 )
+	- Humidity ( 可能的變數有兩種 )
 
-     $$\\{ Normal, High \\}$$
+    $$\{ Normal, High \}$$
 
-  - Wind ( 可能的變數有兩種 )
-     
-     $$\\{ Strong, Light \\}$$
+	- Wind ( 可能的變數有兩種 )
+    
+    $$\{ Strong, Light \}$$
 
-  - Water ( 可能的變數有兩種 )
-     
-     $$\\{ Cold, Warm \\}$$
+	- Water ( 可能的變數有兩種 )
+    
+    $$\{ Cold, Warm \}$$
 
-  - Forecast ( 可能的變數有兩種 )
-     
-     $$\\{ Same, Change\\}$$
+	- Forecast ( 可能的變數有兩種 )
+    
+    $$\{ Same, Change\}$$
 
 
 
@@ -199,9 +194,9 @@ $$，全部的案例都會判定為錯誤(False)。$$
 
 由廣至收斂，定義若 $H_1 \geq_g H_2$，則可以說 $H_1$ 比 $H_2$還要更廣( General )，舉例：
 
-$$\\{ Sunny, ?, ?, ?, ?, ? \\} \geq_g \\{ Sunny, ?, ?, Strong, ?, ? \\} $$
-
-
+$$
+\{ Sunny, ?, ?, ?, ?, ? \} \geq_g \{ Sunny, ?, ?, Strong, ?, ? \}
+$$
 
 ![GtoSprap](\blog\images\GtoSpraph.png)
 
@@ -220,7 +215,7 @@ $$\\{ Sunny, ?, ?, ?, ?, ? \\} \geq_g \\{ Sunny, ?, ?, Strong, ?, ? \\} $$
 
 ## Find S Algorithm
 
-1. 將假說 $h$ 初始化為假說空間 $H$ 中的最特殊假說 $\\{ \phi, \phi, \phi, \phi, \phi, \phi \\} $
+1. 將假說 $h$ 初始化為假說空間 $H$ 中的最特殊假說 $\{ \phi, \phi, \phi, \phi, \phi, \phi \} $
 2. 對每個**正例** $x$ (  **＜注意＞**我們只使用正例( Positive Outcome )，不用反例！ )<br>
  - 對 $h$ 的每個環境狀態( Attribute )進行約束
    如果 $x$ 的該環境狀態滿足 $h$ 對應的環境狀態，那麼不做任何處理。
@@ -245,9 +240,14 @@ $$\\{ Sunny, ?, ?, ?, ?, ? \\} \geq_g \\{ Sunny, ?, ?, Strong, ?, ? \\} $$
 ## Version Space
 
 ### Definition: Consistent Hypotheses( 認同假說 )
+
 若有假說 $h$ 以訓練集合所有的案例進行測試，輸出結果和我們的想法一致，就可以聲明假說 $h$ 為認同假說( Consistent Hypotheses )。( 下方為原始定義 )
+
 A hypothesis $h$ is consistent with a set of training examples $D$ of **target concept** $c$ if and only if $h(x) = c(x)$ for each training example $<x, c(x)>$ in $D$.
-$$ Consistent (h, D) \equiv ( \; \forall <x, c(x ) \in D \;)  h(x) = c(x)) $$
+
+$$
+Consistent (h, D) \equiv ( \; \forall <x, c(x ) \in D \;)  h(x) = c(x))
+$$
 
 
 
@@ -255,10 +255,13 @@ $$ Consistent (h, D) \equiv ( \; \forall <x, c(x ) \in D \;)  h(x) = c(x)) $$
 
 
 ### Definition: Version Space ( 候選空間 )
+
 候選空間就是對於該測試的資料集，所有的認同假說所組合的空間，因為每個假說都可以符合目前的訓練資料的期望，所以每個假說都等待我們再進一步驗證。( 下方為原始定義 )
 The version space $VS_{H,D}$ , with respect to hypothesis space $H$ and training examples $D$, is the subset of hypotheses from $H$ consistent with all training examples in $D$.
 
-$$ VS_{H,D} \equiv \\{ h \in H \; | \; Consistent (h, D) \\} $$
+$$
+VS_{H,D} \equiv \{ h \in H \; | \; Consistent (h, D) \}
+$$
 
 
 
@@ -297,9 +300,13 @@ Specific boundary $S$ of version space $VS_{H,D}$ : set of most specific members
 Version Space
 Every member of the version space lies between $S$ and $G$
 
-$$VS_{H,D} \equiv \\{ h \in H \; | \; (\exists s \in  S ) (\exists g \in  G ) (g \geq_g h \; \geq_g s) \\}	$$
+$$
+VS_{H,D} \equiv \{ h \in H \; | \; (\exists s \in  S ) (\exists g \in  G ) (g \geq_g h \; \geq_g s) \}
+$$
 
-$$where \geq_g \equiv more \; general \; than \; or \; equal \; to$$
+$$
+where \geq_g \equiv more \; general \; than \; or \; equal \; to
+$$
 
 
 
@@ -360,32 +367,32 @@ S $\leftarrow$ 一組在假說空間 $H$ 最嚴苛的環境因素。標記為：
 
 #### 起始化
 
-Specific boundary to: 	$S_0 = \\{(Ø,Ø,Ø,Ø,Ø,Ø)\\}$
-General boundary to:	$G_0 = \\{(?,?,?,?,?,?) \\}$
+Specific boundary to: 	$S_0 = \{(Ø,Ø,Ø,Ø,Ø,Ø)\}$
+General boundary to:	$G_0 = \{(?,?,?,?,?,?)\}$
 
 #### 1’st instance: (Sunny,Warm,Normal,Strong,Warm,Same) = Yes
 
 **Positive** example *generalizes* Specific boundary
 
-$S_1 = \\{ (Sunny,Warm,Normal,Strong,Warm,Same) \\}$
+$S_1 = \{ (Sunny,Warm,Normal,Strong,Warm,Same)\}$
 
-$G_1 = \\{ (?,?,?,?,?,?) \\}$
+$G_1 = \{ (?,?,?,?,?,?)\}$
 
 #### 2’nd instance: (Sunny,Warm,High,Strong,Warm,Same) = Yes
 
 **Positive** example *generalizes* Specific boundary
 
-$S_2 = \\{(Sunny,Warm,?,Strong,Warm,Same) \\}$
+$S_2 = \{(Sunny,Warm,?,Strong,Warm,Same)\}$
 
-$G2 = \\{ (?,?,?,?,?,?) \\}$
+$G_2 = \{ (?,?,?,?,?,?)\}$
 
 #### 3’rd instance: (Rainy,Cold,High,Strong,Warm,Change) = No
 
 **Negative** example *specializes* General boundary
 
-$S_3 = \\{ (Sunny,Warm,?,Strong,Warm,Same) \\}$ 
+$S_3 = \{ (Sunny,Warm,?,Strong,Warm,Same) \}$ 
 
-$G_3 = \\{(Sunny,?,?,?,?,?), \quad	O.K.$ <br>
+$G_3 = \{(Sunny,?,?,?,?,?), \quad	O.K.$ <br>
 
 $(Cloudy,?,?,?,?,?), \quad Not \; more \; general \; than \; S_3$<br>
 
@@ -397,27 +404,21 @@ $(?,?,?,Light,?,?), \quad Not \; more \; general \; than \; S_3$<br>
 
 $(?,?,?,?,Cool,?), \quad Not \; more \; general \; than \; S_3$<br>
 
-$(?,?,?,?,?,Same)\\} \quad O.K.$<br>
+$(?,?,?,?,?,Same)\} \quad O.K.$<br>
 
-$\Rightarrow G_3 = \\{ (Sunny,?,?,?,?,?), (?,Warm,?,?,?,?), (?,?,?,?,?,Same)\\}$<br>
+$\Rightarrow G_3 = \{ (Sunny,?,?,?,?,?), (?,Warm,?,?,?,?), (?,?,?,?,?,Same)\}$<br>
 
 #### 4’th instance: (Sunny,Warm,High,Strong,Cool,Change) = Yes
 
 **Positive** example *generalizes* Specific boundary
-$S_4 = \\{ (Sunny,Warm,?,Strong,?,?) \\}$
-$G_4 = \\{ (Sunny,?,?,?,?,?), (?,Warm,?,?,?,?) \\}$
+$S_4 = \{ (Sunny,Warm,?,Strong,?,?) \}$
+$G_4 = \{ (Sunny,?,?,?,?,?), (?,Warm,?,?,?,?) \}$
 
 Final version space is all hypotheses, h such that:
-$$g \geq_ g h \; \geq_g s$$
 
-
-
-
-
-
-
-
-
+$$
+g \geq_ g h \; \geq_g s
+$$
 
 ![candidate-eliminationalgorithm](\blog\images\candidate-eliminationalgorithm.png)
 
@@ -448,9 +449,18 @@ $$g \geq_ g h \; \geq_g s$$
 
 What query should the learner make next?
 How should these be classified?
+
+$$
 <Sunny, Warm, Normal, Strong, Cool, Change>
+$$
+
+$$
 <Rainy, Cold, Normal, Light, Warm, Same>
+$$
+
+$$
 <Sunny, Warm, Normal, Light, Warm, Same>
+$$
 
 ### Inductive Bias 歸納偏置 ( 未完待補 )
 
@@ -459,6 +469,7 @@ How should these be classified?
 # 參考
 
 ---
+
 [Mr' OpenGate - AI - Ch13 機器學習(1), 機器學習簡介與監督式學習 Introduction to Machine Learning, Supervised Learning](http://mropengate.blogspot.tw/2015/05/ai-supervised-learning.html)
 
 [《机器学习》第2章中find-s算法的python实现](https://blog.csdn.net/minvacai/article/details/20202687)

@@ -328,6 +328,3 @@ Designed Contracting States under regional patent conventions
 - Santa Claus Detactor Patent 5523741
 
 ![santacalusdetector10](\blog\images\santacalusdetector10.png)
-
-
-

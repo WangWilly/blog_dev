@@ -13,7 +13,9 @@ date: 2018-04-25 22:48:00
 
 ---
 
+
 ## 簡介
+
 類神經網絡是一種受生物學啟發而產生的一種模擬人腦的學習系統。
 [Youtube - 介紹神經元與類神經的關係](https://youtu.be/gcK_5x2KsLA)
 
@@ -51,6 +53,7 @@ date: 2018-04-25 22:48:00
 對於神經(neuron)我們有一個簡單的抽象：每個神經元是與其他神經元連結在一起的，一個神經元會受到多個其他神經元狀態的衝擊，並由此決定自身是否激發。
 
 神經細胞透過輸入神經樹由其它神經細胞輸入脈波訊號後，經過神經細胞核的處理，其處理大約是：
+
 1. 將收集到的訊號作**加總**
 2. **非線性轉換**
 3. 產生一個新的脈波信號
@@ -58,20 +61,6 @@ date: 2018-04-25 22:48:00
 如果這個訊號夠強，則新的脈波信號會由神經軸傳送到輸出神經樹，再透過神經節將此訊號傳給其它神經細胞。值得注意的是：當訊號經過神經節後，由於**神經節加權值**的影響，其訊號大小值會改變。
 
 神經網絡裡的結點相互連結決定了輸入的數據在裡面經過怎樣的計算。我們可以通過大量的輸入，讓神經網絡調整它自身的連接情況從而總是能夠得到我們預期的輸出。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -85,18 +74,27 @@ date: 2018-04-25 22:48:00
 
 
 **＜比較＞**電腦裡的模擬神經網路的架構需具備：
+
 - 模擬頭腦神經的連結( 包含模擬突觸、細胞本體( 隱藏層 )、軸突 )
 - 每個神經節點
 - 實數的輸入與輸出
 - 極大量的資訊
 - 遷移學習( Transfer learning )
- - [基礎概念 - 周莫烦 - 站在巨人的肩膀上, 迁移学习 Transfer Learning](https://www.youtube.com/watch?v=fCEHdyLkjNE)
- - [實際應用( Python ) - 周莫烦 - 迁移学习 Transfer Learning](https://morvanzhou.github.io/tutorials/machine-learning/tensorflow/5-16-transfer-learning/)
- - [什么是迁移学习 (Transfer Learning)？这个领域历史发展前景如何？](https://www.zhihu.com/question/41979241)
+ 	- [基礎概念 - 周莫烦 - 站在巨人的肩膀上, 迁移学习 Transfer Learning](https://www.youtube.com/watch?v=fCEHdyLkjNE)
+ 	- [實際應用( Python ) - 周莫烦 - 迁移学习 Transfer Learning](https://morvanzhou.github.io/tutorials/machine-learning/tensorflow/5-16-transfer-learning/)
+ 	- [什么是迁移学习 (Transfer Learning)？这个领域历史发展前景如何？](https://www.zhihu.com/question/41979241)
+
 ## 感知器 ( Perceptron )
+
 設有 $n$ 維輸入的單個感知機( 從其他類神經元接收到的資訊 )，$a_1$ 至 $a_n$ 為 $n$ 維輸入向量的各個分量，$w_1$ 至 $w_n$ 為各個輸入分量連接到感知機的權值( 比重 )，$w_0$ 為偏置( 常數 )，一個神經元( Cell Body )分成兩個步驟，第一個 $\sum$ 為**彙總**資料，後面那個 $f(.)$ 為**傳遞函數**( 圖上的函數是"Sign function" )，判斷最後輸出的值， 最後以**純量輸出( 1 or -1 )**。
-$$Input: x_1, x_2, …,x_n$$
-$$Output: 1 or  -1$$
+
+$$
+Input: x_1, x_2, …,x_n
+$$
+
+$$
+Output: 1 or  -1
+$$
 
 
 
@@ -116,8 +114,8 @@ $$Output: 1 or  -1$$
 
 
 - **類神經元**示意圖
- - **＜注意＞**$w_0$不是伴隨其他的資訊傳進神經元的，而是因為某些演算法的需求，而另外多加的一個**閾值**( 正負常數值 )。
- - $ \sum_{i = 0}^n W_i X_i$又稱為**淨輸入( Net Input )**，可處理線性組合的假說空間( Hypotheses )。
+ 	- **＜注意＞**$w_0$不是伴隨其他的資訊傳進神經元的，而是因為某些演算法的需求，而另外多加的一個**閾值**( 正負常數值 )。
+ 	- $ \sum_{i = 0}^n W_i X_i$又稱為**淨輸入( Net Input )**，可處理線性組合的假說空間( Hypotheses )。
 
 
 
@@ -166,16 +164,6 @@ $$Output: 1 or  -1$$
 
 
 
-
-
-
-
-
-
-
-
-
-
 ### 感知器可以「學習」的函數
 
 
@@ -190,18 +178,24 @@ $$Output: 1 or  -1$$
 
 
 Consider a 2-input perceptron ( 感知器 ) : 
-It outputs 1 iff 
-$$o( x_1, x_2 ) =  ( w_0+w_1 \cdot x_1+w2 \cdot x2 > 0 )? $$
- <div style="text-align: center"> equivalent to </div>
-$$o( x_1, x_2 ) =  sgn( w_0+w_1 \cdot x_1+w2 \cdot x2 )$$
+It outputs 1 iff
+
+$$
+o( x_1, x_2 ) = ( w_0+w_1 \cdot x_1+w2 \cdot x2 > 0 )?
+$$
+
+<div style="text-align: center"> equivalent to </div>
+
+$$
+o( x_1, x_2 ) = sgn( w_0+w_1 \cdot x_1+w2 \cdot x2 )
+$$
 
 
 
 #### What weights represent $AND (x1, x2)$? 
 
 
-$w_0 = -0.8, w_1 = w_2 = 0.5$<br>
-$o( x_1, x_2 ) \Rightarrow sgn(-0.8  + 0.5 \cdot x_1 + 0.5 \cdot x_2 )$
+$w_0 = -0.8, w_1 = w_2 = 0.5$<br>$o( x_1, x_2 ) \Rightarrow sgn(-0.8  + 0.5 \cdot x_1 + 0.5 \cdot x_2 )$
 
 
 ![weighttorepresentAND](\blog\images\weighttorepresentAND.png)
@@ -212,8 +206,8 @@ $o( x_1, x_2 ) \Rightarrow sgn(-0.8  + 0.5 \cdot x_1 + 0.5 \cdot x_2 )$
 
 
 #### What weights represent $OR (x1, x2)$? 
-$w_0 = 0.3, w_1 = w_2 = 0.5$
-$o( x_1, x_2 ) = sgn(0.3  + 0.5 \cdot x1 + 0.5 \cdot x2 )$
+
+$w_0 = 0.3, w_1 = w_2 = 0.5$<br><br>$o( x_1, x_2 ) = sgn(0.3  + 0.5 \cdot x1 + 0.5 \cdot x2 )$
 
 
 ![weighttorepresentOR](\blog\images\weighttorepresentOR.png)
@@ -225,8 +219,7 @@ $o( x_1, x_2 ) = sgn(0.3  + 0.5 \cdot x1 + 0.5 \cdot x2 )$
 
 
 #### What weights represent $NOT (x1, x2)$? 
-$w_0 =0.0, w_1 = -1.0, w_2 = 0$
-$o(x_1) = sgn( 0.0 –1.0x_1)$
+$w_0 =0.0, w_1 = -1.0, w_2 = 0$<br><br>$o(x_1) = sgn( 0.0 –1.0x_1)$
 
 ![weighttorepresentNOT](\blog\images\weighttorepresentNOT.png)
 
@@ -234,7 +227,8 @@ $o(x_1) = sgn( 0.0 –1.0x_1)$
 
 
 
-#### What weights represent $XOR (x1, x2)$? 
+#### What weights represent $XOR (x1, x2)$?
+
 Not possible.
 
 ![possibletorepresentXOR](\blog\images\possibletorepresentXOR.png)
@@ -265,8 +259,6 @@ Not possible.
 
 ------
 
-
-
 在類神經網路學習的過程中，最重要的就是權重向量( Weight Vector )，因為這就是決定到時候感知器( Perceptrons )能不能做出正確預測( correct $\pm 1$ output )的關鍵依據。
 
 通常來說，都會給定一組訓練範例( Trainning example )，而且，每個元素裡必定會含有輸入( Input )與輸出( Output )。
@@ -295,6 +287,7 @@ Not possible.
 
 
 #### 演算法
+
 - Initialize weights (w0, w1, w2, x3, ...,wn )  to random values
 - Loop through training examples：
  $w_i \leftarrow w_i + \Delta w_i$
@@ -302,7 +295,9 @@ Not possible.
 
 - Given training data set
 
-$$D = \{ ( \vec{x}, t ) \}$$
+$$
+D = \{ ( \vec{x}, t ) \}
+$$
 
 ```cpp
 //Initialize all weights w_i to random values
@@ -315,6 +310,7 @@ WHILE not all examples correctly predicted DO
 		    // always let x_0=1
 			w_i  w_i + eta(t - o) * x_i   
 ```
+
 **＜Note＞** If (t-o) = 0, no change in weight.
 
 輪過一遍所有訓練資料，稱之為一個時代( Epoch )，若一個時代過後還有 $w_i$ 是錯誤的就繼續修改 $w_i$ ，直到某個時代所有的 $ w_i $ 可以讓 $ x_i $ 輸出正確。
@@ -340,7 +336,9 @@ WHILE not all examples correctly predicted DO
 
 
 
-$$E(w) = \frac{1}{2} \sum_{d \in D} ( t_d - o_d )$$
+$$
+E(w) = \frac{1}{2} \sum_{d \in D} ( t_d - o_d )
+$$
 
 
 
@@ -354,7 +352,9 @@ $$E(w) = \frac{1}{2} \sum_{d \in D} ( t_d - o_d )$$
 
 
 
-$$\bigtriangledown E( w ) = \frac{\partial E}{\partial w} = ( \frac{\partial E}{\partial w_0}, \frac{\partial E}{\partial w_1}, \ldots, \frac{\partial E}{\partial w_n} )$$
+$$
+\bigtriangledown E( w ) = \frac{\partial E}{\partial w} = ( \frac{\partial E}{\partial w_0}, \frac{\partial E}{\partial w_1}, \ldots, \frac{\partial E}{\partial w_n} )
+$$
 
 
 
@@ -386,7 +386,9 @@ $$\bigtriangledown E( w ) = \frac{\partial E}{\partial w} = ( \frac{\partial E}{
 
 既然梯度確定了E最陡峭的上升的方向，那麼梯度下降的訓練法則是：
 
-$$\vec{w_i} \leftarrow \vec{w_i} + \Delta \vec{w_i}, \quad where \; \Delta \vec{w_i} = \eta \frac{\partial E}{\partial w_i}$$
+$$
+\vec{w_i} \leftarrow \vec{w_i} + \Delta \vec{w_i}, \quad where \; \Delta \vec{w_i} = \eta \frac{\partial E}{\partial w_i}
+$$
 
 
 
@@ -436,29 +438,33 @@ $$\vec{w_i} \leftarrow \vec{w_i} + \Delta \vec{w_i}, \quad where \; \Delta \vec{
 
 For the least square error function, gradient is easy to calculate:
 
-$$\bigtriangledown E( w ) = \frac{\partial E}{\partial w} = \frac{1}{2} \cdot \frac{\partial \sum_{d \in D} (t_d - o_d)^2}{\partial w_i} = \frac{1}{2} \sum_{d \in D}\frac{\partial (t_d - o_d)^2}{\partial w_i} $$
+$$
+\bigtriangledown E( w ) = \frac{\partial E}{\partial w} = \frac{1}{2} \cdot \frac{\partial \sum_{d \in D} (t_d - o_d)^2}{\partial w_i} = \frac{1}{2} \sum_{d \in D}\frac{\partial (t_d - o_d)^2}{\partial w_i}
+$$
 
 
 
-$$\Rightarrow \frac{1}{2} \cdot \sum_{d \in D} (2 \cdot (t_d - o_d)\frac{\partial( t_d - o_d )}{\partial w_i}) = \sum_{d\in D}((t_d - o_d)\frac{\partial(t_d - w\cdot x_d)}{\partial w_i})$$
+$$
+\Rightarrow \frac{1}{2} \cdot \sum_{d \in D} (2 \cdot (t_d - o_d)\frac{\partial( t_d - o_d )}{\partial w_i}) = \sum_{d\in D}((t_d - o_d)\frac{\partial(t_d - w\cdot x_d)}{\partial w_i})
+$$
 
-
-
-$$ \Rightarrow \sum_{d\in D} ((t_d - o_d)(-x_{id}))$$
-
-
+$$
+\Rightarrow \sum_{d\in D} ((t_d - o_d)(-x_{id}))
+$$
 
 依上述，公式就可以簡化成：
 
-$$\Delta w_i = -\eta \frac{\partial E}{\partial w_i}$$
+$$
+\Delta w_i = -\eta \frac{\partial E}{\partial w_i}
+$$
 
+$$
+and
+$$
 
-
-$$and$$
-
-
-
-$$\frac{\partial E}{\partial w_i} = \sum_{d \in D}((t_d - o_d)(-x_{id}))$$
+$$
+\frac{\partial E}{\partial w_i} = \sum_{d \in D}((t_d - o_d)(-x_{id}))
+$$
 
 
 

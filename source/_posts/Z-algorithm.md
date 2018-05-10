@@ -18,7 +18,9 @@ Z algorithm：每個後綴與母字串的最長共同前綴（單純的長度）
 
 # $Z$陣列
 
-當我們將欲檢索的文本存為一個字串 $str\[0\ldots n-1\]$ 時，同時也建立一個與字串一樣長的$Z$陣列。
+
+
+當我們將欲檢索的文本存為一個字串 $ str[0 \\ldots n-1] $ 時，同時也建立一個與字串一樣長的$Z$陣列。
 在$Z$陣列中，第 $i$ 元素紀錄「**最長共同前總和 (Longest Common Prefix)**的長度」，而 *LCP 的長度* 是由「從 $i$ 開始的後總和 (Postfix)」與「該文本」共同決定。
 ( **注意： ** $Z[0]$ **毫無意義可言，因為從第0個開始的後總和(Postfix) 必與原本的文本字串相同。** )
 
@@ -44,10 +46,14 @@ str = "abababab"
 Z[] = {x, 0, 6, 0, 4, 0, 2, 0}
 ```
 
-## $Z$ 陣列如何幫助演算法加速?
-這個演算法的想法是將段落(pattern)與文本字串(text string)連接起來，若視段落(pattern)為「P」，視文本字串(text string)為「T」，並加上一個從未在段落與文本中出現過的*字元*`「\$」再產生出如「P$T」的字串。
 
-最後，我們再產生一個屬於「P$T」的 Z陣列，在 Z陣列之中，若該 Z值等於段落(pattern)的長度，段落出現在該處。
+## $Z$ 陣列如何幫助演算法加速?
+
+
+
+這個演算法的想法是將段落(pattern)與文本字串(text string)連接起來，若視段落(pattern)為「P」，視文本字串(text string)為「T」，並加上一個從未在段落與文本中出現過的*字元*「\\$」再產生出如「P\$T」的字串。
+
+最後，我們再產生一個屬於「P\$T」的 Z陣列，在 Z陣列之中，若該 Z值等於段落(pattern)的長度，段落出現在該處。
 
 ```
 Example:
@@ -62,7 +68,11 @@ Since length of pattern is 3, the value 3 in Z array
 indicates presence of pattern.
 ```
 
+
+
 ## 如何建立 $Z$陣列
+
+
 
 最簡單的就是使用兩個迴圈，外層迴圈將整個「P\$T」跑過一遍，內層迴圈則是看看到底 i 位置的**後總和**與「P$T」的LCP長度為何。
 $Time$ $complexity:$
@@ -70,12 +80,7 @@ $$O(n^2)$$
 
 我們當然可以使用另一種方法讓建立陣列的時間複雜度降低。
 此演算法的關鍵在於要維護一個區間$[L \ldots R]$，$R$ 的位置代表由 $L$ 處之後可以和整個字串最長的**前總和**重疊到的最後一個位置( 換句話說：$[L \ldots R]$是整個字串的**前綴子字串** )，若完全不重疊，則 $L$ 與 $R$相等。
-```
-Index            0   1   2   3   4   5   6   7   8   9  10  11 
-Text             a   a   b   $   a   a   b   x   a   a   a   z
-Z values             1   0   0   3   1   0   0   2   2   1   0
-                 =========       ^L      ^R 
-```
+
 - 步驟 ($i$ 為當前位置)
 1. 若 $i > R$ ，就代表當前 $i$ 沒有經過任何**「P\$S」的前綴子字串**，所以重置 $L$ 與 $R$ 的位置($L = i, R = i$)，經由比對**「P\$S」的前綴**與 **$i$ 之後的前綴**，並找出最長的子字串($R$ 的位置)，計算新的 $L$ 與 $R$ 的位置，也一併將 $Z[i]$值算出來($= R - L + 1$)。
 2. 若 $i \leq R$ ，令 $K = i - L$ ，再來我們知道 $Z[i] \geq  min(Z[K], R-i+1)$ 因為$String[i \ldots]$與$String[K\ldots]$共同前$R-i+1$個字元必然為[P\$T]的**前綴子字串**。現在有兩種情形會發生：
@@ -86,7 +91,8 @@ Z values             1   0   0   3   1   0   0   2   2   1   0
 
 想要了解上述的演算法可以經由這個連結觀看[動畫](http://www.utdallas.edu/~besp/demo/John2010/z-algorithm.htm)。
 
----
+
+
 **小視窗**
 
 
@@ -97,12 +103,12 @@ Z values             1   0   0   3   1   0   0   2   2   1   0
 2. 要比的後綴在以前比過的範圍$[L, R]$但長度未知 → 還是去比吧！
 3. 要比的後綴在以前比過的範圍$[L, R]$但長度已知 → 直接記錄囉！
 
----
-
 # 程式碼實作
 
 ---
+
 ## [台大資工PPT by nkng](https://www.csie.ntu.edu.tw/~sprout/algo2016/ppt_pdf/Z_value.pdf)
+
 ```cpp
 void z_build(const char *S, int *Z) {
     Z[0] = 0;
@@ -117,6 +123,7 @@ void z_build(const char *S, int *Z) {
 ```
 
 ## [Z algorithm - GeeksforGeeks](https://www.geeksforgeeks.org/z-algorithm-linear-time-pattern-searching-algorithm/)
+
 ```cpp
 // A C++ program that implements Z algorithm for pattern searching
 #include<iostream>
@@ -211,6 +218,7 @@ int main()
 ```
 
 ## [建國中學 2012 年資訊能力競賽培訓講義 - 08](http://pisces.ck.tp.edu.tw/~peng/index.php?action=showfile&file=fab7c1879e544bcefffb4b8717f2747436e1c425c)
+
 ```cpp
 void Z_maker( int z[], char s[], int n ){
     z[0] = n;
@@ -248,6 +256,7 @@ for (int i = 1; i < n; i++) {
 ```
 
 ## [Z algorithm1 - 日月卦長的模板庫](http://sunmoon-template.blogspot.tw/2015/05/z-algorithm-linear-time-pattern.html)
+
 ```cpp
 inline void z_alg1(char *s,int len,int *z){
 	int l=0,r=0;
@@ -275,6 +284,7 @@ inline void z_alg2(char *s,int len,int *z){
 ```
 
 ## [培訓-4 字串- tioj](https://tioj.infor.org/uploads/attachment/11/43/4.pdf)
+
 ```cpp
 void z_build(const char* S,int *z){
     z[0]=0;
@@ -291,11 +301,13 @@ void z_build(const char* S,int *z){
 # 例題
 
 ---
+
 [TIOJ 1725_Z algorithm_Massacre at Camp Happy](http://codingbeans.blogspot.tw/2016/03/tioj-1725z-algorithm-massacre-at-camp.html)
 
 # 參考
 
 ---
+
 [Z algorithm - GeeksforGeeks](https://www.geeksforgeeks.org/z-algorithm-linear-time-pattern-searching-algorithm/)
 
 [建國中學 2012 年資訊能力競賽培訓講義 - 08](http://pisces.ck.tp.edu.tw/~peng/index.php?action=showfile&file=fab7c1879e544bcefffb4b8717f2747436e1c425c)
@@ -315,4 +327,6 @@ void z_build(const char* S,int *z){
 ---
 
 ## KMP 字串比對演算法
+
 http://mropengate.blogspot.tw/2016/01/leetcode-kmpimplement-strstr.html
+
