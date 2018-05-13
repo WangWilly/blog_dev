@@ -180,9 +180,9 @@ links_title: Links
 links_layout: block
 #links_layout: inline
 links:
-  Online LaTeX Equation Editor: http://www.codecogs.com/latex/eqneditor.php
-  Marxico: https://marxi.co/
+  Typora: https://typora.io/
   GeeksforGeeks: https://www.geeksforgeeks.org/
+  Online LaTeX Equation Editor: http://www.codecogs.com/latex/eqneditor.php
 
 # Sidebar Avatar
 # in theme directory(source/images): /images/avatar.gif

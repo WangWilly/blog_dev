@@ -67,7 +67,7 @@ $$a \cdot x + b \cdot y = m$$
 當 $x, y $有**整數解**時若且唯若( $\Leftrightarrow$ ) $gcd(a, b)\; | \; m$ 。此等式有解時必然有無窮多個解，每組解 $x, y$ 都稱為**貝組數**可用[擴展歐幾里得演算法](https://zh.wikipedia.org/wiki/%E6%93%B4%E5%B1%95%E6%AD%90%E5%B9%BE%E9%87%8C%E5%BE%97%E6%BC%94%E7%AE%97%E6%B3%95)求得，也就是說若 $a$ 為負數$a \cdot (-x) + b \cdot y = m$ 有整數解時$gcd(|a|, b) \;| \; m$。
 
 - $Ex. $ 求 $47 \cdot x + 30 \cdot y = 1$，求 $x, y$？
-  - $47 = 1 \cdot 30 + 17 $<br>$\Rightarrow 30 = 1\cdot 17 + 13$<br>$\Rightarrow 17 = 1 \cdot 13 + 4$<br>$\Rightarrow 13 = 3\cdot 4 +1$<br>我們得知$gcd(47, 30) = 1$且$1 \; | \; 1$，所以接著改寫成「餘數等於」的形式<br>$17 = 1\cdot 47 - 1 \cdot 30$<br>$13 = 1\cdot 30 - 1 \cdot 17$<br>$4 = 1\cdot 17 - 1 \cdot 13$<br>$1 = 1\cdot 13 - 3 \cdot 4$<br>最後再反著倒寫回去<br>$1 = 1\cdot 13 - 3 \cdot 4$<br>$\Rightarrow 1 = 1\cdot 13 - 3 \cdot (1\cdot 17 - 1\cdot 13)$<br>$\Rightarrow 1 = (-3)\cdot 17 - 4 \cdot 13$<br>$\Rightarrow 1 = (-3)\cdot 17 - 4 \cdot (1\cdot 30 - 1 \cdot 17)$<br>$\Rightarrow 1 = 4\cdot 30 + (-7)\cdot 17 $<br>$\Rightarrow 1 = 4\cdot 30 + (-7)\cdot ( 1 \cdot 47 - 1 \cdot 30 )$<br>$\Rightarrow 1 = 47 \cdot (-7) + 30\cdot 11$<br>其中，$x = -7$與$y = 11$為其中一組**貝組數**，其無限解為$x = -7 + 30\cdot k, y = 11 - 47 \cdot k, \forall k \in \mathbb{Z}$
+  - $47 = 1 \cdot 30 + 17 $ <br> $\Rightarrow 30 = 1\cdot 17 + 13$ <br> $\Rightarrow 17 = 1 \cdot 13 + 4$<br>$\Rightarrow 13 = 3\cdot 4 +1$ <br> 我們得知  $gcd(47, 30) = 1$且$1 \; | \; 1$，所以接著改寫成「餘數等於」的形式<br>$17 = 1\cdot 47 - 1 \cdot 30$ <br> $13 = 1\cdot 30 - 1 \cdot 17$ <br> $4 = 1\cdot 17 - 1 \cdot 13$<br>$1 = 1\cdot 13 - 3 \cdot 4$<br>最後再反著倒寫回去<br>$1 = 1\cdot 13 - 3 \cdot 4$<br>$\Rightarrow 1 = 1\cdot 13 - 3 \cdot (1\cdot 17 - 1\cdot 13)$<br>$\Rightarrow 1 = (-3)\cdot 17 - 4 \cdot 13$<br>$\Rightarrow 1 = (-3)\cdot 17 - 4 \cdot (1\cdot 30 - 1 \cdot 17)$ <br> $\Rightarrow 1 = 4\cdot 30 + (-7)\cdot 17 $ <br> $\Rightarrow 1 = 4\cdot 30 + (-7)\cdot ( 1 \cdot 47 - 1 \cdot 30 )$ <br> $\Rightarrow 1 = 47 \cdot (-7) + 30\cdot 11$ <br>其中， $x = -7$ 與 $y = 11$ 為其中一組**貝組數**，其無限解為 $x = -7 + 30\cdot k, y = 11 - 47 \cdot k, \forall k \in \mathbb{Z}$
 - Modular 反元素
   - 若貝組等式 $a \cdot x + b \cdot y = 1$ (若 $\neq 1$ 則模反元素不存在)<br>則：$a \cdot x = 1 - b\cdot y \Leftrightarrow a\cdot x \equiv 1 \quad (mod \; b)$<br>所以$a \cdot a^{-1} \equiv 1 \quad (mod \; b)$ ，此時$x$為$a$的一個模反元素，其無限表示式為$a^{-1} = x + k\cdot b, \forall k \in \mathbb{Z}$。
 
@@ -119,7 +119,7 @@ $$
 
 
 
- ## 常見題目類型
+## 常見題目類型
 
 
 
