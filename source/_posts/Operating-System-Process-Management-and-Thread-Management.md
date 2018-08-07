@@ -53,15 +53,13 @@ date: 2018-07-10 22:14:00
 - $Ex29.$ (Ref P.4-75)：以下哪些項目是**不包含**在正常的 PCB 當中？
 
   - Process number
-
-- - CPU register
+  - CPU register
   - **I/O device queue**：為作業系統管理，不屬於每個 process。
 
 - $Ex34.$ (Ref P.4-78)：以下哪些項目是**不包含**在正常的 PCB 當中？
 
   - Process state
   - The **bitmap of this process**：用於磁碟可用空間的管理方法。
-
   - Register
 
 
@@ -180,7 +178,7 @@ date: 2018-07-10 22:14:00
 
 
 
-## *Midium-term scheduler
+## ★Midium-term scheduler
 
 
 
@@ -207,7 +205,7 @@ date: 2018-07-10 22:14:00
 
 
 
-### 如何降低 Context switching 的負擔？
+## 如何降低 Context switching 的負擔？
 
 
 
@@ -219,7 +217,7 @@ date: 2018-07-10 22:14:00
 
 
 
-# Dispatcher分派器<br>Dispatch Latency 分派延遲
+# Dispatcher分派器 & Dispatch Latency 分派延遲
 
 ---
 
@@ -406,7 +404,7 @@ int main(void) {
 
 
 
-### *$Ex4.$ 程序的並行
+### ★$Ex4.$ 程序的並行
 
 
 
@@ -512,7 +510,7 @@ C
 
 
 
-### *$Ex5.$ 共享變數
+### ★$Ex5.$ 共享變數
 
 
 
@@ -626,14 +624,14 @@ OR ( **當指令不是 atomic 時** )
 4
 ```
 
-*OR ( **當指令不是 atomic 時** )
+★OR ( **當指令不是 atomic 時** )
 
 ```
 4
 6
 ```
 
-*OR ( **當指令不是 atomic 時** )
+★OR ( **當指令不是 atomic 時** )
 
 ```
 6
@@ -688,7 +686,7 @@ Ans：10 個。
 
 
 
-3. *
+3. ★
 
 ```cpp
 #include <stdio.h>
@@ -719,7 +717,7 @@ Ans： 14 個。(~~30個~~)
 
 
 
-4. **
+4. ★★
 
 ```cpp
 #include <stdio.h>
@@ -881,10 +879,10 @@ Ans：
 
 
 
-- *** Waiting time - 等待時間**
+- **★ Waiting time - 等待時間**
   - Process 在 Ready Queue 中等待獲得 CPU 之等待**時間的加總**。
   - $Ex.$上圖的等待時間為 $(8-2)+(19-15) = 10$。
-- *** Turnaruond time - 完成時間**
+- **★ Turnaruond time - 完成時間**
   - 自 process **進入(到達)** 到工作完成的這段時間差值。 
   - $Ex. $上圖的等待時間為 $26-2 = 24$。
 - *Response time - 回應時間*
@@ -940,7 +938,7 @@ Ans：
 
 
 
-#### *觀點二
+#### ★觀點二
 
 
 
@@ -963,7 +961,7 @@ Ans：
 
 
 
-###預估 Process Next CPU Burst Time
+### 預估 Process Next CPU Burst Time
 
 
 
@@ -1212,7 +1210,7 @@ $$
 
 
 
-### *Round Robin
+### ★Round Robin
 
 
 
@@ -1270,7 +1268,7 @@ $$
 
 
 
-| Processs | *Arrival time |       **行程行為       |
+| Processs | ★Arrival time |       ★★行程行為       |
 | :------: | :-----------: | :--------------------: |
 |    P1    |       0       | 5 CPU + 6 I/O + 4 CPU  |
 |    P2    |       3       |         15 CPU         |
@@ -1324,8 +1322,8 @@ $$
   - 也為一種可**參數化 (ex. Quantum)**的法則。
   - **公平。**
   - 沒有 starvation。
-  - ***Preemptive。**
-  - Round robin 排班效益取決於 Time quantum 大小決定。<br> $Ex1. \; Quantum = \infin$ 則 RR 會變成 **FIFO**，也可以說排班的效能很差。<br>$Ex2. \; Quantum \rightarrow 0$ 則 Context switching 太頻繁，**CPU utilization 會變得非常差** ($\approx 0$)。<br>$Ex3. $ 根據經驗法則，若 Quantum 能讓 80% 的工作量在該時間完成，效能最佳。
+  - **★Preemptive。**
+  - Round robin 排班效益取決於 Time quantum 大小決定。<br> $Ex1. \; Quantum = \infty$ 則 RR 會變成 **FIFO**，也可以說排班的效能很差。<br>$Ex2. \; Quantum \rightarrow 0$ 則 Context switching 太頻繁，**CPU utilization 會變得非常差** ($\approx 0$)。<br>$Ex3. $ 根據經驗法則，若 Quantum 能讓 80% 的工作量在該時間完成，效能最佳。
 
 
 
@@ -1580,7 +1578,7 @@ P1 滿足 deadline，P2 滿足 deadline。
 
  
 
-- 以 Rate-monotinic 是否滿足 Deadline？
+- 以 Rate-monotinic 是否不牴觸 Deadline？
   - P1 的 Period time：50 < P2 的 Period time：80，P1的優先權大於 P2 的優先權。
 
 
@@ -1591,15 +1589,15 @@ P1 滿足 deadline，P2 滿足 deadline。
 
 
 - 以 EDF 是否滿足 Deadline？
-  - (1) P1 的 Deadline：50 < P2 的 Deadline：80，P1的優先權大於 P2 的優先權。
-  - (2) P1 的 Deadline：100 > P2 的 Deadline：80，P2的優先權大於 P1 的優先權。
-  - (3) P1 的 Deadline：100 < P2 的 Deadline：160，P1的優先權大於 P2 的優先權。
-  - (4) P1 的 Deadline：150 < P2 的 Deadline：160，P1的優先權大於 P2 的優先權。
-  - (5) P1 的 Deadline：200 < P2 的 Deadline：240，P1的優先權大於 P2 的優先權。
-  - (6) P1 的 Deadline：250 < P2 的 Deadline：240，P2的優先權大於 P1 的優先權。
-  - (7) P1 的 Deadline：300 < P2 的 Deadline：320，P1的優先權大於 P2 的優先權。
-  - (8) P1 的 Deadline：350 < P2 的 Deadline：400，P1的優先權大於 P2 的優先權。
-  - **(8) P1 的 Deadline：400 = P2 的 Deadline：400，P1的優先權等於 P2 的優先權。**
+	- ﹙1﹚ P1 的 Deadline：50 < P2 的 Deadline：80，P1的優先權大於 P2 的優先權。
+	- ﹙2﹚ P1 的 Deadline：100 > P2 的 Deadline：80，P2的優先權大於 P1 的優先權。
+	- ﹙3﹚ P1 的 Deadline：100 < P2 的 Deadline：160，P1的優先權大於 P2 的優先權。
+	- ﹙4﹚ P1 的 Deadline：150 < P2 的 Deadline：160，P1的優先權大於 P2 的優先權。
+	- ﹙5﹚ P1 的 Deadline：200 < P2 的 Deadline：240，P1的優先權大於 P2 的優先權。
+	- ﹙6﹚ P1 的 Deadline：250 < P2 的 Deadline：240，P2的優先權大於 P1 的優先權。
+	- ﹙7﹚ P1 的 Deadline：300 < P2 的 Deadline：320，P1的優先權大於 P2 的優先權。
+	- ﹙8﹚ P1 的 Deadline：350 < P2 的 Deadline：400，P1的優先權大於 P2 的優先權。
+	- **﹙8﹚ P1 的 Deadline：400 = P2 的 Deadline：400，P1的優先權等於 P2 的優先權。**
 
 
 
@@ -1628,10 +1626,10 @@ P1 滿足 deadline，P2 滿足 deadline。
 
 
 - 以 EDF 是否滿足 Deadline？
-  - (1) P1 的 Deadline：50 < P2 的 Deadline：75，P1的優先權大於 P2 的優先權。
-  - (2) P1 的 Deadline：100 > P2 的 Deadline：75，P2的優先權大於 P1 的優先權。
-  - (3) P1 的 Deadline：100 < P2 的 Deadline：150，P1的優先權大於 P2 的優先權。
-  - (4) **P1 的 Deadline：150 = P2 的 Deadline：150，P1的優先權等於 P2 的優先權。**
+  - ﹙1﹚ P1 的 Deadline：50 < P2 的 Deadline：75，P1的優先權大於 P2 的優先權。
+  - ﹙2﹚ P1 的 Deadline：100 > P2 的 Deadline：75，P2的優先權大於 P1 的優先權。
+  - ﹙3﹚ P1 的 Deadline：100 < P2 的 Deadline：150，P1的優先權大於 P2 的優先權。
+  - ﹙4﹚ **P1 的 Deadline：150 = P2 的 Deadline：150，P1的優先權等於 P2 的優先權。**
 
 
 
@@ -1807,7 +1805,7 @@ Thread management 是由在 User mode 之 thread library 提供的 APIs 以讓 u
 
 
 
-- ***不需要 Kernel 的任何協助。( With no support from kernel. )**
+- **★不需要 Kernel 的任何協助。( With no support from kernel. )**
 - Pros
   - **當 Process 內某條執行中的 kernel-thread 是被 blocked 的，不會導致整個 porcess 亦被 blocked。( 若 process 內有其他可執行的 thread 時。)**
   - **可以管理 process 內之多條 kernel-threads 的平行執行，導致 Multprocessors 的效能發揮較差。**

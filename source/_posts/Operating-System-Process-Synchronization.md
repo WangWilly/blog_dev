@@ -1,4 +1,4 @@
-title: Operating System - Process Synchronization
+title: Operating System - Process Synchronization 1
 author: Willy Wang
 tags:
   - Process Synchronization
@@ -211,7 +211,7 @@ x = x + y;
 
 
 
-- *** (12, 35)**
+- **★ (12, 35)**
 
 
 
@@ -965,7 +965,7 @@ util false
 
 
 - 功能：**回傳 Lock 參數值並將 Lock 參數設為 True，且 CPU 保證此指令是不可中斷地執行( Atomically executed )。**
-- 
+
 
 
 
@@ -1007,7 +1007,7 @@ do {
 
 
 
-###### **Algorithm 2 ( Pass ) - FIFO
+###### ★★Algorithm 2 ( Pass ) - FIFO
 
 
 
@@ -1108,7 +1108,7 @@ do {
 
 
 
-###### **Algorithm 2 ( Pass ) - FIFO
+###### ★★Algorithm 2 ( Pass ) - FIFO
 
 
 
@@ -1243,3 +1243,1385 @@ Synchronization
 
 
 
+##### $Ex.$  $A;$ 必須要在 $B;$ 之前執行。
+
+
+
+```cpp
+// P_i
+...
+A;
+...
+```
+
+
+
+```cpp
+// P_j
+...
+B;
+...
+```
+
+
+
+宣告共享變數 $s$：semaphore = 0。
+
+
+
+```cpp
+// P_i
+...
+A;
+signal(s);
+...
+```
+
+
+
+```cpp
+// P_j
+...
+wait(s);
+B;
+...
+```
+
+
+
+##### $Ex.$  執行順序為 $A、C、B$。
+
+
+
+```cpp
+// P_i
+...
+A;
+signal(s_1);
+...
+```
+
+
+
+```cpp
+// P_j
+...
+wait(s_2);
+B;
+...
+```
+
+
+
+```cpp
+// P_k
+...
+wait(s_1);
+C;
+signal(s_2);
+...
+```
+
+
+
+宣告共享變數 s_1：semaphore = 0、s_2：semaphore = 0
+
+
+
+```cpp
+// P_i
+...
+A;
+...
+```
+
+
+
+```cpp
+// P_j
+...
+B;
+...
+```
+
+
+
+```cpp
+// P_k
+...
+C;
+...
+```
+
+
+
+##### $Ex.$  一直重複執行依照 「$A、B、C$ 」的順序。
+
+
+
+```cpp
+// P_i
+while(condition == true) {
+    ...
+    A;
+    ...
+}
+```
+
+
+
+```cpp
+// P_j
+while(condition == true) {
+    ...
+    B;
+    ...
+}
+```
+
+
+
+```cpp
+// P_k
+while(condition == true) {
+    ...
+    C;
+    ...
+}
+```
+
+
+
+宣告共享變數 s_1：semaphore = 0、s_2：semaphore = 0、**s_3：semaphore：semaphore = 0**。
+
+
+
+```cpp
+// P_i
+while(condition == true) {
+    ...
+    A;
+    signal(s_1);
+    wait(s_3);   // 注意!
+    ...
+}
+```
+
+
+
+```cpp
+// P_j
+while(condition == true) {
+    ...
+    wait(s_1);
+    B;
+    signal(s_2);
+    ...
+}
+```
+
+
+
+```cpp
+// P_k
+while(condition == true) {
+    ...
+    wait(s_2);
+    C;
+    signal(s_3);
+    ...
+}
+```
+
+
+
+當我們令 s_1：semaphore = 0、s_2：semaphore = 0、**s_3：semaphore = 1**。
+
+
+
+```cpp
+// P_i
+while(condition == true) {
+    ...
+    wait(s_3);   // 注意!
+    A;
+    signal(s_1);
+    ...
+}
+```
+
+
+
+```cpp
+// P_j
+while(condition == true) {
+    ...
+    wait(s_1);
+    B;
+    signal(s_2);
+    ...
+}
+```
+
+
+
+```cpp
+// P_k
+while(condition == true) {
+    ...
+    wait(s_2);
+    C;
+    signal(s_3);
+    ...
+}
+```
+
+
+
+##### $Ex.$  $C$ 為共享變數且初值為 3，追蹤下列程式判斷可能的結果值。
+
+
+
+1. 
+
+
+
+```cpp
+// P_i
+    ...
+	C = C * 2;
+    ...
+```
+
+
+
+```cpp
+// P_j
+    ...
+    C = C + 1;
+    ...
+```
+
+
+
+可能的結果值為`6`、`4`、`8`、`7`。
+
+
+
+2.  s：semaphore = 1
+
+
+
+```cpp
+// P_i
+    ...
+    wait(s);
+	C = C * 2;
+	signal(s);
+    ...
+```
+
+
+
+```cpp
+// P_j
+    ...
+    wait(s);
+    C = C + 1;
+	signal(s);
+    ...
+```
+
+
+
+可能的結果值為`8`、`7`。
+
+
+
+3. s：semaphore = 0
+
+
+
+```cpp
+// P_i
+    ...
+	C = C * 2;
+	signal(s);
+    ...
+```
+
+
+
+```cpp
+// P_j
+    ...
+    wait(s);
+    C = C + 1;
+    ...
+```
+
+
+
+結果值為`7`。
+
+
+
+##### $Ex.$  求 $A、B、C$  可能的執行順序。
+
+
+
+- s_1：semaphore = 1、s_2：semaphore = 0。
+
+
+
+```cpp
+// P_i
+...
+wait(s_1);
+A;
+signal(s_2);
+...
+```
+
+
+
+```cpp
+// P_j
+...
+wait(s_2);
+B;
+signal(s_1);
+...
+```
+
+
+
+```cpp
+// P_k
+...
+wait(s_1);
+C;
+signal(s_1);
+...
+```
+
+
+
+可能的執行順序為`A->B->C` 或 `C->A->B`。
+
+
+
+#### Semaphore 誤用
+
+
+
+##### 違反「互斥」
+
+
+
+- s：semaphore = 1
+
+
+
+```cpp
+// P_i
+signal(s);
+	// C.S.
+wait(s);
+// R.S.
+```
+
+
+
+##### ☆形成死結
+
+
+
+- s：semaphore = 1
+
+
+
+```cpp
+// P_i
+wait(s);
+	// C.S.
+wait(s);
+// R.S.
+```
+
+
+
+- ☆ s_1：semaphore = 1、s_2：semaphore = 1。
+
+
+
+```cpp
+// P_i
+wait(s_1);
+	wait(s_2);
+		...
+signal(s_1);
+	signal(s_2);
+```
+
+
+
+```cpp
+// P_j
+wait(s_2);
+	wait(s_1);
+		...
+signal(s_2);
+	signal(s_1);
+```
+
+
+
+**可能會造成「死結」。**
+
+
+
+```cpp
+// flow code
+// P_i
+	wait(s_1); // pass
+// P_j
+	wait(s_2); // pass
+// P_i
+	wait(s_2); // block
+// P_j
+	wait(s_1); // block
+// Deadlock
+```
+
+
+
+### 重要的同步問題 ( Synchronization Problem )
+
+
+
+- 解決要點
+  - **以 Semaphore 變數實作同步處理條件。**
+  - **以 Semaphore 實作互斥控制防止「Race condition」。**
+  - 先同步、再互斥。
+
+
+
+#### Producer Consumer Problem ( 生產者消費者問題 )
+
+
+
+
+![producercomsumerproblem](\blog\images\producercomsumerproblem.png)
+
+
+
+- Producer：這種 Processes 專門產生資料，以供其他 Processes 使用。
+- Consumer：這種 Processes 專門處理資料給使用者。
+- Shared memory 狀態下討論。
+
+
+
+##### ☆Bounded Buffer Producer-Consumer ( 有限緩衝區 )
+
+- 當緩衝區**滿**的時候，**生產者必須等待。**
+- 當緩衝區**空**的時候，**消費者必須等待。**
+
+
+
+###### Algorithm1
+
+
+
+- 共享變數
+  - $Buffer：[0 \ldots n-1] \; of \; items$
+  - $in, out：int = 0$
+- Producer Process
+
+
+
+```cpp
+// producer
+while(condition == true) {
+    ...
+    create a new item "t";
+    while((in+1)%n == out) ;
+    Buffer[in] = t;
+    in = (in + 1) % n;
+    ...
+}
+```
+
+
+
+- Consumer Process
+
+
+
+```cpp
+// consumer
+while(condition == true) {
+    ...
+	while(in == out) ;
+    assign Buffer[out] to "I";
+    out = (out + 1) % n;
+    ...
+    // using "I" item
+    ...
+}
+```
+
+
+
+###### Algorithm2(fall)
+
+
+
+
+![circulerqueue](\blog\images\circulerqueue.png)
+
+若使用「Algorithm1」的算法，在上圖所表示的狀態中，算法會判斷為 Buffer 已滿 (`(in + 1) % n == out`)，無法再加入，所以導致最多只能用 n-1 個 Buffer。
+
+
+
+- 共享變數
+  - $Buffer：[0 \ldots n-1] \; of \; items$
+  - $in, out：int = 0$
+  - **Count：int = 0**
+- Producer Process
+
+
+
+```cpp
+// producer
+while(condition == true) {
+    ...
+    creat a new item "t";
+    while(count == n) ;
+    buffer[in] = t;
+    in = (in + 1) % n;
+    count++;
+    ...
+}
+```
+
+
+
+- Consumer Process
+
+
+
+```cpp
+// consumer
+while(condition == true) {
+    ...
+    while(count == 0) ;
+    assign buffer[out] value to "I";
+    out = (out + 1) % n;
+    count--;
+    ...
+    // using tiem "I"
+    ...
+}
+```
+
+
+
+
+
+###### 用 Semaphore 解決 Algorithm2
+
+
+
+- 共享變數
+  - **empty：semaphore = n**<br>代表緩衝區內的**「空閒容量」**，若為 0 則代表緩衝區已**滿**。
+  - **full：semaphore = 0**<br>代表緩衝區中**「已使用容量」**，若為 0 則代表緩衝區目前為**空**。
+  - mutex：semaphore = 1<br>對緩衝區、in、out 與 Count 做互斥控制，**防止「Race condition」。**
+- Producer Process
+
+
+
+```cpp
+// producer
+while(condition == true) {
+    ...
+    create a new item "t";
+    wait(empty);               // 確認當前「空格數」是否足夠使用。
+    	wait(mutex);
+    		buffer[in] = t;
+    		in = (in + 1) % n;
+    		count++;
+    	signal(mutex);
+    	signal(full);         // 將「滿格數」添上一筆。
+}
+```
+
+
+
+- Consumer Process
+
+
+
+```cpp
+// consumer
+while(condition == true) {
+    ...
+    wait(full);                        // 確認當前「滿格數」是否足夠使用。
+    	wait(mutex);
+            assign buffer[out] to "I";
+            out = (out + 1) % n;
+            count--;
+    	signal(mutex);
+    	signal(empty);                 // 將「空格數」添上一筆。
+}
+```
+
+
+
+##### Unbunded Buffer Producer-Consumer ( 無限緩衝區 )
+
+- 當緩衝區**空**的時候，**消費者必須等待。**
+- 不予討論
+
+
+
+#### Reader Writer Problem
+
+
+
+
+![readerwiterproblem](\blog\images\readerwiterproblem.png)
+
+
+
+- ☆**問題重點**
+  - **Reader、Writer 須對該資料進行互斥處理。**
+  - **Writer、Writer 須對該資料進行互斥處理。**
+
+
+
+##### First reader writer problem
+
+
+
+
+![firstreaderwiterproblem](\blog\images\firstreaderwiterproblem.png)
+
+
+
+對於 Reader 有利，而對於 Writer 不利所以可能導致 Writer 「Starvation」。
+
+
+
+- 共享變數
+  - wrt：semaphore = 1<br>提供 Read/Write 與 Write/Write 的互斥控制，**這種控制將會不利於 Writer 的寫入**。
+  - readcnt：int = 0<br>**紀錄目前的 Reader 個數。**$\left\{\begin{matrix}多一位 \; Reader \Rightarrow readcnt  = readcnt + 1。\\少一位 \; Reader \Rightarrow readcnt = readcnt -1。 \end{matrix}\right. \Rightarrow 需使用互斥控制。$
+  - **mutex：semaphore = 1** <br>對 readcnt 作「互斥控制」，防止 Race condition。
+- Reader 程式
+
+
+
+```cpp
+// Reader
+    wait(mutex);
+        readcnt++;
+        if(readcnt == 1) wait(wrt);
+    signal(mutex);
+    // Reading
+    wait(mutex);
+        readcnt--;
+        if(readcnt == 0) signal(wrt); // 目前沒有 Reader 要使用此檔案了。
+    signal(mutex);
+```
+
+
+
+- Writer
+
+
+
+```cpp
+// Writer
+    wait(wrt);
+    // Writing
+    signal(wrt);
+```
+
+
+
+- 當 `if(readcnt == 1)` 符合條件代表目前是第一個**想要**使用此檔案的 Reader。
+
+  - 需要執行 `wait(wrt);` **以檢查目前是否有其他的 Writer 正在使用此檔案。**<br>1. 若有，則不繼續執行。<br>2. 若無，則通過且將 Writer 阻擋住。
+
+    
+
+- EX：根據上方程式，假設目前 $W_1$ 已在寫入之中。
+  1. 若 $R_1$ 接上面之後開始執行，則 $R_1$ 會卡在程式碼何處？而此時的 readcnt 又為何？<br>`wait(wrt);`，readcnt = 1。
+  2. 若 $R_2$ 接上面之後開始執行，則 $R_2$ 會卡在程式碼何處？而此時的 readcnt 又為何？<br>`wait(mutex);`，readcnt = 1。
+  3. 若 $R_3$ 接上面之後開始執行，則 $R_3$ 會卡在程式碼何處？而此時的 readcnt 又為何？<br>`wait(mutex);`，readcnt = 1。
+
+
+
+##### Second reader writer problem
+
+
+
+
+![secondreaderwriterproblem](\blog\images\secondreaderwriterproblem.png)
+
+
+
+對於 Writer 有利，而對於 Reader 不利所以可能導致 Reader 「Starvation」。
+
+
+
+**只要 Writer 離開，發現尚有 Writers 也在等待佇列，則優先讓 Writer 對資料進行寫入，所以可能會導致 Reader Starvation。**
+
+
+
+- 共享變數
+  - readcnt：int = 0<br>紀錄目前 Readers 正在讀取的個數。
+  - wrtcnt：int = 0<br>紀錄目前還有多少 Writer 在等待寫入資料。
+  - x：semaphore = 1<br>對 readcnt 作互斥控制，防止 race condition。
+  - y：semaphore = 1<br>對 wrtcnt 作互斥控制，防止 race condition。
+  - z：semaphore = 1<br>**因為要對 Writer 有利，所以使用 mutex 作為 Reader 要對資料進行讀取時的障礙，不會急於對資料讀取。(讓 rsem 的效果更明顯)**
+  - **rsem：semaphore = 1**<br>**作為不利 Reader 之控制。**
+  - **wsem：semaphore  = 1**<br>**提供 Read/Write 與 Write/Write 的互斥控制。**
+- Reader 程式
+
+
+
+```cpp
+// Reader
+wait(z);
+	wait(rsem);
+		wait(x);
+			readcnt++;
+			if(readcnt == 1) wait(wsem);
+		signal(x);
+	signal(rsem);
+signal(z);
+// Reading
+wait(x);
+	readcnt--;
+	if(readcnt == 0) signal(wsem);
+signal(x);
+```
+
+
+
+- Writer 程式
+
+
+
+```cpp
+// Writer
+wait(y);
+	wrtcnt++;
+	if(wrtcnt == 1) wait(rsem);   // 目前第一個 Writer，會迫使 Reader 多一層等待
+signal(y);
+wait(wsem);                       // 開始等待寫入
+	// Writing
+wait(y);
+	wrtcnt--;
+	if(wrtcnt == 0) signal(rsem); // 最後一個 Writer，將擋住 Reader 的閘門解除。
+	signal(wsem);                 // Writer 離開時，交付讀寫權。
+signal(y);
+```
+
+
+
+#### The sleeping Barber Problem ( 理髮師睡覺問題 )
+
+
+
+一個理髮師，一張美髮座椅( 理髮師一次服務一個客人 )，與 n 個等待座位。
+
+
+
+- 客人
+  - **若等待座位坐滿，就不會進入理髮廳。**
+  - **若尚未坐滿：**
+    - **進入理髮廳等待。**
+    - **通知 / 喚醒理髮師。**
+    - **若理髮師正在忙碌，客人進行睡覺( waiting )，**直到理髮師喚醒客人剪髮，剪完後離開。
+- 理髮師
+  - **若目前無客人，睡覺( waiting )直到有客人喚醒理髮師。**
+  - 若目前理髮師醒著且目前有客人正在等待，會去喚醒客人理髮，重複動作直到沒有客人為止最後睡覺(wait)。
+- 共享變數：
+  - **customer：semaphore = 0**<br>**用來處理客人與理髮師的同步問題。有客人才被喚醒工作，若無則繼續睡覺。**
+  - **barber：semaphore = 0**<br>**用來處理客人與理髮師的同步問題。若理髮師忙碌等待並睡覺，反之進行理髮。**
+  - waiting：int = 0<br>目前座在等待區的人數。$\left\{\begin{matrix}客人入店 \; \Rightarrow waiting++ \\理髮師開始處理下一為客人 \Rightarrow waiting-- \end{matrix}\right.$
+  - mutex：semaphore = 1<br>**對 waiting 變數做互斥處理，以免 Race condition。**
+- Barber 程式
+
+
+
+```cpp
+// barber
+while(conditon == false) {
+    wait(customer);          // 目前沒有客人，Barber 睡覺去。
+    	wait(mutex);
+    		waiting--;
+    		signal(barber); // 叫醒客人。
+    	signal(mutex);
+    	// processing cutting hair
+    	// signal(barber);  // worng code
+}
+```
+
+
+
+- Costomer 程式
+
+
+
+```cpp
+// customer: 注意! customer 並沒有需要 loop 持剪髮的需求。
+wait(mutex);
+    if(waiting < n) {
+		waiting++;
+		signal(customer); // 叫醒/通知 Barber。
+signal(mutex);
+		wait(barber);		
+    } else {
+signal(mutex);    
+    }
+```
+
+
+
+
+![secondreaderwriterproblem_2](\blog\images\secondreaderwriterproblem_2.png)
+
+
+
+#### The Dining-philosophers Problem (哲學家用餐問題)
+
+
+
+
+![dining_philosophersproblem](\blog\images\dining_philosophersproblem.png)
+
+
+
+**倆倆之間有一隻筷子，哲學家若感到飢餓，必須要能夠同時取得左右兩根筷子才能用餐。用完餐後放下左右兩根筷子，進行思考模式。**
+
+
+
+**＜Note＞**
+
+1. 中餐，奇數或是偶數位哲學家皆可以，因為左右邊都可以是**一根筷子**。
+2. 西餐，一定為偶數個哲學家，因為為吃飯需要**一副刀叉**。
+
+
+![thedinningphilosopherproblem2](\blog\images\thedinningphilosopherproblem2.png)
+
+- 共享變數
+  - chopstick[0...4] of semaphore = {1 ... 1}<br>**對 5 根筷子進行互斥控制。**
+  - i (i：0...4) 哲學家：$Process \; P_i$
+- Philosopher 程式 (fall)
+
+
+
+```cpp
+// philosopher
+while(condition==false) {
+    // need processing...
+    wait(chopstick[i]);
+        wait(chopstick[(i+1)%5]);
+        	// processing
+    signal(chopstick[i]);
+    	signal(chopstick[(i+1)%5]);
+    // thinking
+}
+```
+
+
+
+在上述程式碼中，若每位哲學家都依序先取得左筷，之後每位哲學家在取得右筷時，會直接形成「Circular waiting」，所以這程式很有可能會造成「Deadlock」。
+
+
+
+
+![thedinningpholosopherproblem3](\blog\images\thedinningpholosopherproblem3.png)
+
+##### 解法一
+
+
+
+- **最多只允許 4 位哲學家上桌用餐。**
+  - 根據產生死結的**定理**：m = 5、$Max_i = 2 \; where \; 1 \leq i \leq 5$。
+    - $1 \leq Max_i \leq m$，OK。
+    - $\sum_{i = 1}^n Max_i < n+m \Rightarrow 2n < n+ 5 \Rightarrow n < 5$。
+  - **保證 「Deadlock free」。**
+  - 可以利用一個號誌來實現這個做法 **s：semaphore = 4。**
+
+
+
+```cpp
+// philosopher
+while(condition==false) {
+    // need processing...
+    wait(s);
+        wait(chopstick[i]);
+            wait(chopstick[(i+1)%5]);
+            // processing
+        signal(chopstick[i]);
+        	signal(chopstick[(i+1)%5]);
+    signal(s);
+    // thinking
+}
+```
+
+
+
+##### 解法二
+
+
+
+- **增加限制「除非哲學家可以同時取得左右邊兩隻筷子，才允許取得筷子，否則不得持有該筷子」。**
+  - **要解決「Hold and wait」的問題。**
+
+
+
+##### 解法三
+
+
+
+- **增加一個限制「相鄰的哲學家取筷的順序必須不同」。**
+  - **創造「Asymmtric」，則必不可能形成迴路，亦不能造成「Circular waiting」。**
+  - Ex. $\left\{\begin{matrix} 偶數號 \quad 先取左再取右。\\ 奇數號 \quad 先取右再取左。\end{matrix}\right.$
+  - 這種做法亦等同於在西餐時，規定每個人必須先取刀再取叉一致。
+
+
+
+### Semaphore 種類
+
+
+
+#### 分類一 - 區分號誌值域
+
+
+
+- Binary semaphore (二元)
+  - semaphore 的值指介於 0 或 1。
+  - 不可為負。
+  - 無法紀錄有多少個 Process 正在 wait semaphore。
+
+
+
+```cpp
+S:Binary semaphore = 1;
+
+wait(S):
+	while(s<=0);
+	s--;
+
+signal(S):s++;
+```
+
+
+
+```cpp
+// usage
+wait(s);
+//C.S.
+signal(s);
+```
+
+
+
+- Counting semaphore (計數)
+  - semaphore 值域在整數之上(可為負)
+  - **可以利用負值知道目前有多少 Process 正在等待 semaphore，ex. s = -n。** 
+- 使用 Binary semaphore 實現 Counting semaphore。
+  - 共享變數
+    - C：int<br>代表 Counting semaphore 號誌值。
+    - **S1：binary semaphore = 1。**<br>**對 C 作互斥控制，防止 race condition。**
+    - **S2：Binary semaphore = 0**。<br>**當 C < 0 的時候，讓 process 暫停。**
+  - 程式
+
+
+
+```cpp
+wait(C):
+	wait(S1);
+	C--;
+	if(C < 0)
+		signal(S1);
+		wait(S2);
+	else
+        signal(S1);
+
+signal(C):
+	wait(S1);
+	c++;
+	if(c<=0) 
+        signal(S2);
+	signal(S1);
+```
+
+
+
+```cpp
+C: counting semaphore = 1;
+
+wait(c);
+// C.S.
+signal(c);
+```
+
+
+
+#### 分類二 - 是否 Busy-waiting
+
+
+
+##### Spinlock
+
+
+
+令 S 為 semaphore 變數。
+
+```cpp
+wait(s):
+	while(s<=0);
+	s--;
+
+signal(s):
+	s++;
+```
+
+
+
+Pros and Cons：與 busy waiting 優缺一致。
+
+
+
+##### Non-Busy-waiting semaphore
+
+
+
+```cpp
+struct semaphore {
+    int value;
+    Queue q;
+}
+
+s:semaphore
+
+wait(s):
+	s.value--;
+    if(s.value < 0) {
+		add process P into s.q;
+		block(P);
+    }
+
+signal(s):
+	s.value++;
+    if(s.value <= 0) {
+		remove a process P from s.q;
+		wakeup(P);
+    }
+```
+
+
+
+**＜Note＞這種實現的方法也算是 counting semaphore。**
+
+
+
+#### 實現 Counting semaphore
+
+
+
+要如何保證 semaphore 避免 Race condition，也要確保 wait 與 signal 等指令是不可分割的。
+
+
+
+|                                               | **Non-busy waiting semaphore** | **Spinlock semaphore** |
+| --------------------------------------------- | ------------------------------ | ---------------------- |
+| **Disable interrupt**                         | ☆ Alogorithm1                  | ☆ Alogorithm3          |
+| **C.S. Design：Software sol.、Hardware sol.** | Alogorithm2                    | Alogorithm4            |
+
+
+
+##### Alogrithm1
+
+
+
+```cpp
+// alogoithm1
+struct semaphore {
+    int value;
+    Queue q;
+}
+
+s:semaphore
+
+wait(s):
+	// disable interrupt
+	s.value--;
+    if(s.value < 0) {
+		add process P into s.q;
+        // enable interrupt
+		block(P);
+    } else {
+        // enable interrupt
+    }
+
+signal(s):
+	// disable interrupt
+	s.value++;
+    if(s.value <= 0) {
+		remove a process P from s.q;
+		wakeup(P);
+    }
+	// enable interrupt
+```
+
+
+
+##### Algorithm2
+
+
+
+- 將「Algorithm1」中的`disable interrupt`換成是`entry section`。
+- 將「Algorithm1」中的`enable interrupt`換成是`exit section`。
+
+
+
+```cpp
+// algorithm2
+struct {
+	int value;
+	Queue u;
+} semaphore;
+
+wait(s):
+	// entry section
+	s.value--;
+	if(s.value < 0) {
+		add process P into s.q;
+		// exit section
+		block();
+	} else {
+		// exit section
+	}
+	
+signal(s):
+	// entry section
+	s.value++;
+	if(s.value <= 0) {
+        remove process P from s.q;
+        wakeup(P);
+	}
+	// exit section
+```
+
+
+
+###### Hardware solution
+
+
+
+- 使用`test_and_set()`實踐「entry section」與「exit section」。
+
+
+```cpp
+// entry section
+// global waiting: boolean[] = false
+// global lock: boolean = false
+
+    waiting[i] = true;
+    while(test_and_set(lock) && waiting[i]) ;
+    waiting[i] = false;
+```
+
+
+
+```cpp
+// exit section
+    tmp = (i + 1) % n;
+    while(tmp != i) {
+        tmp = (tmp + 1) % n;
+    }
+
+    if(tmp == i) {
+        lock = false;
+    } else {
+        waiting[tmp] = false;
+    }
+```
+
+
+
+###### software solution
+
+
+
+- 使用「Bakery's solution」。
+
+
+
+```cpp
+// entery section
+// global chooseing: boolean[] = false
+// global number:int[] = false
+	choosing[i] = true;
+	number[i] = Max(number[0], ... , number[n-1]) + 1 
+	choosing[i] = false;
+    for( j = 0; j < n; j++ ) {
+        while (choosing[j]) do no-op;  // 等待P_j 取得號碼牌。
+        //比較號碼牌與 Process ID。
+        while(number[j]>0 && (numbeer[j], j) < (number[i], i)) do no-op; 
+    }
+```
+
+
+
+```cpp
+// exit section
+	number[i] = 0;
+```
+
+
+
+##### Algorithm3
+
+
+
+```cpp
+// algorithm3
+struct {
+    int value;
+} semaphore;
+
+semaphore s;
+
+wait(s):
+	// disable interrupt
+	s.value--;
+    while(s.value <= 0) {
+		// enable interrupt
+		sleep(random);
+		// disable interrupt
+    }
+	// enable interrupt
+
+signal(s):
+	// disable interrupt
+	s.value++;
+	// enable interrupt
+```
+
+
+
+##### Alogorithm4
+
+
+
+```cpp
+// algorithm4
+struct {
+    int value;
+} semaphore;
+
+semaphore s;
+
+wait(s):
+	// entery section
+	s.value--;
+    while(s.value <= 0) {
+		// exit section
+        sleep(random);
+        // entery section
+    }
+	// exit section
+
+signal(s):
+	// entery section
+	s.value++;
+	// exit section
+```
+
+
+
+###### Hardware solution
+
+
+
+- 使用`test_and_set()`實踐「entry section」與「exit section」。
+
+```cpp
+// entry section
+// global waiting: boolean[] = false
+// global lock: boolean = false
+
+    waiting[i] = true;
+    while(test_and_set(lock) && waiting[i]) ;
+    waiting[i] = false;
+```
+
+
+
+```cpp
+// exit section
+    tmp = (i + 1) % n;
+    while(tmp != i) {
+        tmp = (tmp + 1) % n;
+    }
+
+    if(tmp == i) {
+        lock = false;
+    } else {
+        waiting[tmp] = false;
+    }
+```
+
+
+
+###### software solution
+
+
+
+- 使用「Bakery's solution」。
+
+
+
+```cpp
+// entery section
+// global chooseing: boolean[] = false
+// global number:int[] = false
+	choosing[i] = true;
+	number[i] = Max(number[0], ... , number[n-1]) + 1 
+	choosing[i] = false;
+    for( j = 0; j < n; j++ ) {
+        while (choosing[j]) do no-op;  // 等待P_j 取得號碼牌。
+        //比較號碼牌與 Process ID。
+        while(number[j]>0 && (numbeer[j], j) < (number[i], i)) do no-op; 
+    }
+```
+
+
+
+```cpp
+// exit section
+	number[i] = 0;
+```
+
+
+
+#### 無法完全避免的 Busy-waiting
+
+
+
+|           | 定義                                        | 製作                                                         |
+| --------- | ------------------------------------------- | ------------------------------------------------------------ |
+| semaphore | Busy waiting $\Rightarrow$ Non-busy waiting | 在實踐「Entry section」時，就必須使用「Busy-waiting」。      |
+| semaphore | Busy waiting $\Rightarrow$ Non-busy waiting | 若使用「Disable interrupt」，**風險實在太高，不適合用在多處理器( Multiprocessor )之上。** |
+
+
+
+- 小結論：在 semaphore 之下的 busy waiting 是短暫的，不避太在意會浪費效能。
