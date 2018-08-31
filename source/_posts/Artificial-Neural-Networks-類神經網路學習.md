@@ -36,7 +36,7 @@ date: 2018-04-25 22:48:00
 
 
 
-![neuralgraph](\blog\images\neuralgraph.png)
+![neuralgraph](\willywangkaa\images\neuralgraph.png)
 
 
 
@@ -65,7 +65,7 @@ date: 2018-04-25 22:48:00
 
 
 
-![neuralgraph2](\blog\images\neuralgraph2.png)
+![neuralgraph2](\willywangkaa\images\neuralgraph2.png)
 
 
 
@@ -105,7 +105,7 @@ $$
 
 
 
-![perceptrongraph](\blog\images\perceptrongraph.png)
+![perceptrongraph](\willywangkaa\images\perceptrongraph.png)
 
 
 
@@ -119,7 +119,7 @@ $$
 
 
 
-![sgn_triggerfunction](\blog\images\sgn_triggerfunction.png)
+![sgn_triggerfunction](\willywangkaa\images\sgn_triggerfunction.png)
 
 
 
@@ -145,7 +145,7 @@ $$
 
 
 
-![decisionboundery](\blog\images\decisionboundery.png)
+![decisionboundery](\willywangkaa\images\decisionboundery.png)
 
 
 
@@ -160,7 +160,7 @@ $$
 
 
 
-![activationfunction](\blog\images\activationfunction.png)
+![activationfunction](\willywangkaa\images\activationfunction.png)
 
 
 
@@ -170,7 +170,7 @@ $$
 
 
 
-![singlelayertwoinputperceptron](\blog\images\singlelayertwoinputperceptron.png)
+![singlelayertwoinputperceptron](\willywangkaa\images\singlelayertwoinputperceptron.png)
 
 
 
@@ -198,7 +198,7 @@ $$
 $w_0 = -0.8, w_1 = w_2 = 0.5$<br>$o( x_1, x_2 ) \Rightarrow sgn(-0.8  + 0.5 \cdot x_1 + 0.5 \cdot x_2 )$
 
 
-![weighttorepresentAND](\blog\images\weighttorepresentAND.png)
+![weighttorepresentAND](\willywangkaa\images\weighttorepresentAND.png)
 
 
 
@@ -210,7 +210,7 @@ $w_0 = -0.8, w_1 = w_2 = 0.5$<br>$o( x_1, x_2 ) \Rightarrow sgn(-0.8  + 0.5 \cdo
 $w_0 = 0.3, w_1 = w_2 = 0.5$<br><br>$o( x_1, x_2 ) = sgn(0.3  + 0.5 \cdot x1 + 0.5 \cdot x2 )$
 
 
-![weighttorepresentOR](\blog\images\weighttorepresentOR.png)
+![weighttorepresentOR](\willywangkaa\images\weighttorepresentOR.png)
 
 
 
@@ -221,7 +221,7 @@ $w_0 = 0.3, w_1 = w_2 = 0.5$<br><br>$o( x_1, x_2 ) = sgn(0.3  + 0.5 \cdot x1 + 0
 #### What weights represent $NOT (x1, x2)$? 
 $w_0 =0.0, w_1 = -1.0, w_2 = 0$<br><br>$o(x_1) = sgn( 0.0 –1.0x_1)$
 
-![weighttorepresentNOT](\blog\images\weighttorepresentNOT.png)
+![weighttorepresentNOT](\willywangkaa\images\weighttorepresentNOT.png)
 
 
 
@@ -231,7 +231,7 @@ $w_0 =0.0, w_1 = -1.0, w_2 = 0$<br><br>$o(x_1) = sgn( 0.0 –1.0x_1)$
 
 Not possible.
 
-![possibletorepresentXOR](\blog\images\possibletorepresentXOR.png)
+![possibletorepresentXOR](\willywangkaa\images\possibletorepresentXOR.png)
 
 
 
@@ -247,7 +247,7 @@ Not possible.
 
 
 
-![multilayertorepresentXOR](\blog\images\multilayertorepresentXOR.png)
+![multilayertorepresentXOR](\willywangkaa\images\multilayertorepresentXOR.png)
 
 
 
@@ -365,7 +365,7 @@ $$
 
 
 
-![gradient](\blog\images\gradient.png)
+![gradient](\willywangkaa\images\gradient.png)
 
 
 
@@ -398,7 +398,7 @@ $$
 
 
 
-![gradientgraph](\blog\images\gradientgraph.png)
+![gradientgraph](\willywangkaa\images\gradientgraph.png)
 
 
 
@@ -424,7 +424,7 @@ $$
 
 
 
-![examplegradient](\blog\images\examplegradient.png)
+![examplegradient](\willywangkaa\images\examplegradient.png)
 
 
 
@@ -470,7 +470,7 @@ $$
 
 最後公式變成：
 
-![gradientdecentfinalformula](\blog\images\gradientdecentfinalformula.png)
+![gradientdecentfinalformula](\willywangkaa\images\gradientdecentfinalformula.png)
 
 
 

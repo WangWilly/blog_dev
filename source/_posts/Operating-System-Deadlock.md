@@ -17,7 +17,7 @@ date: 2018-07-10 21:54:00
 
 
 
-![1530163891325](\blog\images\1530163891325.png)
+![1530163891325](\willywangkaa\images\1530163891325.png)
 
 
 
@@ -30,7 +30,7 @@ date: 2018-07-10 21:54:00
 
 
 
-![1530163425234](\blog\images\1530163425234.png)
+![1530163425234](\willywangkaa\images\1530163425234.png)
 
 
 
@@ -45,7 +45,7 @@ date: 2018-07-10 21:54:00
 
 
 
-![deadlock](\blog\images\deadlock.png)
+![deadlock](\willywangkaa\images\deadlock.png)
 
 
 
@@ -76,7 +76,7 @@ date: 2018-07-10 21:54:00
   
 
 
-![1530164365297](\blog\images\1530164365297.png)
+![1530164365297](\willywangkaa\images\1530164365297.png)
 
 
 
@@ -85,7 +85,7 @@ date: 2018-07-10 21:54:00
 
 
 
-![1530164408843](\blog\images\1530164408843.png)
+![1530164408843](\willywangkaa\images\1530164408843.png)
 
 
 
@@ -97,7 +97,7 @@ date: 2018-07-10 21:54:00
 
 
 
-![1530164614789](\blog\images\1530164614789.png)
+![1530164614789](\willywangkaa\images\1530164614789.png)
 
 
 
@@ -106,14 +106,14 @@ date: 2018-07-10 21:54:00
 
 
 
-![1530164672585](\blog\images\1530164672585.png)
+![1530164672585](\willywangkaa\images\1530164672585.png)
 
 - $Ex. $
 
 
 
 
-![1530166364004](\blog\images\1530166364004.png)
+![1530166364004](\willywangkaa\images\1530166364004.png)
 
 
 
@@ -126,7 +126,7 @@ date: 2018-07-10 21:54:00
 
 
 
-![1530166810415](\blog\images\1530166810415.png)
+![1530166810415](\willywangkaa\images\1530166810415.png)
 
 
 
@@ -135,7 +135,7 @@ date: 2018-07-10 21:54:00
 
 
 
-![1530166364004](\blog\images\1530166364004.png)
+![1530166364004](\willywangkaa\images\1530166364004.png)
 
 因為 P4 必可以完工且會釋出 R3 Resource，再配置給 P3 使用，所以無死結。
 
@@ -200,7 +200,7 @@ Detection and Recovery
 
 
 
-![1530168967415](\blog\images\1530168967415.png)
+![1530168967415](\willywangkaa\images\1530168967415.png)
 
 
 
@@ -213,7 +213,7 @@ Detection and Recovery
 
 
 
-![1528970642055](\blog\images\1528970642055.png)
+![1528970642055](\willywangkaa\images\1528970642055.png)
 
 Deadlock 是 Unsafe 集合的 Subset。
 
@@ -233,7 +233,7 @@ Deadlock 是 Unsafe 集合的 Subset。
   - $Available：[1 \ldots m] \; of \; int = 資源總量 - Allocation\Rightarrow$ **系統目前可用的各式資源數量。**
 
 
-![1528971381784](\blog\images\1528971381784.png)
+![1528971381784](\willywangkaa\images\1528971381784.png)
 
 
 
@@ -279,10 +279,10 @@ Deadlock 是 Unsafe 集合的 Subset。
 
 
 
-![1531184487179](\blog\images\1531184487179.png)
+![1531184487179](\willywangkaa\images\1531184487179.png)
 
 
-![1531184825933](\blog\images\1531184825933.png)
+![1531184825933](\willywangkaa\images\1531184825933.png)
 
 - **Banker's algorithm**
 
@@ -316,9 +316,9 @@ Deadlock 是 Unsafe 集合的 Subset。
 
 
 
-![1531184487179](\blog\images\1531184487179.png)
+![1531184487179](\willywangkaa\images\1531184487179.png)
 
-![1531184825933](\blog\images\1531184825933.png)
+![1531184825933](\willywangkaa\images\1531184825933.png)
 
 - Banker's algorithm
   1. 確認 $ Request_4 (3, 3, 0) \leq Need_4(4, 3, 1)$，OK ( goto step2 )。
@@ -357,7 +357,7 @@ Deadlock 是 Unsafe 集合的 Subset。
 
 
 
-![1530172024919](\blog\images\1530172024919.png)
+![1530172024919](\willywangkaa\images\1530172024919.png)
 
 
 
@@ -376,21 +376,21 @@ Deadlock 是 Unsafe 集合的 Subset。
 
 
 
-![1530172534581](\blog\images\1530172534581.png)
+![1530172534581](\willywangkaa\images\1530172534581.png)
 
 - 若$P_1$ 對 $R_2$ 提出申請是否核准？**因為沒有 Cycle 存在，所以 Safe 核准申請。**
 
 
 
 
-![1530172797528](\blog\images\1530172797528.png)
+![1530172797528](\willywangkaa\images\1530172797528.png)
 
 - 若為 $P_2$ 對 $R_2$ 提出申請是否核准？**因為有 cycle 存在，所以核駁申請。**
 
 
 
 
-![1530172966437](\blog\images\1530172966437.png)
+![1530172966437](\willywangkaa\images\1530172966437.png)
 
 
 
@@ -405,7 +405,7 @@ Deadlock 是 Unsafe 集合的 Subset。
 
 
 
-![1530173438706](\blog\images\1530173438706.png)
+![1530173438706](\willywangkaa\images\1530173438706.png)
 
 
 
@@ -464,7 +464,7 @@ Deadlock 是 Unsafe 集合的 Subset。
 
 
 
-![1531188159444](\blog\images\1531188159444.png)
+![1531188159444](\willywangkaa\images\1531188159444.png)
 
 
 
@@ -481,7 +481,7 @@ Deadlock 是 Unsafe 集合的 Subset。
 #### 實際演練二
 
 
-![1531188115016](\blog\images\1531188115016.png)
+![1531188115016](\willywangkaa\images\1531188115016.png)
 
 
 
@@ -502,15 +502,15 @@ Deadlock 是 Unsafe 集合的 Subset。
 - 令 $G = ＜V, E＞$  有向圖代表「Wait-for Graph」，其中<br>1. Vertex：**只有 Process 而已，無 Resource 頂點**。<br>2. Edge：Wait-for edge。
 
 
-![1530174622303](\blog\images\1530174622303.png)
+![1530174622303](\willywangkaa\images\1530174622303.png)
 
 - 從 RAG 簡化而成，即為：
 
 
-![1530174725109](\blog\images\1530174725109.png)
+![1530174725109](\willywangkaa\images\1530174725109.png)
 
 
-![1530174756704](\blog\images\1530174756704.png)
+![1530174756704](\willywangkaa\images\1530174756704.png)
 
 
 
@@ -520,12 +520,12 @@ Deadlock 是 Unsafe 集合的 Subset。
 
 
 
-![1529287297237](\blog\images\1529287297237.png)
+![1529287297237](\willywangkaa\images\1529287297237.png)
 
 - 此「Wait-for Graph」有 Cycle，所以有死結存在。
 
 
-![1529287327536](\blog\images\1529287327536.png)
+![1529287327536](\willywangkaa\images\1529287327536.png)
 
 
 

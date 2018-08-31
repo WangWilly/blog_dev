@@ -49,7 +49,7 @@ date: 2018-05-05 12:11:00
 
 
 
-![timelineofpatentapplying](\blog\images\timelineofpatentapplying.png)
+![timelineofpatentapplying](\willywangkaa\images\timelineofpatentapplying.png)
 
 
 
@@ -92,7 +92,7 @@ date: 2018-05-05 12:11:00
 
 
 
-![timelineofpatentapplying2](\blog\images\timelineofpatentapplying2.png)
+![timelineofpatentapplying2](\willywangkaa\images\timelineofpatentapplying2.png)
 
 
 
@@ -140,7 +140,7 @@ date: 2018-05-05 12:11:00
 
 
 
-![doublepatenting](\blog\images\doublepatenting.png)
+![doublepatenting](\willywangkaa\images\doublepatenting.png)
 
 
 ( 乙君 ) **＜先申請主義＞**
@@ -169,7 +169,7 @@ date: 2018-05-05 12:11:00
 
 
 
-![rightofpriority](\blog\images\rightofpriority.png)
+![rightofpriority](\willywangkaa\images\rightofpriority.png)
 
 
 
@@ -187,7 +187,7 @@ date: 2018-05-05 12:11:00
 
 
 
-![rightofpriority2](\blog\images\rightofpriority2.png)
+![rightofpriority2](\willywangkaa\images\rightofpriority2.png)
 
 
 
@@ -196,7 +196,7 @@ date: 2018-05-05 12:11:00
 - 誰將獲得台灣專利？
 
 
-![rightofdomesticpriority](\blog\images\rightofdomesticpriority.png)
+![rightofdomesticpriority](\willywangkaa\images\rightofdomesticpriority.png)
 
 **＜專利法(30)＞：**申請人基於**其在中華民國先申請**之發明或新型專利案再提出專利之申請者 ，得就先申請案申請時說明書、申請專利範圍或圖式所載之發明或新型，主張優先權。 
 
@@ -206,7 +206,7 @@ date: 2018-05-05 12:11:00
 
 
 
-![upload successful](\blog\images\rightofdomesticpriority2.png)
+![upload successful](\willywangkaa\images\rightofdomesticpriority2.png)
 
 
 
@@ -240,21 +240,21 @@ date: 2018-05-05 12:11:00
 #### *甲君*獲得專利
 
 
-![situationquestion1](\blog\images\situationquestion1.png)
+![situationquestion1](\willywangkaa\images\situationquestion1.png)
 
 
 
 #### *乙君*無法獲得專利
 
 
-![upload successful](\blog\images\situationquestion2.png)
+![upload successful](\willywangkaa\images\situationquestion2.png)
 
 
 #### *甲君*獲得專利
 
 
 
-![upload successful](\blog\images\situationquestion3.png)
+![upload successful](\willywangkaa\images\situationquestion3.png)
 
 
 
@@ -262,7 +262,7 @@ date: 2018-05-05 12:11:00
 
 
 
-![upload successful](\blog\images\situationquestion4.png)
+![upload successful](\willywangkaa\images\situationquestion4.png)
 
 
 
@@ -295,7 +295,7 @@ date: 2018-05-05 12:11:00
 - 專利權人是誰？
 
 
-![situationquestion5](\blog\images\situationquestion5.png)
+![situationquestion5](\willywangkaa\images\situationquestion5.png)
 
 
 
@@ -325,7 +325,7 @@ date: 2018-05-05 12:11:00
 ### Contract of Employment 聘用合約書
 
 
-![contractofemplement](\blog\images\contractofemplement.png)
+![contractofemplement](\willywangkaa\images\contractofemplement.png)
 
 
 
@@ -335,16 +335,16 @@ date: 2018-05-05 12:11:00
 
 ## 專利費用預估參考 - 以新台幣計(工研院資料) 
 
-![feeofpatent](\blog\images\feeofpatent.png)
+![feeofpatent](\willywangkaa\images\feeofpatent.png)
 
 
 
 ## 輔大專利申請
 
-![patentapplyingofFJU](\blog\images\patentapplyingofFJU.png)
+![patentapplyingofFJU](\willywangkaa\images\patentapplyingofFJU.png)
 
 
-![patentofapplyingofFJU2](\blog\images\patentofapplyingofFJU2.png)
+![patentofapplyingofFJU2](\willywangkaa\images\patentofapplyingofFJU2.png)
 
 
 # 參考

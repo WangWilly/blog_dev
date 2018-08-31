@@ -12,7 +12,7 @@ date: 2018-04-20 16:15:00
 
 ---
 
-![machinelearningconcept](\blog\images\machinelearningconcept.png)
+![machinelearningconcept](\willywangkaa\images\machinelearningconcept.png)
 
 ## 機器學習簡介<br>( 節錄自 [Mr' OpenGate](http://mropengate.blogspot.tw/2015/05/ai-supervised-learning.html) )
 
@@ -38,7 +38,7 @@ date: 2018-04-20 16:15:00
 
 
 
-![supervisedlearningworkflow](\blog\images\supervisedlearningworkflow.png)
+![supervisedlearningworkflow](\willywangkaa\images\supervisedlearningworkflow.png)
 
 
 
@@ -54,7 +54,7 @@ date: 2018-04-20 16:15:00
  - 輸入 - 欲判斷的狀態 (Attributes)。
  - 輸出 - 對(TURE)、錯(FALSE)。
 
-![learningfunction](\blog\images\learningfunction.png)
+![learningfunction](\willywangkaa\images\learningfunction.png)
 
 
 
@@ -69,7 +69,7 @@ date: 2018-04-20 16:15:00
 
 
 
-![conceptlearningenjoysportdata](\blog\images\conceptlearningenjoysportdata.png)
+![conceptlearningenjoysportdata](\willywangkaa\images\conceptlearningenjoysportdata.png)
 
 
 
@@ -198,7 +198,7 @@ $$
 \{ Sunny, ?, ?, ?, ?, ? \} \geq_g \{ Sunny, ?, ?, Strong, ?, ? \}
 $$
 
-![GtoSprap](\blog\images\GtoSpraph.png)
+![GtoSprap](\willywangkaa\images\GtoSpraph.png)
 
 
 
@@ -225,7 +225,7 @@ $$
 
 
 
-![findsalgorithm](\blog\images\findsalgorithm.png)
+![findsalgorithm](\willywangkaa\images\findsalgorithm.png)
 
 
 
@@ -272,7 +272,7 @@ $$
 
 
 
-![versionspacegraph](\blog\images\versionspacegraph.png)
+![versionspacegraph](\willywangkaa\images\versionspacegraph.png)
 
 
 
@@ -420,7 +420,7 @@ $$
 g \geq_ g h \; \geq_g s
 $$
 
-![candidate-eliminationalgorithm](\blog\images\candidate-eliminationalgorithm.png)
+![candidate-eliminationalgorithm](\willywangkaa\images\candidate-eliminationalgorithm.png)
 
 
 
@@ -438,7 +438,7 @@ $$
 
 
 
-![candidate-eliminationalgorithm2](\blog\images\candidate-eliminationalgorithm2.png)
+![candidate-eliminationalgorithm2](\willywangkaa\images\candidate-eliminationalgorithm2.png)
 
 
 
@@ -472,7 +472,7 @@ $$
 
 [Mr' OpenGate - AI - Ch13 機器學習(1), 機器學習簡介與監督式學習 Introduction to Machine Learning, Supervised Learning](http://mropengate.blogspot.tw/2015/05/ai-supervised-learning.html)
 
-[《机器学习》第2章中find-s算法的python实现](https://blog.csdn.net/minvacai/article/details/20202687)
+[《机器学习》第2章中find-s算法的python实现](https://willywangkaa.csdn.net/minvacai/article/details/20202687)
 
 [WEKIPEDIA - Version space learning](https://en.wikipedia.org/wiki/Version_space_learning)
 

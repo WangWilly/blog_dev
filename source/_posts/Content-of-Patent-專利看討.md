@@ -33,7 +33,7 @@ date: 2018-05-05 12:34:00
 
 
 
-![formoftypeofpatent](\blog\images\formoftypeofpatent.png)
+![formoftypeofpatent](\willywangkaa\images\formoftypeofpatent.png)
 
 
 
@@ -43,7 +43,7 @@ date: 2018-05-05 12:34:00
 
 
 
-![thepatentofconcept](\blog\images\thepatentofconcept.png)
+![thepatentofconcept](\willywangkaa\images\thepatentofconcept.png)
 
 
 

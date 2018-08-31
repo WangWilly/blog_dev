@@ -96,11 +96,11 @@ date: 2018-05-13 20:59:00
 
 - K-Nearest Neighbor
 
-![knearestneighbor](\blog\images\knearestneighbor.png)
+![knearestneighbor](\willywangkaa\images\knearestneighbor.png)
 
 - Voronoi Diagram (K= 1)
 
-![voronoidiagram](\blog\images\voronoidiagram.png)
+![voronoidiagram](\willywangkaa\images\voronoidiagram.png)
 
 
 
@@ -140,7 +140,7 @@ date: 2018-05-13 20:59:00
   - 欲找到 $k$ 個與 $x_q$ 靠最近的 $x_i$ 。( 利用 $d(x_i, x_q)$ 判斷距離 ) 
   - 選出 $k$ 個案例之中出現比較多次的結果作為 $x_q$ 的結果。( 當這份資料的結果是由離散的資料組成採用此方法 )
     - 以下圖舉例 <br> 
-![knearestneighbor2](\blog\images\knearestneighbor2.png)<br>$k = 1$ ，判定 $x_q$ 為正向輸出。<br>$k = 5$ ，判定 $x_q$ 為負向輸出。
+![knearestneighbor2](\willywangkaa\images\knearestneighbor2.png)<br>$k = 1$ ，判定 $x_q$ 為正向輸出。<br>$k = 5$ ，判定 $x_q$ 為負向輸出。
   - 當資料的結果為連續的時數值時，我們判定 $x_q$ 的輸出為 $k$ 個鄰居的平均值。
 
 
@@ -161,7 +161,7 @@ date: 2018-05-13 20:59:00
 - 要檢驗新的 $x_q$ 時，需要將所有的案例都檢查過一遍。
 - 1-NN：$H$ = Voronoi Diagram
 
-![voronoidiagram2](\blog\images\voronoidiagram2.png)
+![voronoidiagram2](\willywangkaa\images\voronoidiagram2.png)
 
 
 
@@ -178,7 +178,7 @@ date: 2018-05-13 20:59:00
 
 
 
-## Curse of Dimensionality - 維度災難 ([閱讀更多](https://blog.csdn.net/ztf312/article/details/50894224))
+## Curse of Dimensionality - 維度災難 ([閱讀更多](https://willywangkaa.csdn.net/ztf312/article/details/50894224))
 
 
 
@@ -280,7 +280,7 @@ $a_i$ 代表 $x$ 對應環境變因的值。
 
 
 
-![radialbasisfunction](\blog\images\radialbasisfunction.png)
+![radialbasisfunction](\willywangkaa\images\radialbasisfunction.png)
 
 
 $$
@@ -328,11 +328,11 @@ $$
 
 
 
-[机器学习：维度灾难问题- CSDN博客](https://blog.csdn.net/ztf312/article/details/50894224)
+[机器学习：维度灾难问题- CSDN博客](https://willywangkaa.csdn.net/ztf312/article/details/50894224)
 
 
 
-[残差residual VS 误差 error](https://blog.csdn.net/jmydream/article/details/8764869)
+[残差residual VS 误差 error](https://willywangkaa.csdn.net/jmydream/article/details/8764869)
 
 
 

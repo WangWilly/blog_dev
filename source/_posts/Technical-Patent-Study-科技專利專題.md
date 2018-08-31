@@ -40,7 +40,7 @@ date: 2018-05-04 22:24:00
 
 
 
-![intalletualpropertyform](\blog\images\intalletualpropertyform.png)
+![intalletualpropertyform](\willywangkaa\images\intalletualpropertyform.png)
 
 
 ## 創作保護主義
@@ -98,26 +98,26 @@ date: 2018-05-04 22:24:00
 #### $Ex2.$
 
 
-![patentexample1](\blog\images\patentexample1.png)
+![patentexample1](\willywangkaa\images\patentexample1.png)
 
 
 
-![patentexample2](\blog\images\patentexample2.png)
+![patentexample2](\willywangkaa\images\patentexample2.png)
 
 
-![patentexample3](\blog\images\patentexample3.png)
-
-
-
-![patentexample4](\blog\images\patentexample4.png)
+![patentexample3](\willywangkaa\images\patentexample3.png)
 
 
 
-![patentexample5](\blog\images\patentexample5.png)
+![patentexample4](\willywangkaa\images\patentexample4.png)
 
 
 
-![patentexample6](\blog\images\patentexample6.png)
+![patentexample5](\willywangkaa\images\patentexample5.png)
+
+
+
+![patentexample6](\willywangkaa\images\patentexample6.png)
 
 
 ## 審查主義
@@ -149,11 +149,11 @@ date: 2018-05-04 22:24:00
 
 
 
-![upload successful](\blog\images\patentflowchart.png)
+![upload successful](\willywangkaa\images\patentflowchart.png)
 
 
 #### 專利申請
-[繼續閱讀](\blog\2018\05\05\Patent-Applying-專利申請\#more)
+[繼續閱讀](\willywangkaa\2018\05\05\Patent-Applying-專利申請\#more)
 
 # 參考
 
@@ -163,7 +163,7 @@ date: 2018-05-04 22:24:00
 
 
 
-[著作權之侵害與救濟：第六章 著作權侵害之救濟的基本問題](http://blog.udn.com/2010hsiao/16979891)
+[著作權之侵害與救濟：第六章 著作權侵害之救濟的基本問題](http://willywangkaa.udn.com/2010hsiao/16979891)
 
 
 

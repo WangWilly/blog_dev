@@ -16,7 +16,7 @@ date: 2018-07-10 11:20:00
 
 
 
-![1526805202151](\blog\images\1526805202151.png)
+![1526805202151](\willywangkaa\images\1526805202151.png)
 
 
 
@@ -47,7 +47,7 @@ date: 2018-07-10 11:20:00
 
 
 
-![1526805611478](\blog\images\1526805611478.png)
+![1526805611478](\willywangkaa\images\1526805611478.png)
 
 
 
@@ -56,7 +56,7 @@ date: 2018-07-10 11:20:00
 
 
 
-![1526806092878](\blog\images\1526806092878.png)
+![1526806092878](\willywangkaa\images\1526806092878.png)
 
 
 
@@ -69,7 +69,7 @@ date: 2018-07-10 11:20:00
 
 
 
-![Synchronous-I/O 也就是 Blocking I/O](\blog\images\1526806717525.png)
+![Synchronous-I/O 也就是 Blocking I/O](\willywangkaa\images\1526806717525.png)
 
 
 - Nonblocking I/O：I/O calls return as much as available.(控制權在交付 I/O 的需求後馬上還給user process)
@@ -85,7 +85,7 @@ date: 2018-07-10 11:20:00
 
 
 
-![1526807435082](\blog\images\1526807435082.png)
+![1526807435082](\willywangkaa\images\1526807435082.png)
 
 
 
@@ -101,7 +101,7 @@ date: 2018-07-10 11:20:00
   
 
 
-![1526808564478](\blog\images\1526808564478.png)
+![1526808564478](\willywangkaa\images\1526808564478.png)
 
 
 
@@ -134,7 +134,7 @@ date: 2018-07-10 11:20:00
 
 
 
-![1526808604540](\blog\images\1526808604540.png)
+![1526808604540](\willywangkaa\images\1526808604540.png)
 
 
 
@@ -182,7 +182,7 @@ date: 2018-07-10 11:20:00
 
 
 
-![1526809058649](\blog\images\1526809058649.png)
+![1526809058649](\willywangkaa\images\1526809058649.png)
 
 
 

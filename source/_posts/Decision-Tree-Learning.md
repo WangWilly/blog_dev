@@ -32,11 +32,11 @@ date: 2018-04-18 12:06:00
 
 ### 範例訓練資料( Training Example )
 
-![decisiontreelearning_training example](\blog\images\decisiontreelearning_training example.png)
+![decisiontreelearning_training example](\willywangkaa\images\decisiontreelearning_training example.png)
 
 ### 決策樹( Decision Tree )
 
-![decisiontreelearning_exampletree](\blog\images\decisiontreelearning_exampletree.png)
+![decisiontreelearning_exampletree](\willywangkaa\images\decisiontreelearning_exampletree.png)
 
 ## 決策樹( Decision Tree )的介紹
 
@@ -108,9 +108,9 @@ ID3在建構決策樹過程中，以資訊獲利(Information Gain)為準則，�
 4. 遞迴直到終止
 ```
 
-![decisiontreelearning_builddecisiontree_algorithm](\blog\images\decisiontreelearning_builddecisiontree_algorithm.png)
+![decisiontreelearning_builddecisiontree_algorithm](\willywangkaa\images\decisiontreelearning_builddecisiontree_algorithm.png)
 
-![decisiontreelearning_howtochoosenode](\blog\images\decisiontreelearning_howtochoosenode.png)
+![decisiontreelearning_howtochoosenode](\willywangkaa\images\decisiontreelearning_howtochoosenode.png)
 
 **＜討論＞**
 ID3演算法的終極目標，就是要將決策樹中每個節點都擺上最優的**環境因素( Attributes )**。<br>
@@ -149,7 +149,7 @@ $$Gain( S, A ) = Entropy( S ) - \sum_{ v \in Values(A) } ( \frac{S_v}{S}Entropy(
 
 - 訓練資料表
 
-![decisiontreelearning_trainningdataform](\blog\images\decisiontreelearning_trainningdataform.png)
+![decisiontreelearning_trainningdataform](\willywangkaa\images\decisiontreelearning_trainningdataform.png)
 
 
 ##### Step 1. 計算整體的亂度( Entropy )
@@ -206,7 +206,7 @@ $$ Gain( S, Wind ) = 0.048 $$
 從亂度的點看來，似乎Outlook的亂度最低( 與宇亂度相減後剩餘比較多資訊獲利 )，所以我們選擇**Outlook**作為我們根結點( root node )，如下圖：
 
 
-![decisiontreelearning_choosenode](\blog\images\decisiontreelearning_choosenode.png)
+![decisiontreelearning_choosenode](\willywangkaa\images\decisiontreelearning_choosenode.png)
 
 選擇了Outlook做為決策樹的根結點後，緊接著，我們可以將三種不同的Outlook作為分支，其中特別的是，Overcast狀態之中( 上圖中間綠色部分 )，全部皆為開心狀態( Positive outcome )，所以可以直接決定Overcast輸出為開心( Positive )。
 
@@ -228,7 +228,7 @@ $$Gain(S_{Sunny}, Wind) = 0.97 - (2/5) \cdot 1 - (3/5) \cdot 0.918 = 0.019 bits$
 
 ##### Final Decision Tree
 
-![decisiontreelearning_finaldecisiontree](\blog\images\decisiontreelearning_finaldecisiontree.png)
+![decisiontreelearning_finaldecisiontree](\willywangkaa\images\decisiontreelearning_finaldecisiontree.png)
 
 # 熵、亂度 (Entropy)
 
@@ -256,7 +256,7 @@ $$P(y = 0) = 0.5, P(y = 1) = 0.5$$
 首先，我們可以先從簡單的看討當目前的結果最多只有兩種情況，如拋硬幣，最多只有正面或是反面，下圖$x$軸$P_\oplus$代表擲出正面的機率函數，而$y$軸則是對應的熵值，而$P_\ominus$的機率軸則是會隨著$P_\oplus$下降而上升( 兩者互補 )，但是對應到的熵值會一樣大。
 
 
-![decisiontreelearning_entropygraph](\blog\images\decisiontreelearning_entropygraph.png)
+![decisiontreelearning_entropygraph](\willywangkaa\images\decisiontreelearning_entropygraph.png)
 
 $S$ is a sample of training examples( 隨機變量 ).
 當今天的結果只有正與反 ( 與硬幣一樣 )時，觀察目前的**隨機變量**
@@ -290,7 +290,7 @@ $$\sum_{i = 1}^N P_i = 1 \; and \;  0 \leq P_i \leq 1 $$
 
 
 
-![decisiontreelearning_generalentropygraph](\blog\images\decisiontreelearning_generalentropygraph.png)
+![decisiontreelearning_generalentropygraph](\willywangkaa\images\decisiontreelearning_generalentropygraph.png)
 
 當取自有限的樣本時，熵的公式可以表示為：
 $$H(X) = \sum _{i} P(x_i) \, I(x_i)=-\sum_i P(x_i)\log _b P(x_i)$$
@@ -318,9 +318,9 @@ $$ \Rightarrow \lim_{p\to0+} ( p\log p ) = 0 $$
 
 **＜注意＞**通常過度適配發生在訓練範例含有雜訊和離異值時，但當訓練數據沒有雜訊時，過度適配也有可能發生，特別是當訓練範例的數量太少，使得某一些屬性「恰巧」可以很好地分割目前的訓練範例，但卻與實際的狀況並無太多關係。
 
-![decisiontreelearning_overfitting1](\blog\images\decisiontreelearning_overfitting1.png)
+![decisiontreelearning_overfitting1](\willywangkaa\images\decisiontreelearning_overfitting1.png)
 
-![decisiontreelearning_overfitting2](\blog\images\decisiontreelearning_overfitting2.png)
+![decisiontreelearning_overfitting2](\willywangkaa\images\decisiontreelearning_overfitting2.png)
 
 ## 解決方案：修剪決策樹移除不可信賴的分支
 
@@ -329,7 +329,7 @@ $$ \Rightarrow \lim_{p\to0+} ( p\log p ) = 0 $$
  - 子樹置換 (Subtree Replacement)：選擇某個子樹，並用單個樹葉來置換它。
  - 子樹提升 (Subtree Raising)：
 
-![decisiontreelearning_subtreeraising](\blog\images\decisiontreelearning_subtreeraising.png)
+![decisiontreelearning_subtreeraising](\willywangkaa\images\decisiontreelearning_subtreeraising.png)
 
 ## 合併連續值屬性
 

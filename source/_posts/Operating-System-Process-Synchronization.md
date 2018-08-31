@@ -26,7 +26,7 @@ date: 2018-07-10 23:05:00
 
 
 
-![1530175318032](\blog\images\1530175318032.png)
+![1530175318032](\willywangkaa\images\1530175318032.png)
 
 
 
@@ -475,7 +475,7 @@ enable interrupt
 
 
 
-![1530176275538](\blog\images\1530176275538.png)
+![1530176275538](\willywangkaa\images\1530176275538.png)
 
 
 
@@ -487,7 +487,7 @@ enable interrupt
 
 
 
-![1530176581925](\blog\images\1530176581925.png)
+![1530176581925](\willywangkaa\images\1530176581925.png)
 
 
 
@@ -578,7 +578,7 @@ C = C - 1;
 
 
 
-![1531041864596](\blog\images\1531041864596.png)
+![1531041864596](\willywangkaa\images\1531041864596.png)
 
 
 
@@ -1712,7 +1712,7 @@ signal(s_2);
 
 
 
-![producercomsumerproblem](\blog\images\producercomsumerproblem.png)
+![producercomsumerproblem](\willywangkaa\images\producercomsumerproblem.png)
 
 
 
@@ -1778,7 +1778,7 @@ while(condition == true) {
 
 
 
-![circulerqueue](\blog\images\circulerqueue.png)
+![circulerqueue](\willywangkaa\images\circulerqueue.png)
 
 若使用「Algorithm1」的算法，在上圖所表示的狀態中，算法會判斷為 Buffer 已滿 (`(in + 1) % n == out`)，無法再加入，所以導致最多只能用 n-1 個 Buffer。
 
@@ -1890,7 +1890,7 @@ while(condition == true) {
 
 
 
-![readerwiterproblem](\blog\images\readerwiterproblem.png)
+![readerwiterproblem](\willywangkaa\images\readerwiterproblem.png)
 
 
 
@@ -1905,7 +1905,7 @@ while(condition == true) {
 
 
 
-![firstreaderwiterproblem](\blog\images\firstreaderwiterproblem.png)
+![firstreaderwiterproblem](\willywangkaa\images\firstreaderwiterproblem.png)
 
 
 
@@ -1967,7 +1967,7 @@ while(condition == true) {
 
 
 
-![secondreaderwriterproblem](\blog\images\secondreaderwriterproblem.png)
+![secondreaderwriterproblem](\willywangkaa\images\secondreaderwriterproblem.png)
 
 
 
@@ -2092,7 +2092,7 @@ signal(mutex);
 
 
 
-![secondreaderwriterproblem_2](\blog\images\secondreaderwriterproblem_2.png)
+![secondreaderwriterproblem_2](\willywangkaa\images\secondreaderwriterproblem_2.png)
 
 
 
@@ -2101,7 +2101,7 @@ signal(mutex);
 
 
 
-![dining_philosophersproblem](\blog\images\dining_philosophersproblem.png)
+![dining_philosophersproblem](\willywangkaa\images\dining_philosophersproblem.png)
 
 
 
@@ -2115,7 +2115,7 @@ signal(mutex);
 2. 西餐，一定為偶數個哲學家，因為為吃飯需要**一副刀叉**。
 
 
-![thedinningphilosopherproblem2](\blog\images\thedinningphilosopherproblem2.png)
+![thedinningphilosopherproblem2](\willywangkaa\images\thedinningphilosopherproblem2.png)
 
 - 共享變數
   - chopstick[0...4] of semaphore = {1 ... 1}<br>**對 5 根筷子進行互斥控制。**
@@ -2144,7 +2144,7 @@ while(condition==false) {
 
 
 
-![thedinningpholosopherproblem3](\blog\images\thedinningpholosopherproblem3.png)
+![thedinningpholosopherproblem3](\willywangkaa\images\thedinningpholosopherproblem3.png)
 
 ##### 解法一
 

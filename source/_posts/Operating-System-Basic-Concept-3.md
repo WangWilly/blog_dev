@@ -16,7 +16,7 @@ It's a programming interface to the  services provides by the OS.
 
 
 
-![1526605131439](\blog\images\1526605131439.png)
+![1526605131439](\willywangkaa\images\1526605131439.png)
 
 
 
@@ -77,7 +77,7 @@ It's a programming interface to the  services provides by the OS.
 
 
 
-![1526608163203](\blog\images\1526608163203.png)
+![1526608163203](\willywangkaa\images\1526608163203.png)
 
 
 
@@ -86,7 +86,7 @@ It's a programming interface to the  services provides by the OS.
 
 
 
-![1526609224214](\blog\images\1526609224214.png)
+![1526609224214](\willywangkaa\images\1526609224214.png)
 
 
 
@@ -120,7 +120,7 @@ It's a programming interface to the  services provides by the OS.
 
 
 
-![1526610608669](\blog\images\1526610608669.png)
+![1526610608669](\willywangkaa\images\1526610608669.png)
 
 
 
@@ -153,7 +153,7 @@ It's a programming interface to the  services provides by the OS.
   - 因為與 Kernel 傳輸的距離不長，效能比較好。
 
 
-![1526611810996](\blog\images\1526611810996.png)
+![1526611810996](\willywangkaa\images\1526611810996.png)
 
 
 
@@ -171,7 +171,7 @@ It's a programming interface to the  services provides by the OS.
   - **Dynamic loadable module( kernel extension )**
 
 
-![1526613108853](\blog\images\1526613108853.png)
+![1526613108853](\willywangkaa\images\1526613108853.png)
 
 
 Aqua：負責 GUI 的顯示。
@@ -185,14 +185,14 @@ Aqua：負責 GUI 的顯示。
 
 
 
-![1530162737868](\blog\images\1530162737868.png)
+![1530162737868](\willywangkaa\images\1530162737868.png)
 
 
 
 - 定義：利用**軟體技術**模擬出一份與底層硬體一模一樣的功能介面之**抽象化機器( abstract machine )。**
 
 
-![1526613748648](\blog\images\1526613748648.png)
+![1526613748648](\willywangkaa\images\1526613748648.png)
 
 - 名詞解釋
   - Host：underlying hardware system, OS. ( 原生的硬體與 VMM 都可稱之為 Host )
@@ -208,10 +208,10 @@ Aqua：負責 GUI 的顯示。
   - 可以 Freeze, Suspend, Running 及 Clone 虛擬機。
 
 
-![1526615255622](\blog\images\1526615255622.png)
+![1526615255622](\willywangkaa\images\1526615255622.png)
 
 
-![1526615230230](\blog\images\1526615230230.png)
+![1526615230230](\willywangkaa\images\1526615230230.png)
 
 
 
@@ -252,7 +252,7 @@ Aqua：負責 GUI 的顯示。
 
 
 
-![1526804733939](\blog\images\1526804733939.png)
+![1526804733939](\willywangkaa\images\1526804733939.png)
 
 
 

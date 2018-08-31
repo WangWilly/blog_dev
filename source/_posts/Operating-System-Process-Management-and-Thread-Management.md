@@ -91,7 +91,7 @@ date: 2018-07-10 22:14:00
 
 
 
-![1526880431737](\blog\images\1526880431737.png)
+![1526880431737](\willywangkaa\images\1526880431737.png)
 
 
 
@@ -117,7 +117,7 @@ date: 2018-07-10 22:14:00
   
 
 
-![1526883114200](\blog\images\1526883114200.png)
+![1526883114200](\willywangkaa\images\1526883114200.png)
 
 
 
@@ -126,7 +126,7 @@ date: 2018-07-10 22:14:00
 
 
 
-![1526885420905](\blog\images\1526885420905.png)
+![1526885420905](\willywangkaa\images\1526885420905.png)
 
 
 
@@ -141,7 +141,7 @@ date: 2018-07-10 22:14:00
 
 
 
-![1526887552589](\blog\images\1526887552589.png)
+![1526887552589](\willywangkaa\images\1526887552589.png)
 
 - I/O-bound Job
   - 定義：此類型的工作大都是需要*大量的 I/O operation( Resourse )但對於 CPU time( Computation )需求很少*，**所以其工作效能會受限於 I/O-device 之速度。**
@@ -260,7 +260,7 @@ date: 2018-07-10 22:14:00
 
 
 
-![1527077415190](\blog\images\1527077415190.png)
+![1527077415190](\willywangkaa\images\1527077415190.png)
 
 
 
@@ -275,7 +275,7 @@ date: 2018-07-10 22:14:00
 
 
 
-![1527077382823](\blog\images\1527077382823.png)
+![1527077382823](\willywangkaa\images\1527077382823.png)
 
 
 
@@ -288,7 +288,7 @@ date: 2018-07-10 22:14:00
 
 
 
-![1527077442901](\blog\images\1527077442901.png)
+![1527077442901](\willywangkaa\images\1527077442901.png)
 
 
 
@@ -457,7 +457,7 @@ A
 考慮：
 
 
-![1527080836257](\blog\images\1527080836257.png)
+![1527080836257](\willywangkaa\images\1527080836257.png)
 
 ```cpp
 #include<stdio.h>
@@ -557,7 +557,7 @@ Ans：
 考慮：
 
 
-![1527081997770](\blog\images\1527081997770.png)
+![1527081997770](\willywangkaa\images\1527081997770.png)
 
 ```cpp
 #include <iostream>
@@ -682,7 +682,7 @@ Ans：10 個。
 
 
 
-![1531135436305](\blog\images\1531135436305.png)
+![1531135436305](\willywangkaa\images\1531135436305.png)
 
 
 
@@ -708,12 +708,12 @@ Ans： 14 個。(~~30個~~)
 
 
 
-![1531136821130](\blog\images\1531136821130.png)
+![1531136821130](\willywangkaa\images\1531136821130.png)
 
 
 
 
-![1531137337724](\blog\images\1531137337724.png)
+![1531137337724](\willywangkaa\images\1531137337724.png)
 
 
 
@@ -738,12 +738,12 @@ Ans：729 個。
 
 
 
-![1531138419381](\blog\images\1531138419381.png)
+![1531138419381](\willywangkaa\images\1531138419381.png)
 
 
 
 
-![1531139238689](\blog\images\1531139238689.png)
+![1531139238689](\willywangkaa\images\1531139238689.png)
 
 
 
@@ -775,7 +775,7 @@ Ans：216 個。(~~1728 個~~)
 
 
 
-![1531139971022](\blog\images\1531139971022.png)
+![1531139971022](\willywangkaa\images\1531139971022.png)
 
 
 
@@ -826,7 +826,7 @@ Ans：
 
 
 
-![1531141578065](\blog\images\1531141578065.png)
+![1531141578065](\willywangkaa\images\1531141578065.png)
 
 
 
@@ -875,7 +875,7 @@ Ans：
 
 
 
-![1527426695265](\blog\images\1527426695265.png)
+![1527426695265](\willywangkaa\images\1527426695265.png)
 
 
 
@@ -978,7 +978,7 @@ $$
 - $Ex.$ 當$\alpha = 0.5$
 
 
-![1527475744485](\blog\images\1527475744485.png)
+![1527475744485](\willywangkaa\images\1527475744485.png)
 
 
 
@@ -995,7 +995,7 @@ $$
 
 
 
-![1527427440948](\blog\images\1527427440948.png)
+![1527427440948](\willywangkaa\images\1527427440948.png)
 
 - 到達時間皆為 0。
 - 到達順序為：P1、P2、P3。
@@ -1004,7 +1004,7 @@ $$
 
 
 
-![FIFO](\blog\images\FIFO.png)
+![FIFO](\willywangkaa\images\FIFO.png)
 
 
 
@@ -1044,7 +1044,7 @@ $$
 
 
 
-![1527472805224](\blog\images\1527472805224.png)
+![1527472805224](\willywangkaa\images\1527472805224.png)
 
 - 到達時間皆為 0。
 - Gantt chart。
@@ -1052,7 +1052,7 @@ $$
 
 
 
-![1527472898945](\blog\images\1527472898945.png)
+![1527472898945](\willywangkaa\images\1527472898945.png)
 
 - Avg. waiting time
 
@@ -1068,7 +1068,7 @@ $$
   
 
   
-![1527473571408](\blog\images\1527473571408.png)
+![1527473571408](\willywangkaa\images\1527473571408.png)
 
   - 由上圖可知<br>Waiting time for long job：$0 \rightarrow CPU \; execution \; time_{short \; job}$<br>Waiting time for short job：$CPU \; execution \; time_{long \; job} \rightarrow 0$<br>Avg. waiting ime：$\frac{(CPU \; execution \; time_{short \; job}-0)+(0-0)}{2} < \frac{(0-0)+(CPU \; execution \; time_{long \; job}-0)}{2}$
   - 以這種方式 **Short job 所減少的等待時間必定大於等於** Long job 所增加的等待時間，所以**會使平均等待時間變小，最後可歸納到必為最佳的排班法則。**
@@ -1090,7 +1090,7 @@ $$
 
 
 
-![SRTF](\blog\images\SRTF.png)
+![SRTF](\willywangkaa\images\SRTF.png)
 
 - Avg. waiting time for
 
@@ -1099,7 +1099,7 @@ $$
   
 
   
-![1527477828916](\blog\images\1527477828916.png)
+![1527477828916](\willywangkaa\images\1527477828916.png)
 
   
   $$
@@ -1112,7 +1112,7 @@ $$
   
 
 
-![SJF](\blog\images\SJF_correct.png)  
+![SJF](\willywangkaa\images\SJF_correct.png)  
 
 
   
@@ -1125,7 +1125,7 @@ $$
 
 
 
-![FIFO](\blog\images\SJF.png)
+![FIFO](\willywangkaa\images\SJF.png)
 
 
 $$
@@ -1149,7 +1149,7 @@ $$
 
 
 
-![1527479225080](\blog\images\1527479225080.png)
+![1527479225080](\willywangkaa\images\1527479225080.png)
 
 - 到達時間皆為 0。
 - Non-preemptive priority method 且 **Priority number 愈小優先權愈大**。
@@ -1158,7 +1158,7 @@ $$
 
 
 
-![1527479387651](\blog\images\1527479387651.png)
+![1527479387651](\willywangkaa\images\1527479387651.png)
 
 
 $$
@@ -1186,7 +1186,7 @@ $$
 
 
 
-![1527486332570](\blog\images\1527486332570.png)
+![1527486332570](\willywangkaa\images\1527486332570.png)
 
 
 $$
@@ -1235,7 +1235,7 @@ $$
 
 
 
-![1527829801602](\blog\images\1527829801602.png)
+![1527829801602](\willywangkaa\images\1527829801602.png)
 
 
 $$
@@ -1256,7 +1256,7 @@ $$
 
 
 
-![1527831109693](\blog\images\1527831109693.png)
+![1527831109693](\willywangkaa\images\1527831109693.png)
 
 
 
@@ -1280,7 +1280,7 @@ $$
 
 
 
-![1528097302440](\blog\images\1528097302440.png)
+![1528097302440](\willywangkaa\images\1528097302440.png)
 
 
 
@@ -1314,7 +1314,7 @@ $$
 
 
 
-![1527833536050](\blog\images\1527833536050.png)
+![1527833536050](\willywangkaa\images\1527833536050.png)
 
 - 不知道為 P2 還是 P1 先進入 Waiting queue。
 - **分析**
@@ -1348,7 +1348,7 @@ $$
 
 
 
-![1527835326994](\blog\images\1527835326994.png)
+![1527835326994](\willywangkaa\images\1527835326994.png)
 
 
 
@@ -1413,14 +1413,14 @@ $$
 - 0 < S < T << Q
 
     
-![1527838126019](\blog\images\1527838126019.png)
+![1527838126019](\willywangkaa\images\1527838126019.png)
 
 所以 $\frac{T}{T+S}$
 
 - 0 < S < Q << T
 
     
-![1527838656554](\blog\images\1527838656554.png)
+![1527838656554](\willywangkaa\images\1527838656554.png)
 
 所以 $\frac{Q}{Q+S}$
 
@@ -1483,7 +1483,7 @@ $$
 
 
 
-![1528098291707](\blog\images\1528098291707.png)
+![1528098291707](\willywangkaa\images\1528098291707.png)
 
 
 
@@ -1517,7 +1517,7 @@ $$
 
 
 
-![Ratemonotonic](\blog\images\Ratemonotonic.png)
+![Ratemonotonic](\willywangkaa\images\Ratemonotonic.png)
 
 P1 未能滿足 deadline，P2 滿足 deadline。
 
@@ -1530,7 +1530,7 @@ P1 未能滿足 deadline，P2 滿足 deadline。
 
 
 
-![1528099381692](\blog\images\1528099381692.png)
+![1528099381692](\willywangkaa\images\1528099381692.png)
 
 P1 滿足 deadline，P2 滿足 deadline。
 
@@ -1551,7 +1551,7 @@ P1 滿足 deadline，P2 滿足 deadline。
 
 
 
-![1528099949133](\blog\images\1528099949133.png)
+![1528099949133](\willywangkaa\images\1528099949133.png)
 
 
 
@@ -1584,7 +1584,7 @@ P1 滿足 deadline，P2 滿足 deadline。
 
 
 
-![1528701363468](\blog\images\1528701363468.png)
+![1528701363468](\willywangkaa\images\1528701363468.png)
 
 
 
@@ -1602,7 +1602,7 @@ P1 滿足 deadline，P2 滿足 deadline。
 
 
 
-![1528704009904](\blog\images\1528704009904.png)
+![1528704009904](\willywangkaa\images\1528704009904.png)
 
 
 
@@ -1621,7 +1621,7 @@ P1 滿足 deadline，P2 滿足 deadline。
 
 
 
-![1528704266407](\blog\images\1528704266407.png)
+![1528704266407](\willywangkaa\images\1528704266407.png)
 
 
 
@@ -1634,7 +1634,7 @@ P1 滿足 deadline，P2 滿足 deadline。
 
 
 
-![1528705571205](\blog\images\1528705571205.png)
+![1528705571205](\willywangkaa\images\1528705571205.png)
 
 
 
@@ -1702,7 +1702,7 @@ P1 滿足 deadline，P2 滿足 deadline。
 
 
 
-![1528637800281](\blog\images\1528637800281.png)
+![1528637800281](\willywangkaa\images\1528637800281.png)
 
 
 
@@ -1726,7 +1726,7 @@ P1 滿足 deadline，P2 滿足 deadline。
 - Tradition process (Single-thread model)
 
 
-![1528638942439](\blog\images\1528638942439.png)
+![1528638942439](\willywangkaa\images\1528638942439.png)
 
 
 
@@ -1735,7 +1735,7 @@ P1 滿足 deadline，P2 滿足 deadline。
 
 
 
-![1528639073333](\blog\images\1528639073333.png)
+![1528639073333](\willywangkaa\images\1528639073333.png)
 
 
 
@@ -1833,12 +1833,12 @@ Thread management 是由在 User mode 之 thread library 提供的 APIs 以讓 u
 
 
 
-![1528718261665](\blog\images\1528718261665.png)
+![1528718261665](\willywangkaa\images\1528718261665.png)
 
 
 
 
-![1528718722383](\blog\images\1528718722383.png)
+![1528718722383](\willywangkaa\images\1528718722383.png)
 
 
 
@@ -1866,12 +1866,12 @@ This model maps **many** user threads to one kernel thread. Thread management is
 
 
 
-![1528718998029](\blog\images\1528718998029.png)
+![1528718998029](\willywangkaa\images\1528718998029.png)
 
 
 
 
-![1528719859725](\blog\images\1528719859725.png)
+![1528719859725](\willywangkaa\images\1528719859725.png)
 
 
 
@@ -1901,17 +1901,17 @@ This model maps **each** user threads to **a** kernel thread.
 
 
 
-![1528719979394](\blog\images\1528719979394.png)
+![1528719979394](\willywangkaa\images\1528719979394.png)
 
 
 
 
-![1528720444327](\blog\images\1528720444327.png)
+![1528720444327](\willywangkaa\images\1528720444327.png)
 
 
 
 
-![1530181565681](\blog\images\1530181565681.png)
+![1530181565681](\willywangkaa\images\1530181565681.png)
 
 
 
@@ -1933,12 +1933,12 @@ This model maps **many** user threads to **a small or equal number of** kernel t
 
 
 
-![1530181715559](\blog\images\1530181715559.png)
+![1530181715559](\willywangkaa\images\1530181715559.png)
 
 
 
 
-![1530182120849](\blog\images\1530182120849.png)
+![1530182120849](\willywangkaa\images\1530182120849.png)
 
 
 
@@ -1951,7 +1951,7 @@ This model maps **many** user threads to **a small or equal number of** kernel t
 
 
 
-![1530178012484](\blog\images\1530178012484.png)
+![1530178012484](\willywangkaa\images\1530178012484.png)
 
 - **Child1：適用在「子程序」工作與「父程序」相同時。**
 - **Child2：適用於「子程序」與「父程序」不同時，也就是說「子程序」出生後立即呼叫「execl」system call。**
@@ -1961,7 +1961,7 @@ This model maps **many** user threads to **a small or equal number of** kernel t
 
 
 
-![1530178614262](\blog\images\1530178614262.png)
+![1530178614262](\willywangkaa\images\1530178614262.png)
 
 
 
@@ -1970,7 +1970,7 @@ This model maps **many** user threads to **a small or equal number of** kernel t
 
 
 
-![1530178832898](\blog\images\1530178832898.png)
+![1530178832898](\willywangkaa\images\1530178832898.png)
 
 
 
@@ -1995,7 +1995,7 @@ This model maps **many** user threads to **a small or equal number of** kernel t
 
 
 
-![Signalisssue](\blog\images\Signalisssue.png)
+![Signalisssue](\willywangkaa\images\Signalisssue.png)
 
 
 
@@ -2004,7 +2004,7 @@ This model maps **many** user threads to **a small or equal number of** kernel t
 
 
 
-![1530179630741](\blog\images\1530179630741.png)
+![1530179630741](\willywangkaa\images\1530179630741.png)
 
 
 
@@ -2013,7 +2013,7 @@ This model maps **many** user threads to **a small or equal number of** kernel t
 
 
 
-![1530179857612](\blog\images\1530179857612.png)
+![1530179857612](\willywangkaa\images\1530179857612.png)
 
 
 
@@ -2022,7 +2022,7 @@ This model maps **many** user threads to **a small or equal number of** kernel t
 
 
 
-![1530180057880](\blog\images\1530180057880.png)
+![1530180057880](\willywangkaa\images\1530180057880.png)
 
 
 

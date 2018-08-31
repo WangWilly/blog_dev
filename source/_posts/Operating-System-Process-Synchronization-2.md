@@ -18,7 +18,7 @@ date: 2018-08-04 11:09:00
 
 
 
-![thesolutionofracecondition](\blog\images\thesolutionofracecondition.png)
+![thesolutionofracecondition](\willywangkaa\images\thesolutionofracecondition.png)
 
 
 
@@ -27,7 +27,7 @@ date: 2018-08-04 11:09:00
 
 
 
-![thestructofmonitor](\blog\images\thestructofmonitor.png)
+![thestructofmonitor](\willywangkaa\images\thestructofmonitor.png)
 
 
 
@@ -413,7 +413,7 @@ init()
 
 
 
-![thetypeofmonitor](\blog\images\thetypeofmonitor.png)
+![thetypeofmonitor](\willywangkaa\images\thetypeofmonitor.png)
 
 
 
@@ -560,7 +560,7 @@ procedure entry _monitorfunction()
 
 
 
-![thetypeofmessagepassing](\blog\images\thetypeofmessagepassing.png)
+![thetypeofmessagepassing](\willywangkaa\images\thetypeofmessagepassing.png)
 
 
 
@@ -680,7 +680,7 @@ procedure entry _monitorfunction()
 
 
 
-![linkcapacity](\blog\images\linkcapacity.png)
+![linkcapacity](\willywangkaa\images\linkcapacity.png)
 
 
 

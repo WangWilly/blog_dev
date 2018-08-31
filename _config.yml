@@ -4,16 +4,18 @@
 
 # Site
 title: WillyWangkaa
-subtitle: 
-description:
-author: Willy Wang
+subtitle: Live more like human
+description: coding, computer relate
+author: Willy Wang (willywangkaa)
 language:
+    - zh-tw
+    - en
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://WangWilly.github.io/blog
-root: /blog/
+url: http://WangWilly.github.io/willywangkaa
+root: /willywangkaa/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
@@ -78,7 +80,7 @@ theme: next-6
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: git@github.com:WangWilly/blog.git
+  repository: git@github.com:WangWilly/willywangkaa.git
   branch: gh-pages
 
 # Markdown
@@ -106,6 +108,9 @@ search:
         
 # hexo-admin authentification
 admin:
-  username: willywangkaa
-  password_hash: $2a$10$9f8cr2uswqa0Qp8zaYT3POT5ZFfexO9XRedhrdtiCYZzNd0Y5XMHS
-  secret: 0960747838
+    username: willywangkaa
+    password_hash: $2a$10$9f8cr2uswqa0Qp8zaYT3POT5ZFfexO9XRedhrdtiCYZzNd0Y5XMHS
+    secret: 0960747838
+  
+sitemap: 
+    path: sitemap.xml

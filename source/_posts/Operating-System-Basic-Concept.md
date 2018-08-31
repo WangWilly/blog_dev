@@ -40,7 +40,7 @@ date: 2018-07-10 10:51:00
 
 
 
-![1529920981306](\blog\images\1529920981306.png)
+![1529920981306](\willywangkaa\images\1529920981306.png)
 
 
 
@@ -86,7 +86,7 @@ date: 2018-07-10 10:51:00
 
 
 
-![1529918563313](\blog\images\1529918563313.png)
+![1529918563313](\willywangkaa\images\1529918563313.png)
 
 
 
@@ -135,14 +135,14 @@ date: 2018-07-10 10:51:00
   - Concurrent ( 並行 )：**一個 CPU，多個 Processes 共同使用。**
 
   
-![1530087435637](\blog\images\1530087435637.png)
+![1530087435637](\willywangkaa\images\1530087435637.png)
 
   
 
   - Parallel ( 平行 )：**多核心 CPU 共同執行多個 Processes。**
 
   
-![1530087726413](\blog\images\1530087726413.png)
+![1530087726413](\willywangkaa\images\1530087726413.png)
 
 
 
@@ -165,7 +165,7 @@ It's a **logical extension of multiprogramming system, the CPU in this kind of s
 
 
 
-![1530091014614](\blog\images\1530091014614.png)
+![1530091014614](\willywangkaa\images\1530091014614.png)
 
 
 
@@ -193,7 +193,7 @@ It's a **logical extension of multiprogramming system, the CPU in this kind of s
   - **提升運算的經濟效益 ( Economy of scale )**：因為「N 個 CPUs 在同一部機器」**可共享該機器的資源 ( Memory、Bus、I/O - devices ... ) **，所以較於「N 部機器」更為便宜而寫有效率。
 
 
-![1530093944139](\blog\images\1530093944139.png)
+![1530093944139](\willywangkaa\images\1530093944139.png)
 
 
 
@@ -217,7 +217,7 @@ It's a **logical extension of multiprogramming system, the CPU in this kind of s
 
 
 
-![ASMP_2](\blog\images\ASMP_2.png)
+![ASMP_2](\willywangkaa\images\ASMP_2.png)
 
 
 
@@ -245,7 +245,7 @@ It's a **logical extension of multiprogramming system, the CPU in this kind of s
 
 
 
-![1530099598137](\blog\images\1530099598137.png)
+![1530099598137](\willywangkaa\images\1530099598137.png)
 
 - Multicore Processor
   - Pros<br>1. Power Saving<br>2. 因為在同一個晶片之內，傳輸的速度較快。
@@ -253,7 +253,7 @@ It's a **logical extension of multiprogramming system, the CPU in this kind of s
 
 
 
-![multicore](\blog\images\multicore.png)
+![multicore](\willywangkaa\images\multicore.png)
 
 
 
@@ -294,7 +294,7 @@ It's a **logical extension of multiprogramming system, the CPU in this kind of s
 
 
 
-![1530103496272](\blog\images\1530103496272.png)
+![1530103496272](\willywangkaa\images\1530103496272.png)
 
 
 
@@ -399,7 +399,7 @@ It's a **logical extension of multiprogramming system, the CPU in this kind of s
 
 
 
-![1530157733165](\blog\images\1530157733165.png)
+![1530157733165](\willywangkaa\images\1530157733165.png)
 
 
 
@@ -431,7 +431,7 @@ It's a **logical extension of multiprogramming system, the CPU in this kind of s
 
 
 
-![1530159007395](\blog\images\1530159007395.png)
+![1530159007395](\willywangkaa\images\1530159007395.png)
 
 
 

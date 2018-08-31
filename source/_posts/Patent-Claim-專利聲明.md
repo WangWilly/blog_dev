@@ -67,7 +67,7 @@ date: 2018-05-05 14:23:00
   - 最小：最終銷售產品。
 
 
-![thedifferentsetofclaim](\blog\images\thedifferentsetofclaim.png)
+![thedifferentsetofclaim](\willywangkaa\images\thedifferentsetofclaim.png)
 
 
 ### 選擇一個「女友」？
@@ -121,7 +121,7 @@ date: 2018-05-05 14:23:00
 
 
 
-![thedifferentsetofclaim2](\blog\images\thedifferentsetofclaim2.png)
+![thedifferentsetofclaim2](\willywangkaa\images\thedifferentsetofclaim2.png)
 
 
 
@@ -130,7 +130,7 @@ date: 2018-05-05 14:23:00
   - 一名女性人類，**目前未婚**
 
 
-![thedifferentsetofclaim3](\blog\images\thedifferentsetofclaim3.png)
+![thedifferentsetofclaim3](\willywangkaa\images\thedifferentsetofclaim3.png)
 
 
 
@@ -193,41 +193,41 @@ date: 2018-05-05 14:23:00
 
 ### $Ex.$
 
-![claimpractice1](\blog\images\claimpractice1.png)
+![claimpractice1](\willywangkaa\images\claimpractice1.png)
 
 - Claim A
 
-![claimpractice2](\blog\images\claimpractice2.png)
+![claimpractice2](\willywangkaa\images\claimpractice2.png)
 
 - Claim B
 
-![claimpractice3](\blog\images\claimpractice3.png)
+![claimpractice3](\willywangkaa\images\claimpractice3.png)
 
 - Claim C
 
 
-![claimpractice4](\blog\images\claimpractice4.png)
+![claimpractice4](\willywangkaa\images\claimpractice4.png)
 
 
 - Claim D
 
-![claimpractice5](\blog\images\claimpractice5.png)
+![claimpractice5](\willywangkaa\images\claimpractice5.png)
 
 
 - Claim E
 
 
-![claimpractice6](\blog\images\claimpractice6.png)
+![claimpractice6](\willywangkaa\images\claimpractice6.png)
 
 
 
-![upload successful](\blog\images\claimpractice7.png)
+![upload successful](\willywangkaa\images\claimpractice7.png)
 
 
 
 **＜Note＞：**限制條件越多，權力範圍越小。專利說明書的所有部分，都是為『申請專利範圍』而活。
 
-![theeffectofthesizeofclaim](\blog\images\theeffectofthesizeofclaim.png)
+![theeffectofthesizeofclaim](\willywangkaa\images\theeffectofthesizeofclaim.png)
 
 
 

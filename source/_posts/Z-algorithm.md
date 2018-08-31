@@ -26,7 +26,7 @@ Z algorithm：每個後綴與母字串的最長共同前綴（單純的長度）
 
 大致上我們可以看成如下的函式：
 
-![Z演算法的表示法](\blog\images\Z演算法的表示法.png)
+![Z演算法的表示法](\willywangkaa\images\Z演算法的表示法.png)
 
 $Ex.$
 ```
@@ -96,7 +96,7 @@ $$O(n^2)$$
 **小視窗**
 
 
-![Z演算法的子問題](\blog\images\Z演算法的子問題.png)
+![Z演算法的子問題](\willywangkaa\images\Z演算法的子問題.png)
 
 如果一個位置 $i$ 位於之前比過的那段 $[L, R]$ 當中，他是否跟 $Z[i − L]$ 相同呢？我們可以分成三種情形：
 1. 要比的後綴根本不在以前比過的範圍$[L, R]$內     → 就去比吧！
@@ -234,7 +234,7 @@ void Z_maker( int z[], char s[], int n ){
 }
 ```
 
-## [Z algorithm - codeforces](http://codeforces.com/blog/entry/3107)
+## [Z algorithm - codeforces](http://codeforces.com/willywangkaa/entry/3107)
 
 ```cpp
 int L = 0, R = 0;
@@ -316,7 +316,7 @@ void z_build(const char* S,int *z){
 
 [台大資工講義 by nkng](https://www.csie.ntu.edu.tw/~sprout/algo2016/ppt_pdf/Z_value.pdf)
 
-[Z algorithm - codeforces](http://codeforces.com/blog/entry/3107)
+[Z algorithm - codeforces](http://codeforces.com/willywangkaa/entry/3107)
 
 [Gusfield algorithm - momo funny codes](http://momo-funnycodes.blogspot.tw/2012/07/gusfield-algorithm.html)
 
