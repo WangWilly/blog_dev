@@ -465,12 +465,13 @@ enable interrupt
 
 
 -  Pros
-  - Simple, easy to implementation
-  - **適用於 Uniprocessor system。(單一CPU)**
-- Cons
+     - Simple, easy to implementation
+     -  **適用於 Uniprocessor system。(單一CPU)**
+-  Cons
   - **不適合用在 Multiprocessors system 中。因為只 Disable 一顆 CPU 的 Interrupt 功能無法防止 race condition ( 其他的 CPUs  上執行之 Processes 仍可以存取該共享變數 )；但若 Disable 所有 CPU 的 Interrupt 功能，雖然可以防止 Race condition，但是會導致 Multiprocessor 的效能低落( low performance，因為無法「平行執行」 )變得和 Single-processor 的環境差不多。**
   - **風險很高：因為 Disable interrupt 指應為特權指令(風險高，可能阻擋 Kernel 的插斷)，**所以必須信任使用者程式在 Disable interrupt 後，在短時間內會再 Enable interrupt **，不然 CPU 從此再也不會回到 Kernel 管理的狀態 ( 高風險!! )。**
-  - **＜Note＞通常「 Disable interrupt 解決方法」不會下放給 User process，通常只存在於作業系統 Kernel 的實踐之中。**( 只有作業系統開發者可以使用 )
+
+> **通常「 Disable interrupt 解決方法」不會下放給 User process，通常只存在於作業系統 Kernel 的實踐之中。**( 只有作業系統開發者可以使用 )
 
 
 
@@ -505,18 +506,16 @@ repeat
 		
 		critical section
 		
-    exit section
+	exit section
     
-    	remainder section
+		remainder section
     	
-until falseS
+until false
 ```
 
 
 
 Critical section 的主要設計，是設計每個 Critical  section 的前後 Programmer 需增加的控制碼( **Entery section、Exit section** )。
-
-
 
 
 
@@ -571,7 +570,7 @@ C = C - 1;
 
 
 - Cons
-  - **在 Spinlock 等待中的 Porcess 會與其他 Processes 競爭 CPU ，將得到的 CPU time 用在於空轉( spinlock )中**，因此若 Process 要等待很長的時間才能離開迴圈，則這種技巧非常浪費 CPU time。
+  - **在 Spinlock 等待中的 Porcess 會與其他 Processes 競爭 CPU ，將得到的 CPU time 用在於空轉 ( spinlock ) 中**，因此若 Process 要等待很長的時間才能離開迴圈，則這種方式較為浪費 CPU time。
 - Pros
   - **若 Process 在迴圈等待的時間短( 小於「Context switching time」 )，則 Spinlock 非常有用。**
 
@@ -582,7 +581,7 @@ C = C - 1;
 
 
 
-- ( 恐龍課本 )謬誤：因為 Critical Section 設計當中，「Entery section」中經常使用 Busy-waiting ( spinlock ) 技巧，而課本將 Busy-waiting ( Spinlock ) 與 Critical Section 視為相同，**進而與 Disable interrupt 比較( 應是 Busy waiting 與 Non-busy waiting 來比較 )**。
+> 恐龍課本**的錯誤**：因為 Critical Section 設計當中，「Entery section」中經常使用 Busy-waiting ( spinlock ) 技巧，而課本將 Busy-waiting ( Spinlock ) 與 Critical Section 視為相同，**進而與 Disable interrupt 比較( 應是 Busy waiting 與 Non-busy waiting 來比較 )**。
 
 
 
@@ -590,13 +589,13 @@ C = C - 1;
 
 
 
-當 Process 因為同步事件( Synchronization event )被長時間卡住，**則可以使用 Block system call 將該 Process 送入 Blocked state，所以不會與其他 Process 競爭 CPU ，直到該事件觸動了，才會喚醒(wake up system call) 該 Process 移至 Ready state**。
+當 Process 因為同步事件( Synchronization event )被長時間卡住，**則可以使用 Block system call 將該 Process 送入 Blocked state，所以不會與其他 Process 競爭 CPU ，直到該事件觸動了，才會喚醒 ( Wake up system call ) 該 Process 移至 Ready state**。
 
 
 
-- Pros
+- **Pros**
   - **等待中的 Process 不會與其他 Process 不會浪費 CPU time。**
-- Cons
+- **Cons**
   - **需額外付出「Context switching time」。**
 
 
@@ -607,7 +606,7 @@ C = C - 1;
 
 - **關鍵性質**
   - **Mutual exclution：在任何時間點最多只允許一個 Process 進入它的 C.S. ，不可以有多個 Processes 分別進入各自的 C.S.。**
-  - ***Progress：不想進入 C.S. 的 Process ( 在 R.S. 中活動的 Process )，不可阻礙( 不參與「 進入C.S.」的決策 )其他 Processes 進入 C.S.。**<br>「安排欲進入 C.S 的 Process」之決策，要在**有限的時間中完成 ( Non-deadlock：不可以無窮等待，使得全部之 Process 皆無法進入 C.S. )。**---全部 Process 都無法進入
+  - **Progress：不想進入 C.S. 的 Process ( 在 R.S. 中活動的 Process )，不可阻礙( 不參與「 進入C.S.」的決策 )其他 Processes 進入 C.S.。**<br>「安排欲進入 C.S 的 Process」之決策，要在**有限的時間中完成 ( Non-deadlock：不可以無窮等待，使得全部之 Process 皆無法進入 C.S. )。**---全部 Process 都無法進入
   - **Bounded waiting：**當有 Process 提出「進入 C.S.」之申請，等待核准的時間是有限的( 防止該 Process 出現 Starvation 的情形 )。---單一 Process 一直無法進入<br>**若有 n 個 Process 欲進入 C.S. 則每個 Process 最多等待 n-1 次後即可進入 C.S.。**
 
 
@@ -646,7 +645,7 @@ C = C - 1;
 Repeat
 	while ( turn != i ); // enter
 	C.S.
-    turn = j; // leave
+	turn = j; // leave
 	R.S.
 Until False
 ```
@@ -685,10 +684,10 @@ Until False
 ```cpp
 // P_i
 Repeat
-	flag[i] = true; // 表達意願
+	flag[i] = true;  // 表達意願
 	while (flag[j]); // enter
 	C.S.
-    flag[i] = false; // leave
+	flag[i] = false; // leave
 Until false
 ```
 
@@ -697,10 +696,10 @@ Until false
 ```cpp
 // P_j
 Repeat
-	flag[j] = true; // 表達意願
+	flag[j] = true;  // 表達意願
 	while (flag[i]); // enter
 	C.S.
-    flag[i] = false; // leave
+	flag[i] = false; // leave
 Until false
 ```
 
@@ -725,6 +724,72 @@ flag[j] = true; // P_j表達意願
 
 
 ###### Algorithm 3 - Peterson's Algorithm ( OK )：權力、意願層面
+
+
+
+```cpp
+//============================================================================
+// Name        : Softwaresolution.cpp
+// Author      : willywangkaa
+// Description : Hello World in C++, Ansi-style
+//============================================================================
+
+#include <bits/stdc++.h>
+#include <windows.h>
+using namespace std;
+
+int sharedvar = 0;
+int turn;
+int flag[2];
+int condition[2];
+
+void worker(int tid) {
+    while(condition[tid]) {
+        double delaySum = 0;
+        for( int i = 0; i < 10000; ++ i )
+            for( int j = 0; j < 10000; ++ j )
+                delaySum += i*j;
+
+        flag[tid] = true;
+        turn = (tid^1);
+        while(flag[tid^1] && turn == (tid^1)) ;
+        turn = tid;
+
+        this_thread::get_id();
+        sharedvar = tid;
+        cout << "Shared variable is edit by "<< sharedvar << ".\n";
+
+        flag[tid] = false;
+    }
+}
+
+int main() {
+	vector<thread> ths;
+    turn = 1;
+	for(int i = 0; i < 2; i++) {
+        condition[i] = true;
+	}
+
+    for(int i = 0; i < 2; i++) {
+        ths.push_back(thread(worker, i));
+        Sleep(10);
+    }
+
+    Sleep(1000);
+    condition[0] = false;
+    Sleep(2000);
+    condition[1] = false;
+
+    for (thread & th : ths) {
+		if (th.joinable())
+			th.join();
+	}
+	cout << sharedvar << endl;
+	return 0;
+}
+```
+
+
 
 
 
@@ -772,7 +837,9 @@ Until false
 
 
 
-今有一程式如下，請問該程式是否可以正確執行，或是違反 Cirtial section 中的關鍵性值？**可以正確執行，只是 flag 互相對調而已。**
+1. 今有一程式如下，請問該程式是否可以正確執行，或是違反 Cirtial section 中的關鍵性值？
+
+**可以正確執行，只是 flag 互相對調而已。**
 
 ```cpp
 // P_i
@@ -781,7 +848,7 @@ Repeat
 	turn = j;                       // * enter ( 權力先給對方 )
 	while ( flag[i] && turn == j ); //   enter
 	C.S.
-    flag[j] = false;                // leave
+	flag[j] = false;                // leave
 Until false
 ```
 
@@ -794,13 +861,15 @@ Repeat
 	turn = i;                       // *enter
 	while ( flag[j] && turn == i ); //  enter
 	C.S.
-    flag[i] = false;                // leave
+	flag[i] = false;                // leave
 Until false
 ```
 
 
 
-今有一程式如下，請問該程式是否可以正確執行，或是違反 Cirtial section 中的關鍵性值？**可以正確執行，只是 turn 互相對調而已。**
+2. 今有一程式如下，請問該程式是否可以正確執行，或是違反 Cirtial section 中的關鍵性值？
+
+**可以正確執行，只是 turn 互相對調而已。**
 
 ```cpp
 // P_i
@@ -809,7 +878,7 @@ Repeat
 	turn = i;                       // * enter ( 權力先給對方 )
 	while ( flag[j] && turn == i ); //   enter
 	C.S.
-    flag[i] = false;                // leave
+	flag[i] = false;                // leave
 Until false
 ```
 
@@ -822,7 +891,7 @@ Repeat
 	turn = j;                       // *enter
 	while ( flag[i] && turn == j ); //  enter
 	C.S.
-    flag[j] = false;                // leave
+	flag[j] = false;                // leave
 Until false
 ```
 
@@ -830,7 +899,9 @@ Until false
 
 
 
-今有一程式如下，請問該程式是否可以正確執行，或是違反 Cirtial section 中的關鍵性值？**可以正確執行，只是 turn 與 flag 皆互相對調而已。**
+3. 今有一程式如下，請問該程式是否可以正確執行，或是違反 Cirtial section 中的關鍵性值？
+
+**可以正確執行，只是 turn 與 flag 皆互相對調而已。**
 
 ```cpp
 // P_i
@@ -839,7 +910,7 @@ Repeat
 	turn = i;                       // * enter ( 權力先給對方 )
 	while ( flag[i] && turn == i ); //   enter
 	C.S.
-    flag[j] = false;                // leave
+	flag[j] = false;                // leave
 Until false
 ```
 
@@ -852,7 +923,7 @@ Repeat
 	turn = j;                       // *enter
 	while ( flag[j] && turn == j ); //  enter
 	C.S.
-    flag[i] = false;                // leave
+	flag[i] = false;                // leave
 Until false
 ```
 
@@ -866,13 +937,79 @@ Until false
 
 
 
+```cpp
+//============================================================================
+// Name        : Softwaresolution.cpp
+// Author      : willywangkaa
+// Description : Hello World in C++, Ansi-style
+//============================================================================
+
+#include <bits/stdc++.h>
+#include <thread>
+using namespace std;
+
+int sharedvar = 0;
+bool choosing[10];
+int number[10];
+
+void worker(int tid) {
+	double delaySum = 0;
+	for( int i = 0; i < 10000; ++ i )
+		for( int j = 0; j < 10000; ++ j )
+			delaySum += i*j;
+
+    choosing[tid] = true;
+    number[tid] = *max_element(number, number+10) + 1;
+    choosing[tid] = false;
+    for(int i = 0; i < 10; i++) {
+        while(choosing[i]) (void)0;
+
+        while(number[i]>0 && (
+				(number[i] < number[tid])
+					|| (number[i] == number[tid] && i < tid)
+								))
+				(void)0;
+    }
+
+    this_thread::get_id();
+    sharedvar = tid;
+    cout << "Shared variable is edit by "<< sharedvar << ".\n";
+
+	number[tid] = 0;
+}
+
+int main() {
+	vector<thread> tharr;
+
+	for(int i = 0; i < 10; i++) {
+        choosing[i] = false;
+        number[i] = 0;
+	}
+
+    for(int i = 0; i < 10; i++) {
+        choosing[i] = false;
+        tharr.push_back(thread(worker, i));
+    }
+
+    for (thread & th : tharr) {
+		if (th.joinable())
+			th.join();
+	}
+
+	cout << sharedvar << endl;
+	return 0;
+}
+```
+
+
+
 - 核心觀念：
   1. 客人要先取得號碼牌才可以入店內。
   2. 店內一次只能有一個客人進入。
   3. **「號碼牌最小的客人」或「號碼牌相同最小之 ID 最小的客人」，得以優先入內。**
 - 共享變數
-  - **choosing: [0 ... n-1] fo boolean：初值皆為 false。**<br>$choose[i] = \left\{\begin{matrix}True \quad P_i \; 正在取得號碼牌中，但尚未取得\\ False \quad P_i \; 已取得號碼牌(init) \end{matrix}\right.$
-  - **number: [0 ... n-1] of int：初值為 0。**<br>$number[i] = \left\{\begin{matrix}0 \quad 代表 \; P_i \;無意願進入\\ >0 \quad P_i \; 有意願進入 \end{matrix}\right.$
+  - **choosing: [0 ... n-1] fo boolean：初值皆為 false。**<br>$choose[i] = \left\{\begin{matrix}True & P_i \; 正在取得號碼牌中，但尚未取得\\ False & P_i \; 已取得號碼牌(init) \end{matrix}\right.$
+  - **number: [0 ... n-1] of int：初值為 0。**<br>$number[i] = \left\{\begin{matrix}=0 & 代表 \; P_i \;無意願進入\\ >0 & P_i \; 有意願進入 \end{matrix}\right.$
 - MAX(i ... j)：從 i ... j 挑最大值。
 - (a, b) < (c, d)：**代表**<br>1. a < c<br>or 2. a==c and b < d
 - P_i 之程式碼
@@ -897,7 +1034,7 @@ util false
 
 
 
-- Ex1. 為何號碼牌( number[i] )會有兩個以上相同的問題？ 
+- Ex1. 為何號碼牌( number[i] )會有**兩個以上相同**的問題？ 
   - 因為在 `number[i] = Max(number[0], ... , number[n-1]) + 1 ` 的執行階段時，有可能會被其他 Process 搶斷。
 
 
@@ -905,11 +1042,11 @@ util false
 ```cpp
 // number[max] = 0
 // P_i
-// Processiing " choosing[i] = true; ".
+// Processiing " choosing[i] = true; "
 Load max number[max];         // number[max] = 0
 Process max++;
 // P_j preempting
-// Processiing " choosing[j] = true; ".
+// Processiing " choosing[j] = true; "
 Load max number[max];         // number[max] = 0
 Process max++;
 // P_i
@@ -920,11 +1057,13 @@ Store to number[i];           // number[i] = 1
 
 
 
-
-
 - Ex2. 證明 Critical section **關鍵性值**。
-  - Mutual exclusion (OK) ：<br>Case1. **假設號碼牌值皆不同且大於零，則具有最小號碼牌值之 Process 可以優先進入 Critical section，因為最小值必唯一，所以除了該 Process 可以進入其餘等待。**<br>Case2. 有多個 Processes 有相同的最小號碼牌，以 Process ID 最小者優先進入 Critical section，因為 Process ID 必唯一最小值也必定唯一，所以除了該 Process 可以進入其餘等待。<br>唯一性確保，互斥確保。
-  - Process (OK)：<br>1. ( 不想進入但不會控制其他人 )**假設 P_j 不想進入 C.S. 代表 number[j] 為 0 ，若此時 P_i 欲進入 C.S.** 則 `while(number[j]>0 && (numbeer[j], j) < (number[i], i)) do no-op; ` 不會被 P_j 阻擋住。<br>2. ( 不會造成 deadlock ) 若 P_0 ~ P_n-1 n 個 Processes 皆欲進入 C.S. 會在**有限時間內必決定有一個 Process (號碼牌最小加上 ProcessID 最小)可以順利結束 for loop 進入 C.S.**
+  - Mutual exclusion (OK) ：
+    - Case1. **假設號碼牌值皆不同且大於零，則具有最小號碼牌值之 Process 可以優先進入 Critical section，因為最小值必唯一，所以除了該 Process 可以進入其餘等待。**
+    - Case2. 有多個 Processes 有相同的最小號碼牌，以 Process ID 最小者優先進入 Critical section，因為 Process ID 必唯一最小值也必定唯一，所以除了該 Process 可以進入其餘等待。<br>唯一性確保，互斥確保。
+  - Process (OK)：
+    1. ( 不想進入但不會控制其他人 )**假設 P_j 不想進入 C.S. 代表 number[j] 為 0 ，若此時 P_i 欲進入 C.S.** 則 `while(number[j]>0 && (numbeer[j], j) < (number[i], i)) do no-op; ` 不會被 P_j 阻擋住。
+    2. ( 不會造成 deadlock ) 若 P_0 ~ P_n-1 n 個 Processes 皆欲進入 C.S. 會在**有限時間內必決定有一個 Process (號碼牌最小加上 ProcessID 最小)可以順利結束 for loop 進入 C.S.**
   - Bounded waiting (OK)：**假設 P_0~P_n-1 processes 皆欲進入 C.S. 令 P_i 具有最大的號碼牌等於 K ( nuber[i] = K ) 因此，其他 n-1 Process：P_j ( j!=i )，必定先早於 P_i 進入 C.S.，**若 P_j 離開 C.S 後，又立刻欲進入 C.S，**則 P_j 的再取得號碼牌必定大於 K，所以 P_j 不會再早於 P_i 進入 C.S. 進而可以知道 P_i 最多等待 n-1 次即可進入 C.S.。**
 - Ex3.
 
@@ -933,13 +1072,13 @@ Repeat
 	choosing[i] = true;
 	number[i] = Max(number[0], ... , number[n-1]) + 1 
 	choosing[i] = false;
-    for( j = 0; j < n; j++ ) {
-        ~~while (choosing[j]) do no-op;~~  // 移除這行程式碼是否還正確？請解釋。
-        while(number[j]>0 && (numbeer[j], j) < (number[i], i)) do no-op; 
-    }
-    C.S.
-    Number[i] = 0;
-    R.S.
+	for( j = 0; j < n; j++ ) {
+		~~while (choosing[j]) do no-op;~~  // 移除這行程式碼是否還正確？請解釋。
+		while(number[j]>0 && (numbeer[j], j) < (number[i], i)) do no-op; 
+	}
+	C.S.
+	Number[i] = 0;
+	R.S.
 util false
 ```
 
@@ -957,6 +1096,85 @@ util false
 
 
 **程式開發者可以使用硬體預先定義之指立於設計 Critical Section。**
+
+
+
+```cpp
+//============================================================================
+// Name        : Hardware solution
+// Author      : willywangkaa
+// Version     :
+// Copyright   :
+// Description : Hello World in C++, Ansi-style
+//============================================================================
+
+#include <bits/stdc++.h>
+#include <thread>
+#include <windows.h>
+using namespace std;
+
+bool condition;
+int sharedvar = 0;
+bool waiting[10];
+atomic_flag LOCK = ATOMIC_FLAG_INIT;
+
+void worker(int tid) {
+    while( condition ) {
+        double delaySum = 0;
+        for( int i = 0; i < 10000; ++ i )
+            for( int j = 0; j < 10000; ++ j )
+                delaySum += i*j;
+
+        waiting[tid] = true;
+        while(waiting[tid] && LOCK.test_and_set()) ;
+
+        this_thread::get_id();
+        sharedvar = tid;
+        cout << "Shared variable is edit by "<< sharedvar << ".\n";
+
+        waiting[tid] = false;
+        int next = -1, curr = (tid + 1) % 10;
+        while(curr != tid) {
+            if(waiting[curr]) {
+                next = curr;
+                break;
+            }
+            curr = (curr + 1) % 10;
+        }
+        if(next != -1) {
+            waiting[curr] = false;
+        } else {
+            LOCK.clear();
+        }
+    }
+}
+
+int main() {
+	vector<thread> ths;
+    condition = true;
+	for(int i = 0; i < 10; i++) {
+        waiting[i] = false;
+	}
+
+    for(int i = 0; i < 10; i++) {
+        ths.push_back(thread(worker, i));
+    }
+
+    for(int i = 1; i <= 10; i++) {
+        condition = true;
+        Sleep(i*20);
+        condition = false;
+    }
+
+    for (thread & th : ths) {
+		if (th.joinable())
+			th.join();
+	}
+
+	cout << sharedvar << endl;
+	return 0;
+}
+```
 
 
 
@@ -1155,7 +1373,7 @@ do {
 
 
 
-- Ex1
+- Ex
 
 ```cpp
 do {
@@ -1192,7 +1410,9 @@ do {
 
 
 
-令 S 為 `Semaphore type` 變數，架構在 `Integer type`。針對 S ，提供兩個「Atomic 運算元」<br>**wait(S) ( 或 P(S) ) 與 signal(S) ( 或 V(S) )**。( 因為是「Atomic 運算元」，所以不會有 Race condition。 )
+令 S 為 `Semaphore type` 變數，架構在 `Integer type`。針對 S ，提供兩個「Atomic 運算元」
+
+**wait(S) ( 或 P(S) ) 與 signal(S) ( 或 V(S) )**。( 因為是「Atomic 運算元」，所以不會有 Race condition。 )
 
 
 
@@ -1222,14 +1442,14 @@ S = S + 1
 repeat
 	wait(mutex);
 	C.S.
-    signal(mutex);
+	signal(mutex);
 	R.S.
 until False
 ```
 
 
 
-**＜Note＞：semaphore 的初值，有某些意意。**$\left\{\begin{matrix}1 \Rightarrow 互斥控制之用途。\\ 0 \Rightarrow 強迫等待之用途。 \end{matrix}\right.$
+> **＜Note＞：semaphore 的初值，有某些意義。**$\left\{\begin{matrix}1 \Rightarrow 互斥控制之用途。\\ 0 \Rightarrow 強迫等待之用途。 \end{matrix}\right.$
 
 
 
@@ -1362,9 +1582,9 @@ C;
 ```cpp
 // P_i
 while(condition == true) {
-    ...
-    A;
-    ...
+	...
+	A;
+	...
 }
 ```
 
@@ -1373,9 +1593,9 @@ while(condition == true) {
 ```cpp
 // P_j
 while(condition == true) {
-    ...
-    B;
-    ...
+	...
+	B;
+	...
 }
 ```
 
@@ -1384,9 +1604,9 @@ while(condition == true) {
 ```cpp
 // P_k
 while(condition == true) {
-    ...
-    C;
-    ...
+	...
+	C;
+	...
 }
 ```
 
@@ -1651,7 +1871,7 @@ wait(s);
 
 
 
-- ☆ s_1：semaphore = 1、s_2：semaphore = 1。
+- ☆ s_1：semaphore = 1、s_2：semaphore = 1
 
 
 
@@ -1696,14 +1916,15 @@ signal(s_2);
 
 
 
-### 重要的同步問題 ( Synchronization Problem )
-
-
-
-- 解決要點
-  - **以 Semaphore 變數實作同步處理條件。**
-  - **以 Semaphore 實作互斥控制防止「Race condition」。**
-  - 先同步、再互斥。
+> 重要的同步問題 ( Synchronization Problem )
+>
+>
+>
+> - 解決要點
+>   - **以 Semaphore 變數實作同步處理條件。**
+>   - **以 Semaphore 實作互斥控制防止「Race condition」。**
+>   - 先同步、再互斥。
+>
 
 
 
@@ -1724,12 +1945,14 @@ signal(s_2);
 
 ##### ☆Bounded Buffer Producer-Consumer ( 有限緩衝區 )
 
+
+
 - 當緩衝區**滿**的時候，**生產者必須等待。**
 - 當緩衝區**空**的時候，**消費者必須等待。**
 
 
 
-###### Algorithm1
+###### Algorithm1 ( 未使用「Semaphore」 )
 
 
 
@@ -1743,12 +1966,12 @@ signal(s_2);
 ```cpp
 // producer
 while(condition == true) {
-    ...
-    create a new item "t";
-    while((in+1)%n == out) ;
-    Buffer[in] = t;
-    in = (in + 1) % n;
-    ...
+	...
+	create a new item "t";
+	while((in+1)%n == out) ;
+	Buffer[in] = t;
+	in = (in + 1) % n;
+	...
 }
 ```
 
@@ -1761,19 +1984,19 @@ while(condition == true) {
 ```cpp
 // consumer
 while(condition == true) {
-    ...
+	...
 	while(in == out) ;
-    assign Buffer[out] to "I";
-    out = (out + 1) % n;
-    ...
-    // using "I" item
-    ...
+	assign Buffer[out] to "I";
+	out = (out + 1) % n;
+	...
+	// using "I" item
+	...
 }
 ```
 
 
 
-###### Algorithm2(fall)
+###### Algorithm2( Fall )
 
 
 
@@ -1795,13 +2018,13 @@ while(condition == true) {
 ```cpp
 // producer
 while(condition == true) {
-    ...
-    creat a new item "t";
-    while(count == n) ;
-    buffer[in] = t;
-    in = (in + 1) % n;
-    count++;
-    ...
+	...
+	creat a new item "t";
+	while(count == n) ;
+	buffer[in] = t;
+	in = (in + 1) % n;
+	count++;
+	...
 }
 ```
 
@@ -1814,14 +2037,14 @@ while(condition == true) {
 ```cpp
 // consumer
 while(condition == true) {
-    ...
-    while(count == 0) ;
-    assign buffer[out] value to "I";
-    out = (out + 1) % n;
-    count--;
-    ...
-    // using tiem "I"
-    ...
+	...
+	while(count == 0) ;
+	assign buffer[out] value to "I";
+	out = (out + 1) % n;
+	count--;
+	...
+	// using tiem "I"
+	...
 }
 ```
 
@@ -1829,7 +2052,7 @@ while(condition == true) {
 
 
 
-###### 用 Semaphore 解決 Algorithm2
+###### Algorithm3 ( 用 Semaphore 解決 Algorithm2 )
 
 
 
@@ -1844,15 +2067,15 @@ while(condition == true) {
 ```cpp
 // producer
 while(condition == true) {
-    ...
-    create a new item "t";
-    wait(empty);               // 確認當前「空格數」是否足夠使用。
-    	wait(mutex);
-    		buffer[in] = t;
-    		in = (in + 1) % n;
-    		count++;
-    	signal(mutex);
-    	signal(full);         // 將「滿格數」添上一筆。
+	...
+	create a new item "t";
+	wait(empty);               // 確認當前「空格數」是否足夠使用。
+		wait(mutex);
+			buffer[in] = t;
+			in = (in + 1) % n;
+			count++;
+		signal(mutex);
+		signal(full);         // 將「滿格數」添上一筆。
 }
 ```
 
@@ -1865,20 +2088,22 @@ while(condition == true) {
 ```cpp
 // consumer
 while(condition == true) {
-    ...
-    wait(full);                        // 確認當前「滿格數」是否足夠使用。
-    	wait(mutex);
-            assign buffer[out] to "I";
-            out = (out + 1) % n;
-            count--;
-    	signal(mutex);
-    	signal(empty);                 // 將「空格數」添上一筆。
+	...
+	wait(full);                        // 確認當前「滿格數」是否足夠使用。
+		wait(mutex);
+			assign buffer[out] to "I";
+			out = (out + 1) % n;
+			count--;
+		signal(mutex);
+		signal(empty);                 // 將「空格數」添上一筆。
 }
 ```
 
 
 
 ##### Unbunded Buffer Producer-Consumer ( 無限緩衝區 )
+
+
 
 - 當緩衝區**空**的時候，**消費者必須等待。**
 - 不予討論
@@ -1914,9 +2139,16 @@ while(condition == true) {
 
 
 - 共享變數
-  - wrt：semaphore = 1<br>提供 Read/Write 與 Write/Write 的互斥控制，**這種控制將會不利於 Writer 的寫入**。
-  - readcnt：int = 0<br>**紀錄目前的 Reader 個數。**$\left\{\begin{matrix}多一位 \; Reader \Rightarrow readcnt  = readcnt + 1。\\少一位 \; Reader \Rightarrow readcnt = readcnt -1。 \end{matrix}\right. \Rightarrow 需使用互斥控制。$
-  - **mutex：semaphore = 1** <br>對 readcnt 作「互斥控制」，防止 Race condition。
+  - wrt：semaphore = 1
+    提供 Read/Write 與 Write/Write 的互斥控制，**這種控制將會不利於 Writer 的寫入**。
+  - readcnt：int = 0
+    **紀錄目前的 Reader 個數。**
+    $\left\{\begin{matrix}多一位 \; Reader \Rightarrow readcnt  = readcnt + 1。\\少一位 \; Reader \Rightarrow readcnt = readcnt -1。 \end{matrix}\right. \Rightarrow 需使用互斥控制。$
+  - **mutex：semaphore = 1** 
+    對 readcnt 作「互斥控制」，防止 Race condition。
+
+
+
 - Reader 程式
 
 
@@ -1952,8 +2184,6 @@ while(condition == true) {
 - 當 `if(readcnt == 1)` 符合條件代表目前是第一個**想要**使用此檔案的 Reader。
 
   - 需要執行 `wait(wrt);` **以檢查目前是否有其他的 Writer 正在使用此檔案。**<br>1. 若有，則不繼續執行。<br>2. 若無，則通過且將 Writer 阻擋住。
-
-    
 
 - EX：根據上方程式，假設目前 $W_1$ 已在寫入之中。
   1. 若 $R_1$ 接上面之後開始執行，則 $R_1$ 會卡在程式碼何處？而此時的 readcnt 又為何？<br>`wait(wrt);`，readcnt = 1。
@@ -2051,8 +2281,13 @@ signal(y);
 - 共享變數：
   - **customer：semaphore = 0**<br>**用來處理客人與理髮師的同步問題。有客人才被喚醒工作，若無則繼續睡覺。**
   - **barber：semaphore = 0**<br>**用來處理客人與理髮師的同步問題。若理髮師忙碌等待並睡覺，反之進行理髮。**
-  - waiting：int = 0<br>目前座在等待區的人數。$\left\{\begin{matrix}客人入店 \; \Rightarrow waiting++ \\理髮師開始處理下一為客人 \Rightarrow waiting-- \end{matrix}\right.$
+  - waiting：int = 0
+    目前座在等待區的人數。
+    $\left\{\begin{matrix}客人入店 \; \Rightarrow waiting++ \\理髮師開始處理下一為客人 \Rightarrow waiting-- \end{matrix}\right.$
   - mutex：semaphore = 1<br>**對 waiting 變數做互斥處理，以免 Race condition。**
+
+
+
 - Barber 程式
 
 
@@ -2060,13 +2295,13 @@ signal(y);
 ```cpp
 // barber
 while(conditon == false) {
-    wait(customer);          // 目前沒有客人，Barber 睡覺去。
-    	wait(mutex);
-    		waiting--;
-    		signal(barber); // 叫醒客人。
-    	signal(mutex);
-    	// processing cutting hair
-    	// signal(barber);  // worng code
+	wait(customer);          // 目前沒有客人，Barber 睡覺去。
+		wait(mutex);
+			waiting--;
+			signal(barber); // 叫醒客人。
+		signal(mutex);
+		// processing cutting hair
+		// signal(barber);  // worng code
 }
 ```
 
@@ -2077,16 +2312,16 @@ while(conditon == false) {
 
 
 ```cpp
-// customer: 注意! customer 並沒有需要 loop 持剪髮的需求。
+// customer: 注意! customer 並沒有需要 loop 剪髮的需求。
 wait(mutex);
-    if(waiting < n) {
+	if(waiting < n) {
 		waiting++;
 		signal(customer); // 叫醒/通知 Barber。
 signal(mutex);
 		wait(barber);		
-    } else {
+	} else {
 signal(mutex);    
-    }
+	}
 ```
 
 
@@ -2212,22 +2447,143 @@ while(condition==false) {
 
 
 ```cpp
-S:Binary semaphore = 1;
+S: Binary semaphore = 1;
 
 wait(S):
-	while(s<=0);
+// Entry section
+// Critical section
+	while(s<=0) {
+// Leave section
+		no-op
+// Entry section
+	};
+// Critical section
 	s--;
+// Leave section
 
-signal(S):s++;
+signal(S):
+// Entry section
+// Critical section
+	s++;
+// Leave section
 ```
 
 
 
 ```cpp
-// usage
+// 用途
 wait(s);
-//C.S.
+	// Critical section
 signal(s);
+```
+
+
+
+```cpp
+#include <bits/stdc++.h>
+#include <Windows.h>
+#include <thread>
+
+using namespace std;
+
+bool choosing[10];
+int number[10];
+
+typedef struct b_Semaphore {
+    int v;
+} BSEM;
+BSEM bsem;
+
+void P( BSEM &s, int tid ) {
+// Entry section
+    choosing[tid] = true;
+    number[tid] = *max_element(number, number+10) + 1;
+    choosing[tid] = false;
+    for(int i = 0; i < 10; i++) {
+        while(choosing[i]) _mm_pause();
+        while(number[i]>0 &&
+                (number[i]<number[tid] ||
+                  (number[i]==number[tid] && i<tid)
+                 )) _mm_pause();
+    }
+
+    while(s.v<=0) {
+// Leave section
+        number[tid] = 0;
+// Critical section
+        _mm_pause();
+// Entry section
+        choosing[tid] = true;
+        number[tid] = *max_element(number, number+10) + 1;
+        choosing[tid] = false;
+        for(int i = 0; i < 10; i++) {
+            while(choosing[i]) _mm_pause();
+            while(number[i]>0 &&
+                    (number[i]<number[tid] ||
+                      (number[i]==number[tid] && i<tid)
+                     )) _mm_pause();
+        }
+    }
+// Critical section
+    s.v--;
+// Leave section
+    number[tid] = 0;
+}
+
+void V(BSEM &s, int tid) {
+// Entry section
+    choosing[tid] = true;
+    number[tid] = *max_element(number, number+10) + 1;
+    choosing[tid] = false;
+    for(int i = 0; i < 10; i++) {
+        while(choosing[i]) _mm_pause();
+        while(number[i]>0 &&
+                (number[i]<number[tid] ||
+                  (number[i]==number[tid] && i<tid)
+                 )) _mm_pause();
+    }
+// Critical section
+    s.v++;
+    if(s.v>2) cout << "error" << endl;
+// Leave section
+    number[tid] = 0;
+}
+
+void Worker(int tid) {
+    P(bsem, tid);
+
+    time_t rawtime;
+    struct tm * timeinfo;
+    time (&rawtime);
+    timeinfo = localtime (&rawtime);
+    cout << "Thread " << tid << endl;
+    printf ("Current local time and date: %s", asctime(timeinfo));
+    Sleep(1000);
+
+    V(bsem, tid);
+}
+
+int main()
+{
+    bsem.v = 1;
+
+    vector<thread> ths;
+
+    for(int i = 0; i < 10; i++) {
+        choosing[i] = false;
+        number[i] = 0;
+	}
+
+    for(int i = 0; i < 10; i++) {
+        ths.push_back(thread(Worker, i));
+    }
+
+    for (thread & th : ths) {
+		if (th.joinable())
+			th.join();
+	}
+    return 0;
+}
 ```
 
 
@@ -2252,13 +2608,13 @@ wait(C):
 		signal(S1);
 		wait(S2);
 	else
-        signal(S1);
+		signal(S1);
 
 signal(C):
 	wait(S1);
 	c++;
 	if(c<=0) 
-        signal(S2);
+		signal(S2);
 	signal(S1);
 ```
 
@@ -2268,8 +2624,145 @@ signal(C):
 C: counting semaphore = 1;
 
 wait(c);
-// C.S.
+	// Critical section
 signal(c);
+```
+
+
+
+```cpp
+#include <bits/stdc++.h>
+#include <Windows.h>
+#include <thread>
+
+using namespace std;
+
+bool choosing[10];
+int number[10];
+
+typedef struct b_Semaphore {
+    int v;
+} BSEM;
+
+typedef struct c_Semaphore {
+    int c;
+    BSEM s1;
+    BSEM s2;
+} CSEM;
+CSEM csem;
+
+void P( BSEM &s, int tid ) {
+// Entry section
+    choosing[tid] = true;
+    number[tid] = *max_element(number, number+10) + 1;
+    choosing[tid] = false;
+    for(int i = 0; i < 10; i++) {
+        while(choosing[i]) (void)0;
+        while(number[i]>0 &&
+                (number[i]<number[tid] ||
+                  (number[i]==number[tid] && i<tid)
+                 )) (void)0;
+    }
+
+    while(s.v<=0) {
+// Leave section
+        number[tid] = 0;
+// Critical section
+        (void)0;
+// Entry section
+        choosing[tid] = true;
+        number[tid] = *max_element(number, number+10) + 1;
+        choosing[tid] = false;
+        for(int i = 0; i < 10; i++) {
+            while(choosing[i]) (void)0;
+            while(number[i]>0 &&
+                    (number[i]<number[tid] ||
+                      (number[i]==number[tid] && i<tid)
+                     )) (void)0;
+        }
+    }
+// Critical section
+    s.v--;
+// Leave section
+    number[tid] = 0;
+}
+
+void V(BSEM &s, int tid) {
+// Entry section
+    choosing[tid] = true;
+    number[tid] = *max_element(number, number+10) + 1;
+    choosing[tid] = false;
+    for(int i = 0; i < 10; i++) {
+        while(choosing[i]) (void)0;
+        while(number[i]>0 &&
+                (number[i]<number[tid] ||
+                  (number[i]==number[tid] && i<tid)
+                 )) (void)0;
+    }
+// Critical section
+    s.v++;
+    if(s.v>2) cout << "error" << endl;
+// Leave section
+    number[tid] = 0;
+}
+
+void P(CSEM& s, int tid) {
+    P(s.s1, tid);
+    s.c--;
+    if(s.c<0) {
+        V(s.s1, tid);
+        P(s.s2, tid);
+    } else {
+        V(s.s1, tid);
+    }
+}
+
+void V(CSEM& s, int tid) {
+    P(s.s1, tid);
+    s.c++;
+    if(s.c<=0) {
+        V(s.s2, tid);
+    }
+    V(s.s1, tid);
+}
+
+void Worker(int tid) {
+    P(csem, tid);
+
+    time_t rawtime;
+    struct tm * timeinfo;
+    time (&rawtime);
+    timeinfo = localtime (&rawtime);
+    cout << "Thread " << tid << endl;
+    printf ("Current local time and date: %s", asctime(timeinfo));
+    Sleep(1000);
+
+    V(csem, tid);
+}
+
+int main()
+{
+    csem.c = 3;
+    csem.s1.v = 1;
+    csem.s2.v = 0;
+
+    vector<thread> ths;
+
+    for(int i = 0; i < 10; i++) {
+        choosing[i] = false;
+        number[i] = 0;
+	}
+
+    for(int i = 0; i < 10; i++) {
+        ths.push_back(thread(Worker, i));
+    }
+
+    for (thread & th : ths) {
+		if (th.joinable())
+			th.join();
+	}
+    return 0;
+}
 ```
 
 
@@ -2620,8 +3113,8 @@ signal(s):
 |           | 定義                                        | 製作                                                         |
 | --------- | ------------------------------------------- | ------------------------------------------------------------ |
 | semaphore | Busy waiting $\Rightarrow$ Non-busy waiting | 在實踐「Entry section」時，就必須使用「Busy-waiting」。      |
-| semaphore | Busy waiting $\Rightarrow$ Non-busy waiting | 若使用「Disable interrupt」，**風險實在太高，不適合用在多處理器( Multiprocessor )之上。** |
+| semaphore | Busy waiting $\Rightarrow$ Non-busy waiting | 若使用「Disable interrupt」，**風險實在太高，且不適合用在多處理器( Multiprocessor )之上。** |
 
 
 
-- 小結論：在 semaphore 之下的 busy waiting 是短暫的，不避太在意會浪費效能。
+- > **在 Semaphore 之下的 Busy waiting 是短暫的，不避太在意會浪費效能。**

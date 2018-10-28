@@ -71,11 +71,18 @@ date: 2018-09-01 01:49:00
 
 - $r < 1$
   - Ex ( 94 成大資工 )
+
     - $T(n) = T(\frac n2) + T(\frac n4) + T(\frac n8) + n$，求 $\Theta$
   - Sol
     - $r = \frac n 2 + \frac n 4 + \frac n 8 = \frac 7 8 < 1$
-    - 建立遞迴樹<br>$T(n) = n + \frac 78 n +\frac{49}{64}n + \ldots + C_l$ (等比級數)
-    - **求取其邊界 (夾擊法)**<br>求上邊界：$T(n) = n + \frac 78 n +\frac{49}{64}n + \ldots + C_l \leq n + \frac 78 n +\frac{49}{64}n + \ldots$ (有限等比級數小於無限等比級數)<br>$\Rightarrow \frac{n}{1 - \frac 7 8} = 8 n \Rightarrow T(n) = O(n)$<br><br>求下邊界：$T(n) = n + \frac 78 n +\frac{49}{64}n + \ldots + C_l \geq n \Rightarrow T(n) = \Omega(n)$
+    - 建立遞迴樹
+      $T(n) = n + \frac 78 n +\frac{49}{64}n + \ldots + C_l$ (等比級數)
+    - **求取其邊界 (夾擠法)**
+      求上邊界：$T(n) = n + \frac 78 n +\frac{49}{64}n + \ldots + C_l \leq n + \frac 78 n +\frac{49}{64}n + \ldots + (\frac 78)^h$ 
+      **(有限等比級數小於無限等比級數)**
+      $\Rightarrow \frac{n}{1 - \frac 7 8} = 8 n \Rightarrow T(n) = O(n)$
+
+      求下邊界：$T(n) = n + \frac 78 n +\frac{49}{64}n + \ldots + C_l \geq n \Rightarrow T(n) = \Omega(n)$
     - $\Rightarrow T(n) = \Theta(n)$
 
 
@@ -90,8 +97,14 @@ date: 2018-09-01 01:49:00
     - $T(n) = T(\frac n3) + T(\frac 23) + n$
   - Sol
     - $r = \frac 13+\frac{2}{3} = 1$
-    - 建立遞迴樹<br>$T(n) = n+n+n+\ldots+C_l$
-    - 求取其邊界<br>求上邊界：因為$(\frac23)^k*n= 1 \Rightarrow k = \log_{\frac32}n \Rightarrow 高度 = k + 1$ ，所以 $T(n) = n+n+n+\ldots+C_l \leq n \cdot \log_{\frac32}n+1$<br>$\Rightarrow T(n) = O(n\log n)$<br><br>求下邊界：$T(n) = n+n+n+\ldots+C_l \geq n \cdot \log_3n + 1$<br>$\Rightarrow T(n) = \Omega(n\log n)$
+    - 建立遞迴樹
+      $T(n) = n+n+n+\ldots+C_l$
+    - 求取其邊界
+      求上邊界：因為$(\frac23)^k*n= 1 \Rightarrow k = \log_{\frac32}n \Rightarrow 高度 = k + 1$ 
+      ，所以$T(n) = n+n+n+\ldots+C_l \leq n \cdot \log_{\frac32}n+1$
+      $\Rightarrow T(n) = O(n\log n)$
+      br>求下邊界：$T(n) = n+n+n+\ldots+C_l \geq n \cdot \log_3n + 1$
+      $\Rightarrow T(n) = \Omega(n\log n)$
     - $\Rightarrow T(n) = \Theta(n\lg n)$
 
 

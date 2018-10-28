@@ -17,8 +17,8 @@ date: 2018-08-28 21:57:00
     - **證明題**、**選擇題**
   - Time complexity 的比較
     - 定義法
-    - 極值法 ( limit )：以大資料的手法比較演算法的優劣。
-    - 對數法 ( log )：當該算法的等級差距大時方便判斷與解釋。
+    - 極值法 ( limit )：以大資料的手法比較演算法的優劣
+    - 對數法 ( log )：當該算法的等級差距大時方便判斷與解釋
   - 計算題要點 ( 離散數學 )
     - $H _n = \Theta(\lg n)$
     - $\log (n !) = \Theta (n \lg n)$
@@ -30,7 +30,7 @@ date: 2018-08-28 21:57:00
 
 
 
-當輸入資料變大時，程式執行的時間以何種趨勢成長。
+當輸入資料變大時，程式執行的時間以何種趨勢成長
 
 
 
@@ -40,26 +40,26 @@ date: 2018-08-28 21:57:00
 
 - $f(n) = O(g(n))$
   - $\exists C, n_0 > 0 , \ni f(n) \leq C \times g(n) , n \geq n_0$
-  - 稱 $g(n)$ 為 $f(n)$ 的 Asymptotic upper bound。
-  - f(n) 的 Order 會**小於** g(n) 的 Order。
+  - 稱 $g(n)$ 為 $f(n)$ 的 Asymptotic upper bound
+  - f(n) 的 Order 會**小於** g(n) 的 Order
 - $f(n) = \Omega (g(n)) $
   - $\exists C , n_0 > 0  \ni f(n) \geq C \times g(n) , n \geq n_0$
-  - 稱 $g(n)$ 為 $f(n)$ 的 Asymptotic lower bound。
-  - f(n) 的 Order 會**大於** g(n) 的 Order。
+  - 稱 $g(n)$ 為 $f(n)$ 的 Asymptotic lower bound
+  - f(n) 的 Order 會**大於** g(n) 的 Order
 - $f(n) = \Theta (g(n)) $
   - $\exists C_1 , C_2, n_0 > 0  \ni C_1 \times g(n) \leq f(n) \leq C_2 \times g(n) , n \geq n_0$
-  - 稱 $g(n)$ 為 $f(n)$ 的 Asymptotic tight bound。
-  - f(n) 的 Order 會**等於** g(n) 的 Order。
+  - 稱 $g(n)$ 為 $f(n)$ 的 Asymptotic tight bound
+  - f(n) 的 Order 會**等於** g(n) 的 Order
 - $f(n) = o (g(n)) $
-  - 以比較 Order 的上面來看，是**絕對小於**的意義。
-  - 用極值法的方式方便解釋。
+  - 以比較 Order 的上面來看，是**絕對小於**的意義
+  - 用極值法的方式方便解釋
   - Ex：true or false
     - $n = o(2n)$：false
     - $n = o(n^2)$：true
     - $n = O(2n)$：true
     - $n = O(n^2) $：true
 - $f(n) = \omega(g(n))$
-  - 以比較 Order 的上面來看，是**絕對大於**的意義。
+  - 以比較 Order 的上面來看，是**絕對大於**的意義
   - 用極值法的方式方便解釋。
     - $2n = \omega(n)$：false
     - $n^2 = \omega(n)$：true
@@ -72,14 +72,15 @@ date: 2018-08-28 21:57:00
   - Ex：$g(n) = n^3$
 - 考古題 ( 99政大資料科學 )
   - Q
-    - 寫出 2 個在 $O(n^3)$ 中但不在 $o(n^3)$ 的函數。
+    - 寫出 2 個在 $O(n^3)$ 中但不在 $o(n^3)$ 的函數
   - A
-    - 題目亦等於在問舉出兩個函數在 $\Theta(n^3)$ 的函數，所以 $f(n) = n^3、2n^3$。
+    - 題目亦等於在問舉出兩個函數在 $\Theta(n^3)$ 的函數
+      ，所以 $f(n) = n^3、2n^3$
 - 考古題 ( 100 交大 )
 	- Q
 		- NCTU：$\Theta(n)$、CS：$\Omega(n)$ 下列何者正確？
-			- （a） NCTU 總是比 CS 快。
-			- （b） 當 n $\geq$ 1000000000000 時 NCTU 比 CS 快。
+			- （a） NCTU 總是比 CS 快
+			- （b） 當 n $\geq$ 1000000000000 時 NCTU 比 CS 快
 			- （c） 兩者執行時間相同
 			- （d） 稱 CS 的複雜度為 $\Theta(n)$ 
 			- （e） 以上皆非
@@ -106,17 +107,27 @@ date: 2018-08-28 21:57:00
 
 
 
-> **＜Note＞**
 
-- Ex (98 交大資工)
-  - Q 請寫出此式 $O(n^2) + \Theta(n^2)$ 最適合的等級。<br>(理解： $\exists f(n) \in O(n^2) , \exists g(n) \in \Theta(n^2) \quad f(n) + g(n) \in ？$) 
-  - A  $\Theta(n^2)$
 
--  Ex (100 中央)
-  - Prove or disprove：$f(n) + g(n) = \Theta(\;max｛f(n), g(n)｝)$
-  -  Proof：(以定義證明)
-    - $\exists C_1 = 1, C_2 = 2, n_0 = 1\ni n \geq n_0, C_1(\;max｛f(n), g(n)｝) \leq f(n) + g(n) \leq C_2(\;max｛f(n), g(n)｝)$
+> - Ex (98 交大資工)
+>
+> 寫出 $O(n^2) + \Theta(n^2)$ 最適合的等級
+> (理解： $\exists f(n) \in O(n^2) , \exists g(n) \in \Theta(n^2) \quad f(n) + g(n) \in ？$) 
+> $$
+> O(n^2) + \Theta(n^2) = \Theta(n^2)
+> $$
+>
 
+
+
+> - Ex (100 中央)
+>
+> Prove or disprove：$f(n) + g(n) = \Theta(\;max｛f(n), g(n)｝)$
+>
+> Proof：(以定義證明)
+> $$
+> \exists C_1 = 1, C_2 = 2, n_0 = 1 \\ \ni n \geq n_0, C_1(\;max｛f(n), g(n)｝) \leq f(n) + g(n) \leq C_2(\;max｛f(n), g(n)｝)
+> $$
 >
 
 
@@ -125,8 +136,8 @@ date: 2018-08-28 21:57:00
   - Ex (95 台大資工) **(離散數學)**
     - Q $\sum_{i = 0}^n i^5 = \Theta(n^a), a = ？$
     - A
-      1. Prove：$\sum_{i = 0}^n = O(n^6)$ <br>
-      2. Prove：$\sum_{i = 0}^n = \Omega(n^6)$ <br>
+      1. Prove：$\sum_{i = 0}^n = O(n^6)$ 
+      2. Prove：$\sum_{i = 0}^n = \Omega(n^6)$ 
 
 
 
@@ -134,14 +145,19 @@ date: 2018-08-28 21:57:00
 
 
 
-- **＜Note＞ L'Hôpital's rule 的使用**
-  - 若 $\lim_{n\rightarrow\infty}\frac{f(n)}{g(n)}$ 是**不定型 (相除為 0 或 無限大)**，則該函數等於 $\lim_{n\rightarrow\infty}\frac{f'(n)}{g'(n)}$ 。
-- **＜Note＞** 
-  - $(\ln x)' = \frac{1}{x}$ 
-- **＜Note＞**
-  - log n 的底只要是**常數**其**等級均相同**。
-  - Ex
-    - $\ln n, \lg n, \log n, \log_{100}n$等級均相等
+> - **L'Hôpital's rule 的使用**
+>   - 若 $\lim_{n\rightarrow\infty}\frac{f(n)}{g(n)}$ 是**不定型 (相除為 0 或 無限大)**，則該函數等於 $\lim_{n\rightarrow\infty}\frac{f'(n)}{g'(n)}$ 
+>
+>
+>
+> - $(\ln x)' = \frac{1}{x}$ 
+>
+>
+>
+> - log n 的底只要是**常數**其**等級均相同**。
+>   - Ex
+>     - $\ln n, \lg n, \log n, \log_{100}n$等級均相等
+>
 
 
 
@@ -214,7 +230,8 @@ date: 2018-08-28 21:57:00
   - 函數為階乘型態。($\log n! = \Theta(n\log n)$)
 - 定義
   - $\log(f(n)) = o, \omega(\log(g(n))) \Rightarrow f(n) = o, \omega (g(n))$
-  - 而 $\log(f(n)) = \Theta(\log(g(n)))$ 則**無法判斷等級**，因為等級過於相同，取對數後無法判斷，要使用別的方法。
+  - 而 $\log(f(n)) = \Theta(\log(g(n)))$ 則**無法判斷等級**，因為等級過於相同
+    ，取對數後無法判斷，要使用別的方法。
 - Ex
   - 比較 $f(n) = 1.1^{0.01n}, g(n) = n^{100}$ 的等級。
   - $\log(f) = 0.01n \times log 1.1, log(g) = 100 \times log n \Rightarrow \lim_{n\rightarrow\infty}\frac{\log(f)}{\log(g)} = \infty$，所以 $f(n) = \omega(g(n))$。
@@ -222,9 +239,10 @@ date: 2018-08-28 21:57:00
 - Ex (98 交大)
 
   - Prove：(log n)! 不是 Polyniminally bounded ( = O($n^k$))。
-  - ＜分析＞ 若 f(n) 是 Polyniminally bounded，則 $\exists k \in R \ni f(n) = O(n^k)$；$\log f = O(\log n^k) = O(\log n)$ ，若為 Polyniminally bounded 則等級小於 log n。
+  - ＜分析＞ 若 f(n) 是 Polyniminally bounded，則 $\exists k \in R \ni f(n) = O(n^k)$；
+    $\log f = O(\log n^k) = O(\log n)$ ，若為 Polyniminally bounded 則等級小於 log n
+    $\log((\log n)!) = \Theta(\log n (\log\log n))$ 其等級大於 log n 也就是 $\log(\log n)! = \omega(\log n)$
 
-  - $\log((\log n)!) = \Theta(\log n (\log\log n))$ 其等級大於 log n 也就是 $\log(\log n)! = \omega(\log n)$，Q.E.D.。
 
 
 
@@ -242,7 +260,7 @@ date: 2018-08-28 21:57:00
 
 - **Close form 最高次項即為其 Tight bound。**
   - $T(n) = 1 + ...+n = \frac{n(1+n)}{2} = \frac{n^2+n}{2} = \Theta(n^2)$
-- 並不是所有函數都有 close form。
+- 並不是所有函數都有 Close form。
 
 
 
@@ -253,13 +271,10 @@ date: 2018-08-28 21:57:00
 - 若 $f(n) = O, \Omega (g(n))$ 同時成立，稱 $g(n)$ 為 $f(n)$ 的 Asymptotic tight bound。
   - Ex $T(n) = \sum_{i=1}^n i^5 = \Theta(n^a)$，求 a = ？
   - 先證明 $T(n) = \sum_{i=1}^n i^5 = O(n^6)$、再證明$T(n) = \sum_{i=1}^n i^5 = \Omega(n^a)$ 即可。
-- 調和級數( $\mathbb{H}_n = 1 + \frac{1}{2} + \frac{1}{3} + ... +\frac{1}{n}= \Theta(\lg n)$ )必須使用夾擊法，因為調和級數沒有 Close form。
-  - $\because \mathbb{H}_n - 1 = \sum_{i = 1}^n \frac{1}{i} - 1 \leq \int_1^n \frac{1}{n} dx = (\lg n - \lg 1) = \lg n$
-  - $\therefore \mathbb{H}_n \leq \ln n + 1 \leq 2 \times \ln n \Rightarrow \exists C = 2, n_0 \geq 3 \ni n \geq n_0 , \mathbb{H}_n \leq C \times \lg n \Rightarrow \mathbb{H}_n = O(\lg n)$
-  - $\because \mathbb{H}_n = \sum_{i = 1}^n \frac{1}{n} \geq \int_1^n \frac{1}{n} dx = \ln n$
-  - $\therefore \mathbb{H}_n \geq \ln n \Rightarrow \exists C = 1, n_0 \geq 1 \ni n \geq n_0 , \mathbb{H}_n \geq C \times \lg n \Rightarrow \mathbb{H}_n = \Omega(\lg n)$
-  - $\Rightarrow \mathbb{H}_n = \Theta(\lg n)$
+- 調和級數( $\mathbb{H}_n = 1 + \frac{1}{2} + \frac{1}{3} + ... +\frac{1}{n}= \Theta(\lg n)$ )因為調和級數沒有 Close form，必須使用**夾擠法**
+  - $\because \mathbb{H}_n - 1 = \sum_{i = 1}^n \frac{1}{i} - 1 \leq \int_1^n \frac{1}{n} dx = (\lg n - \lg 1) = \lg n \\ \therefore \mathbb{H}_n \leq \ln n + 1 \leq 2 \times \ln n \Rightarrow \exists C = 2, n_0 \geq 3 \ni n \geq n_0 , \\  \mathbb{H}_n \leq C \times \lg n \\ \Rightarrow \mathbb{H}_n = O(\lg n) \\ \because \mathbb{H}_n = \sum_{i = 1}^n \frac{1}{n} \geq \int_1^n \frac{1}{n} dx = \ln n \\ \therefore \mathbb{H}_n \geq \ln n \Rightarrow \exists C = 1, n_0 \geq 1 \ni n \geq n_0 , \mathbb{H}_n \geq C \times \lg n \\ \Rightarrow \mathbb{H}_n = \Omega(\lg n) \\ \Rightarrow \mathbb{H}_n = \Theta(\lg n)$
 - **＜Note＞ 收斂(Converge)的級數**  
+
   - $T(n) = 1^a + \frac{1}{2^a} + \frac{1}{3^a} + \ldots = \sum_{i = 1}^n \frac{1}{i^a} = \frac{\pi^2}{6}, for\; some\; a = 2, 3 ...$ 
   - $\Rightarrow T(n) = \Theta(1)$
   - [複變分析證明](https://www.quora.com/What-is-1-1-2-+-1-2-2-+-1-3-2-till-infinity)
@@ -269,18 +284,23 @@ date: 2018-08-28 21:57:00
        - $\log n! = \log ( \Pi_{i = 1}^n i ) = \sum_{i = 1}^n \log i \leq \sum_{i = 1}^n \log n = n \log n$
        - $\therefore \exists C = 1, n_0 = 1 \ni n\geq n_0, \log n \leq n \log n \Rightarrow \log n! = O(n\lg n)$ 
     2. Prove $\log(n!) = \Omega(n\lg n)$ ( 離散筆記本 P.118 )
-       - $\log n! = \log ( \Pi_{i = 1}^n i ) = \sum_{i = 1}^n \log i \geq \sum_{i = 1}^{ceil(\frac{n}{2})} \log  ceil( \frac{n}{2}) \geq \frac{n}{2} \log \frac{n}{2}  = \frac{n}{2} (\log n - \log 2)\approx \frac{1}{2}n\log n$ 
-       - $\therefore \exists C = \frac{1}{2}, n_0 = 1 \ni n\geq n_0, \log n \geq \frac{1}{2}n \log n \Rightarrow \log n! = \Omega(n\lg n)$ 
+       - $\log n! = \log ( \Pi_{i = 1}^n i ) \\ = \sum_{i = 1}^n \log i \geq \sum_{i = 1}^{ceil(\frac{n}{2})} \log  ceil( \frac{n}{2}) \geq \frac{n}{2} \log \frac{n}{2}  \\ = \frac{n}{2} (\log n - \log 2)\approx \frac{1}{2}n\log n$ 
+       - $\therefore \exists C = \frac{1}{2}, n_0 = 1 \\ \ni n\geq n_0, \log n \geq \frac{1}{2}n \log n \Rightarrow \log n! = \Omega(n\lg n)$ 
     3. $\therefore \log n! = \Theta(n\lg n)$
 - **Ex (96 台大資工)**
   - $T(n) = \sum_{k = 1}^n k^2(\log k)^3 = \Theta(n^d(\log n)^e)$，d = ？、e = ？
-  - ＜想法＞：拆開 <br>$1^2(\log 1)^3 + 2^2(\log 2)^3 + ... +n^2(\log n)^3 \Rightarrow_{\leq} 1^2(\log n)^3 + 2^2(\log n)^3 + ... +n^2(\log n)^3$
-  - 提出 $(\log n)^3 \times \sum_{i = 1}^n i^2  = O(n^3(\log n)^3)$  所以 d = 3, e = 3。
+  - ＜想法＞：拆開
+    $1^2(\log 1)^3 + 2^2(\log 2)^3 + ... +n^2(\log n)^3 \Rightarrow_{\leq} 1^2(\log n)^3 + 2^2(\log n)^3 + ... +n^2(\log n)^3$
+    提出 $(\log n)^3 \times \sum_{i = 1}^n i^2  = O(n^3(\log n)^3)$  所以 d = 3, e = 3
+
+
+
 - $(\log_an)^b = o(n^k), k > 0$ 
   - Ex：$(\lg n)^{100} = o(n^{0.0000001})$
   - **Ex (96 輔大資工)**
     - Prove $(\log n)^3 = O(n^\frac{1}{16})$
-    -  (函數**型態複雜**不適合使用定義證明，這裡採取**極值法**) <br>$\lim_{n\rightarrow\infty} \frac{(\log n)^3}{n^{\frac{1}{16}}} =_{同取微分} \lim_{n\rightarrow\infty} \frac{\frac{3}{n (\ln 10)^3}\cdot (\ln n)^2}{\frac{1}{16}\cdot n^{\frac{-15}{16}}} =_{整理} Constant\cdot \lim_{n\rightarrow\infty}\frac{(\ln n)^2}{n^{\frac{1}{16}}} =\ldots$ <br>$\Rightarrow_{趨近於, n \rightarrow \infty} 0$<br>$\Rightarrow (\log n)^3 = o(n^\frac{1}{16}) \Rightarrow_{?} (\log n)^3 = O(n^\frac{1}{16})$ 
+    - (函數**型態複雜**不適合使用定義證明，這裡採取**極值法**) 
+      $\lim_{n\rightarrow\infty} \frac{(\log n)^3}{n^{\frac{1}{16}}} \\ =_{同取微分} \lim_{n\rightarrow\infty} \frac{\frac{3}{n (\ln 10)^3}\cdot (\ln n)^2}{\frac{1}{16}\cdot n^{\frac{-15}{16}}} \\ =_{整理} Constant\cdot \lim_{n\rightarrow\infty}\frac{(\ln n)^2}{n^{\frac{1}{16}}} =\ldots \\ \Rightarrow_{趨近於, n \rightarrow \infty} 0 \\ \Rightarrow (\log n)^3 = o(n^\frac{1}{16}) \Rightarrow_{?} (\log n)^3 = O(n^\frac{1}{16})$ 
 - **Ex** 比較 $n^{1 + \epsilon}$ 與 $\frac{n^2}{\log n}$ 的等級，其中 $0<\epsilon < 1$。
-  - ＜猜測＞：**後者。**
-  - ＜分析＞：$n^{1+\epsilon} = n^{2-\delta}, 0<\delta<1 \Rightarrow \frac{n^2}{n^\delta}$<br>$\because \log n  = o(n^\delta) $ <br>$\therefore n^{1 + \epsilon}  = O(\frac{n^2}{\log n})$
+  - ＜猜測＞：**後者比較大**
+  - ＜分析＞：$n^{1+\epsilon} = n^{2-\delta}, 0<\delta<1 \Rightarrow \frac{n^2}{n^\delta} \\ \because \log n  = o(n^\delta) \\ \therefore n^{1 + \epsilon}  = O(\frac{n^2}{\log n})$
