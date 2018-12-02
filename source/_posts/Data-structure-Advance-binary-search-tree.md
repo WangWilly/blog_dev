@@ -382,6 +382,8 @@ Balanced binary search tree
 > Rotation
 >
 > 分為 LL、LR、RL、RR ，與 AVL tree 旋轉相似，只是加上顏色變化：中間鍵值往上拉標黑，兩子點標紅
+>
+> ![Rbrotation](\willywangkaa\images\Rbrotation.png)
 
 
 

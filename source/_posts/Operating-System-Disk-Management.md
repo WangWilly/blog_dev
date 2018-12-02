@@ -1,6 +1,7 @@
 title: Operating System - Disk Management
 author: Willy Wang (willywangkaa)
 tags:
+
   - Disk Management
 categories:
   - Operating System
@@ -774,7 +775,7 @@ $$
 
 
 
-## 提升「Disk reliability」( 可靠度 )
+## 提升「Disk availibility」( 可靠度 )
 
 
 
@@ -815,7 +816,67 @@ $$
 
 
 
+#### 使用 Parity disk 重建資料
+
+
+
+假設 P(i) 為「Parity disk」， i 可以是「單位區塊 (block)」或「單位位元 (bit)」，其他四個磁碟儲存資料 ( D(i) )
+$$
+P(i) = D_3(i) \oplus D_2(i) \oplus D_1(i) \oplus D_0(i)
+$$
+若 $D_1$ 發生錯誤透過 P、$D_3、D_2、D_0$ 重建
+$$
+D_1(i) = P(i) \oplus D_3(i) \oplus D_2(i) \oplus D_0(i)
+$$
+
+
+#### 小量寫入與更新同位位元資料
+
+
+
+假設 P(i) 為「Parity disk」， i **只可以是「單位區塊 (block)」**，其他四個磁碟儲存資料 ( D(i) )
+$$
+P(i) = D_3(i) \oplus D_2(i) \oplus D_1(i) \oplus D_0(i)
+$$
+將 $D'_1 (i)$ 寫入 $D_1(i)$：
+$$
+P'(i) = D_3(i) \oplus D_2(i) \oplus D'_1(i) \oplus D_0(i) \\
+ = D_3(i) \oplus D_2(i) \oplus D'_1(i) \oplus D_0(i) \oplus (\; D_1(i) \oplus D_1(i) \;) \\
+ = (\;D_3(i) \oplus D_2(i) \oplus D_1(i) \oplus D_0(i)\;) \oplus D'_1(i) \oplus D_1(i)\\
+ = P(i) \oplus D'_1(i) \oplus D_1(i)
+$$
+
+> - 需要兩次硬碟讀取 ( P、$D_1$ ) ，兩次硬碟寫入 ( P'、$D'_1$ )
+
+
+
 ## Redundant Array of Implement Disk ( RAID )
+
+
+
+使用多個容量小的硬碟以替代一個容量大的硬碟，由於多個硬碟可有多個讀寫頭，所以可以使**磁碟存取效能獲得提升、改善**
+
+> 使用多個磁碟所組成之「磁碟系統」會使得可靠度 ( Reliability ) 降低，假設兩兩磁碟之錯誤的發生情況是**獨立事件**，所以：
+> $$
+> N \; 個磁碟之「Reliability」 = \frac{1 \;個磁碟之「Reliability」}{N}
+> $$
+>
+> - 解決可靠度降低之辦法
+>   - 磁碟陣列技術 ( RAID )：結合多個容量小、便宜之磁碟以獲得一個容量大之磁碟 ( Large expensive drive；SLED )，且**在存取上有更好的效能**
+
+
+
+兩種技術以提升磁碟陣列的「Performance」與「Availability」：
+
+- Data stripping ( Interleaving )
+  - 將資料分散存儲到不同磁碟，在「資料存取」時，多個磁碟會同時存取以增加「Performance」
+  - E.g. 「Block level striping」
+- Redundancy
+  - 使用部分磁碟作為資料之「備份資訊」或「還原資訊」以提升磁碟陣列的「Availability」( Mean time to repair；MTTR )
+
+
+
+> 使用「Redundancy」可以改善磁碟陣列系統的「Avaliability」，但無法改善其「Reliability」( Mean time to failure；MTTR )；「Reliability」只能透過**改善製造技術**，或是**使用較少的磁碟建構磁碟系統**才能改善
 
 
 
@@ -827,83 +888,197 @@ $$
 
 
 
-只提供「Block-level striping ( interleaving )」，未提供任何**可靠度 ( Reliability ) 技術**。
+只提供「Block-level striping ( interleaving )」，未提供任何**「Availability」技術** ( 未使用附加的磁碟以保護資料 )
 
 
 
-- 用在**存取效能高，但可靠度不重要的場合。**
-  - E.g. VOD server
+- Pros
+  - 用在**存取效能高，但可靠度不重要的場合**
+    - E.g. VOD server
+- Cons
+  - 任意一硬碟發生錯誤即發生資料遺失
 
 
 
-### RAID 1
+### RAID 1 ( Mirroring )
 
 
 
-只提供「Mirror」，未提供任何**提升效能技術**。
+提供「Mirror」技術以容忍硬碟錯誤 ( 提升「Redundancy」以提升「Availability」 ) ，當資料寫入陣列時，這些資料也會一併寫入「Redundant disk」，使得資料總是有兩個備份
+
+一個硬碟發生錯誤時，磁碟系統會改讀取對應的「Mirror disk」
 
 
 
-### RAID 2
+- 儲存資料量
+
+$$
+Size =\min \left(S_1,S_2,S_3\ldots \right), S_i \; 為一磁碟容量\; i = 1, 2, 3, \ldots
+$$
 
 
 
-採用記憶體的「Error correcting code」技術來改善可靠度，希望降低「Mirror」成本，**但是成本降低有限 ( 有比 Mirror 少一部磁碟 )。**
+- Pros
+  - 磁碟陣列錯誤容忍度高
+
+- Cons
+  - 因為需要最多的「備份磁碟」，所以為**最昂貴之磁碟陣列技術**
 
 
+
+### RAID 2 ( Double error detecting and single correcting code )
+
+
+
+![RAID2](\willywangkaa\images\RAID2.png)
+
+
+
+採用記憶體的「Error correcting code」( Hamming code ) 技術來改善「Availability」，希望降低「Mirror」成本，**但是成本降低有限 ( 比「RAID 1」少一部磁碟 )**
+
+> 寫入磁碟陣列時，需要讀出所有磁碟之資料，重新計算「Hamming code」並寫入「ECC 硬碟」，效率不佳
+
+
+
+- Pros
+  - 還原資料時間短
 
 - **Cons**
-  - **與「RAID 3」相比，可靠度相同，但成本卻比較高。**
+  - **與「RAID 3」相比，雖然「Availability」相同但成本卻比較高** ( 次昂貴之成本 )
+  - 寫入磁碟陣列時需要更新漢明碼不易，維護成本太高
 
 
 
-**RAID 2 並無實際產品**
+> **RAID 2 並無實際產品**
 
 
 
-### RAID 3
+### RAID 3 ( Bit-interleaved parity )
 
 
 
-**採用「Bit-level striping」與「Parity check」技術。**
+![RAID3](\willywangkaa\images\RAID3.png)
 
 
 
-### RAID 4
+**採用「Bit-level striping」與「Parity check」技術**
 
 
 
-**採用「Block-level striping」與「Parity check」技術。**
+- 提升「Availiability」所需之成本 $\frac 1N$
+  - N 表示同一個「保護群組」( Protection group ) 中的磁碟數量
+- Pros
+  - 與「RAID 1」相比，使用較少的「還原磁碟」
+  - 因為使用「Bit-interleaved」所以可以使「Latency」降很低，所以在操作單一「I/O operation」時速度極快
+- Cons
+  - 與「RAID 1」相比需要使用更多時間以恢復資料
+  - 由於資料內的位元分散在不同的硬碟上，因此就算要**讀取一小段資料資料都可能需要所有的硬碟進行工作**，不允許多個「I/O operation」同時執行 ( 「Throughput」低 )
 
 
 
-### RAID 5
+> - 由於資料內的位元分散在不同的硬碟上，因此就算要讀取一小段資料資料都可能需要所有的硬碟進行工作，所以這種規格比較**適於讀取大量資料時使用**
+> - 每次的**資料存儲**都必須從同位元檢查的那個硬碟中取出對應的同位元資料進行核對，由於過於頻繁的使用，所以對硬碟 ( Parity disk ) 的損耗可能會提高
 
 
 
-**採用「Block-level striping」與「Parity check」技術。**
+### RAID 4 ( Block-interleaved parity )
 
 
 
-- 將「Parity block」**分散存於不同的磁碟之中，並非集中在一部磁碟。**
-  - 避免對單一磁碟過度使用。
+![RAID4](\willywangkaa\images\RAID4.png)
 
 
 
-### RAID 6
+**採用「Block-level striping」與「Parity check」技術**
+
+同位資訊以**區塊的方式**儲存，與一組「Data block」相關聯
 
 
 
-不用「Parity check」技術，改用類似「Reed-Solomon」技術，可以做到兩部「Disk block」同時出錯還是能恢復資料。
+- 提升「Availiability」所需之成本 $\frac 1N$
+  - N 表示同一個「保護群組」( Protection group ) 中的磁碟數量
+- Pros
+  - 相對於「RAID 3」，如果資料存取量為「Block」則可以在不同的磁碟上獨立存，所以可以進行「平行存取」
+    - 在大量存取資料時，還是必須存取所有位於**同一保護群組之磁碟**
+    - 在少量寫入磁碟時 ( < block )，計算該「新同位元區塊」：「新資料區塊」、「舊資料區塊」與「舊同位元區塊」執行「XOR」計算即可，**不需要「同一保護群組」之其他磁碟中的區塊參與**
+- Cons
+  - 需要較多時間以回復毀損資料
+  - 平行寫入時必須排隊寫入「Parity desk」( Bottleneck )
+
+
+
+> - 每次的**資料存儲**都必須從同位元檢查的那個硬碟中取出對應的同位元資料進行核對，由於過於頻繁的使用，所以對硬碟 ( Parity disk ) 的損耗可能會提高
+
+
+
+### RAID 5 ( Distributed block-interleaved parity )
+
+
+
+![RAID5](\willywangkaa\images\RAID5.png)
+
+
+
+**採用「Block-level striping」與「Parity check」技術**
+
+為了改良頻繁對「Parity desk」之讀寫使得該磁碟易損耗，也避免平行寫入時會有「Bottleneck」，將「Parity block」**分散存於不同的磁碟之中，並非集中在一部磁碟**
+
+
+
+- 資料儲存量
+
+
+$$
+Size = (N-1) \times \min (S_1,S_2,S_3\ldots, S_N), S_i \; 為一磁碟容量\; i = 1, 2, 3, \ldots
+$$
+
+
+- Pros
+  - 可以平行讀寫
+  - 避免對單一磁碟過度使用
+- Cons
+  - 回復毀損資料需時較久
+
+
+
+> - 至少需要三部磁碟組成 RAID5
+> - RAID 5可以理解為是RAID 0和RAID 1的折衷方案；RAID 5可以為系統提供資料安全保障，但保障程度要比[鏡像](https://zh.wikipedia.org/wiki/%E9%8F%A1%E5%83%8F)低而磁碟空間利用率要比鏡像高
+>   - RAID 5具有和RAID 0相近似的資料讀取速度，只是因為多了一個奇偶校驗資訊，寫入資料的速度相對單獨寫入一塊硬碟的速度略慢，若使用「Write back cache」可以讓效能改善不少
+>   - 同時由於多個資料對應一個奇偶校驗資訊，RAID 5的磁碟空間利用率要比RAID 1高，儲存成本相對較便宜
+
+
+
+### RAID 6 ( P+Q redundancy )
+
+
+
+![RAID6](\willywangkaa\images\RAID6.png)
+
+
+
+不用「Parity check」技術，改用類似「Reed-Solomon」( 李德-索羅門碼 ) 技術，任兩塊「Disk block」同時出錯還是能恢復資料
+
+
+
+- 資料儲存量
+
+$$
+Size = (N-2) \times \min (S_1,S_2,S_3\ldots, S_N), S_i \; 為一磁碟容量\; i = 1, 2, 3, \ldots
+$$
+
+
 
 
 
 - **Cons**
   - **比起「RAID 2」的製作成本太高**
+  - 「校正區塊」為 RAID5 的兩倍
 
 
 
-**RAID 6 並無實際產品**
+> - RAID 6需要分配給奇偶校驗資訊更大的磁碟空間和額外的校驗計算，相對於RAID 5有更大的IO操作量和計算量，其「寫入效能」強烈取決於具體的實現方案，因此RAID 6通常不會通過軟體方式來實現，而更可能通過硬體方式實現
+> - 必須具備四個以上的磁碟才能生效
+> - 硬體磁碟陣列卡的功能中，也是最常見的磁碟陣列等級
 
 
 
@@ -911,14 +1086,19 @@ $$
 
 
 
-
 ![RAID01](\willywangkaa\images\RAID01.png)
 
-先 Striping 再整體 Mirror。
+
+
+![File:RAID 01.svg](https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/RAID_01.svg/600px-RAID_01.svg.png)
 
 
 
-- 雖然成本相當昂貴，但是通常用在高效能與高可靠度的場合。
+先 Striping 再整體 Mirror
+
+
+
+- 雖然成本相當昂貴，但是通常用在高效能與高可靠度的場合
 
 - **Cons**
   - **一部磁碟毀壞，須整組替換**
@@ -934,11 +1114,15 @@ $$
 
 
 
-先個別 Mirror 再整體Striping。
+![File:RAID 10.svg](https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/RAID_10.svg/600px-RAID_10.svg.png)
 
 
 
-- 雖然成本相當昂貴，但是通常用在高效能與高可靠度的場合。
+先個別 Mirror 再整體Striping
+
+
+
+- 雖然成本相當昂貴，但是通常用在高效能與高可靠度的場合
 
 
 

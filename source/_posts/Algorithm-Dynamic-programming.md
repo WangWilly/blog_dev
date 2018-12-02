@@ -212,6 +212,7 @@ $$
 
 
 
+
 - Algorithm ( Bottom up )
 
 ```
@@ -426,6 +427,37 @@ c[i-1, j-1] + 1 & , if \; X[i] = Y[j] & \\
 0& , if \; X[i] \ne Y[j] \; & （該兩個字絕對不會同時出現在LCS）
 \end{matrix}\right.
 $$
+
+
+
+- Algorithm
+
+```
+// X[1...n]
+// Y[1...m]
+lcstring = {}
+length = 0
+// initialize
+for i <- 0 to n
+    c[0, i] <- 0
+for i <- 0 to m
+    c[i, 0] <- 0
+
+for i <- 1 to m
+    for j <- 1 to n {
+        if(X[i] != Y[i])
+            c[i, j] = 0
+        else {
+            c[i, j] = c[i-1, j-1] + 1
+            if(length < c[i, j]) {
+                length = c[i, j]
+                lcstring = X[(i-length+1)...i]
+            }
+        }
+    }
+```
+
+
 
 
 

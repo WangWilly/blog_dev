@@ -4,10 +4,8 @@ tags:
   - LU分解
   - LU Decomposition
   - 重點
-  - ''
 categories:
   - Linear Algebra
-  - 重點分析
 date: 2018-05-07 16:01:00
 ---
 # Linear Algebra - 重點分析 LU分解

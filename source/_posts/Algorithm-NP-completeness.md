@@ -184,7 +184,7 @@ Ex：「排序問題」$\in$ P；存在一個演算法 ( Quick sort ) 可以在 
 
 給定一個「Conjection normal form」$F$ ，問**有無**一組「Assignment」可使 $F$ 輸出為 True。
 
-> 令 $F = (x_1 \or \bar{x_2} \or \bar{x_3}) \and (\bar{x_1} \or x_3) \and (x_2 \or \bar{x_3})$ 
+> 令 $F = (x_1 \vee \bar{x_2} \vee \bar{x_3}) \wedge (\bar{x_1} \vee x_3) \wedge (x_2 \vee \bar{x_3})$ 
 >
 > 當給定 $x_1 = true、x_2 = true、x_3 = true$ ，$F$ 的輸出也為 True，
 > 所以 $F$ 在 SAT problem 的輸入，則其解為 True。

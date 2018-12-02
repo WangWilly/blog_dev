@@ -5,7 +5,6 @@ tags:
   - Time complexity
 categories:
   - Algorithm
-  - Data structure
 date: 2018-10-15 20:51:00
 ---
 # 特殊的函數

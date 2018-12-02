@@ -5,7 +5,6 @@ tags:
   - Time complexity
   - Recursive
 categories:
-  - Algorithm
   - Data structure
 date: 2018-10-21 13:12:00
 ---
