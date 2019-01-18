@@ -843,6 +843,128 @@ FloydWarshell(Cost, n, A) {
 
 
 
+## Johnson's algorithm
+
+All pair shortest path problem for **sparse graph**
+
+
+
+> 1. 一個 n 個頂點的**無負邊有向圖**上，可以在每個點上做一次「Dijkstra's algorithm」以求出「All pair shortest path」
+>    - 時間複雜度（All pair shortest path）
+>      - [DS 版本：鄰接矩陣] |V| × O($|V|^2$) = O($|V|^3$)
+>      - [Algorithm 版本：鄰接串列] |V|×O(|E|log|V|)（Binary heap）；**|V|×O(|V|log|V|+|E|)（Fibonacci heap）**
+> 2. 一個 n 個頂點的**有負邊有向圖**上，可以在每個點上做一次「Bellman-Ford's algorithm」以求出「All pair shortest path」
+>    - 時間複雜度（All pair shortest path）
+>      - **|V|×O(|V|×|E|)** = |V|×O(|$V^3$|) = O(|$V^4$|)
+>
+> 「Johnson's algorithm」藉由融合「Bellman-Ford's algorithm」可以**對負邊進行運算的優點**，與「Dijkstra's algorithm」在**邊數很少時可以讓複雜度降低的優點**，所以在「Sparse graph」計算「All pair shortest path」時，可以因為邊數少而降低時間複雜度，又不因負邊而無法計算正確的數值
+>
+> - 演算法概念
+>   - **以「Bellman-Ford's algorithm」解決負邊問題**
+>   - **使用「Dijkstra's algorithm」計算無負邊圖的「Shortest path」**
+
+給定一圖 G = ＜V,E＞
+
+步驟：
+
+1. 加入一個新的頂點 s 與 G 上的每個點連接成為新的圖 G' = ＜V', E'＞，且每條新增的邊之權重為 0
+2. 對 s 頂點執行「Bellman-ford's algorithm」（Single source shortest path）
+   - **令 s 到其他 G 上的頂點 v 之「Shortest path」為 h(v)**
+3. 對 G' 上每個邊進行「重設權重」（Reweight）
+   - $\hat{w}(u,v) = w(u,v) + h(u)-h(v)$
+4. 將 G' 上 s 點與連接的邊移除，保留「重設權重」的邊，對剩下的每個頂點做「Dijkstra's algorithm」
+
+
+
+時間複雜度：（等價於對每個頂點做「Dijkstra's algorithm」，只是需要前置處理）
+
+- $O(|V|) + O(|V|\times|E|) + O(|E|) + |V|\cdot O(|V|\log|V|+|E|) = O(|V|^2\log|V|+|V|\cdot|E|) $ 
+- （新增|V|條邊）+（修正負邊）+（重設權重）+（對每個頂點做「Dijkstra's algorithm」）
+
+
+
+**Example（證明「Johnson's algorithm」對邊的修正必不會產生負邊）**
+
+- 考慮一個「強連通有向圖」G = ＜V,E＞，並且圖上**存在負邊**但無負環路
+- 假設 c(u,v) 表示 u 到 v 頂點的權重
+- 假設 d(u,v) 表示 u 到 v 頂點的最小權重
+
+- 證明 c(w,v) + d(u,w) - d(u,v) ≧ 0，對於圖上任意三個相異頂點
+
+
+
+令 u 到 v 頂點的「Shortest path」為 d(u,v) ，所以**任何其他從 u 到 v 頂點的路徑必 ≧ d(u,v)**，且 d(u,w)+c(w,v) 亦為一個從 u 到 v 頂點的路徑，所以：
+
+$d(u,w) + c(w,v) \geq d(u,v) \Rightarrow  c(w,v) + d(u,w) - d(u,v) \geq 0$
+
+![johnsonalgorithm_1](\willywangkaa\images\johnsonalgorithm_1.png)
+
+
+
+**Example（證明「重設權重」的圖 G'，其計算的「All pair shortest path」與圖 G 計算相等）**
+
+- 考慮一個「強連通有向圖」G = ＜V,E＞，並且圖上**存在負邊**但無負環路
+- 假設 c(u,v) 表示 u 到 v 頂點的權重
+- 假設 d(u,v) 表示 u 到 v 頂點的最小權重
+
+- 新增一頂點 s 並對各個頂點連接且權重為 0，將每個邊以 c(u,v) + d(s,u) - d(s,v)（c(u,v)+h(u)-h(v)）的數值重設權重後成為 G'，證明其「Shortest path」在 G 上亦成立
+
+
+
+考慮 P = ＜$u = v_0, v_1, \ldots, v = v_k$＞ 為一條從 u 到 v 的一條路徑
+
+令 $\hat{w}(u,v) = c(u, v)+d(s,u) - d(s,v)$，則該路徑的權重總和為：
+
+$\hat{w}(P) = \sum_{i = 1}^k \hat{w}(v_{i-1}, v_i)$
+
+將重設的權重值代入：
+
+$\Rightarrow \sum_{i = 1}^k [c(v_{i-1},v_i)+d(s,v_{i-1}) - d(s, v_i)] = \sum_{i = 1}^k [c(v_{i-1},v_i)+h(v_{i-1}) - h(v_i)]$
+
+展開相消：
+
+$\Rightarrow (\sum_{i=1}^kc(v_{i-1}, v_i)) + h(v_0) - h(v_k) = w(P)+h(v_0)-h(v_k)\\ \Rightarrow \hat{w}(P) = w(P)+h(v_0)-h(v_k)$
+
+因為 $h(v_0)$ 與 h($v_1$) 為**固定值**，所以當 $\hat{w}(P)$ 愈小時，**等價於** $w(P)$ 也隨之愈小，且不會因為路徑長短而讓修正的邊影響答案（見下例） 
+
+
+
+**Example（失敗的「Reweight」方法）**
+
+1. 給定一圖 G = ＜V,E＞，而 P 為一條從 s 到 t 頂點的「Shortest path」，假設將 G 上的**每條邊的權重減一**成為  G'，請問是否 P 路徑仍為 s 到 t 在 G' 中的「Shortest path」？
+2. 給定一圖 G = ＜V,E＞，而 P 為一條從 s 到 t 頂點的「Shortest path」，假設將 G 上的**每條邊的權重改為** $\hat{w}(u,v) = w(u, v) - w^＊$ 成為  G'，請問是否 P 路徑仍為 s 到 t 在 G' 中的「Shortest path」？
+   -  $w^＊ = min_{(u,v)\in G.E}｛w(u, v)｝$
+
+
+
+（1）否，因為**若路徑越長，權重扣除的越多**：
+
+從 u 到 v 頂點的原始「Shortest path」為 ＜u, v＞
+
+![johnsonalgorithm_2](\willywangkaa\images\johnsonalgorithm_2.png)
+
+
+
+因為路徑 ＜u,x,y,v＞ 比路徑 ＜u,v＞ 還要長，所以扣除的權重也越多（每條邊的權重扣 1），所以使 ＜u,x,y,v＞ 成為 u 到 v 的新「Shortest path」
+
+![johnsonalgorithm_3](\willywangkaa\images\johnsonalgorithm_3.png)
+
+
+
+（2）否，概念與上題一致：
+
+從 u 到 v 頂點的原始「Shortest path」為 ＜u, x, y, v＞
+
+![johnsonalgorithm_4](\willywangkaa\images\johnsonalgorithm_4.png)
+
+
+
+因為路徑 ＜u,x,y,v＞ 比路徑 ＜u,v＞ 還要長，所以扣除的權重也越多（每條邊的權重扣 -5；應該說增加權重），所以使 ＜u,v＞ 成為 u 到 v 的新「Shortest path」
+
+![johnsonalgorithm_5](\willywangkaa\images\johnsonalgorithm_5.png)
+
+
+
 # Activity on vertex network and topological sort
 
 

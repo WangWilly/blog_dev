@@ -73,7 +73,6 @@ date: 2018-07-10 21:54:00
 - Vertex ( 頂點 )
 - Process
 
-  
 
 
 ![1530164365297](\willywangkaa\images\1530164365297.png)
@@ -412,7 +411,7 @@ Deadlock 是 Unsafe 集合的 Subset。
 系統若有 n 個 processes、m 個 resources intsance ( 單一種類 )，**且滿足下列條件**：
 
 1. $1 \leq Max_i \leq m$ ，單一 Process 不得要求超過該種類資源的上限。
-2. $\sum_{i = 1}^n Max_i < n + m \Rightarrow \sum_{i = 1}^n Max_i - n < m$ ，假設目前所有的 processes 都剩下一個資源未取得，而剩下的資源小於 m 代表的意思就是 $ m - (\sum_{i = 1}^n Max_i - n ) \geq 1$，**代表我們還有至少一個以上的資源可以使某些 processes 可以先結束**，接著回收的資源就可以再分配給其他 processes。
+2. $\sum_{i = 1}^n Max_i < n + m \Rightarrow \sum_{i = 1}^n Max_i - n < m$ ，假設目前所有的 processes 都剩下一個資源未取得，而剩下的資源小於 m 代表的意思就是 $ m - （\sum_{i = 1}^n (Max_i - n) ）\geq 1$，**代表我們還有至少一個以上的資源可以使某些 processes 可以先結束**，接著回收的資源就可以再分配給其他 processes。
 
 則**系統是不可能會有死結的 ( Deadlock free )**。
 

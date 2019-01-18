@@ -215,9 +215,9 @@ Example ( Height：h，m-way search tree )
 
 - **最少節點數**
 
-  - 數根節點最少要有兩個子節點
+  - 樹根節點最少要有兩個子節點
   - 其餘節點最少要有 $\lceil \frac m2 \rceil$ 個子節點
-  - 則 $1 + 2 + 2\cdot \lceil \frac m2 \rceil + 2^2\cdot \lceil \frac m2 \rceil^2 + \ldots + 2^h\cdot \lceil \frac m2 \rceil^{h-2}  \\  = 1 + 2\cdot[\lceil \frac m2 \rceil^0 + \lceil \frac m2 \rceil^1 + \ldots + \lceil \frac m2 \rceil^{h-2} ] \\ =  1 + 2\cdot [\frac {\lceil\frac m2 \rceil^{h-1}-1}{\lceil\frac m2\rceil -1}]$
+  - 則 $1 + 2 + 2\cdot \lceil \frac m2 \rceil + 2\cdot \lceil \frac m2 \rceil^2 + \ldots + 2\cdot \lceil \frac m2 \rceil^{h-2}  \\  = 1 + 2\cdot[\lceil \frac m2 \rceil^0 + \lceil \frac m2 \rceil^1 + \ldots + \lceil \frac m2 \rceil^{h-2} ] \\ =  1 + 2\cdot [\frac {\lceil\frac m2 \rceil^{h-1}-1}{\lceil\frac m2\rceil -1}]$
 
 - **最少資料儲存量**
 
