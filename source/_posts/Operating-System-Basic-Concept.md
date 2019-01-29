@@ -1,6 +1,7 @@
 title: Operating System - Basic Concept 1
 author: Willy Wang
 tags:
+
   - Basic Concept
   - ''
 categories:
@@ -17,21 +18,21 @@ date: 2018-07-10 10:51:00
 
 
 
-- Bare Machine(裸機)
-  - 只有Hardware Components所組成(eg. CPU, memory, I/O device)，沒有任何輔助使用者 ( User ) 的系統程式 ( System Program )存在。
+- Bare Machine（裸機）
+  - 只有「Hardware Components」所組成（CPU、memory、I/O device），**沒有任何輔助使用者（ User ）的系統程式（System Program）存在**
 - Extended Machine
-  - 以 Bare Machine 為底加上輔助使用者的系統程式 - System Programs (eg. OS, Compiler, DBMS...)，即構成延伸機器。
+  - 以「Bare Machine」為底加上輔助使用者的系統程式－System Programs（OS、Compiler、Database management system…）
 
 
 
-### CPU 的等待時間( Idle time )
+### CPU 的等待時間（Idle time）
 
 
 
-- 人類手動操作對於 CPU time 太慢。
-  - 以「Automatic Job Sequence」的軟體**常駐於**在早期的電腦上，利用少量的記憶體執行**非常駐於的電腦上的軟體**，類似於現今的作業系統，稱之為「Resident Monitor」。
-- I/O 裝置的工作速度遠比 CPU 的工作速度還慢，CPU 針對某些工作必須等待 I/O 工作完成後才能繼續執行，所以造成 CPU 等待時間 ( idle time ) 太久。
-  - 以較快速的裝置介入 CPU 與 I/O 裝置之間作為緩衝。
+- 人類手動操作相對於「CPU cycle time」太慢
+  - 以「Automatic Job Sequence」的軟體**常駐於**在早期的電腦上，利用少量的記憶體執行**非常駐於的電腦上的軟體**，類似於現今的作業系統，**稱之為「Resident Monitor」**
+- I/O 裝置的工作速度遠比 CPU 的工作速度還慢，**CPU 針對某些工作必須等待 I/O 工作完成後才能繼續執行，所以造成 CPU 等待時間（idle time）太久**
+  - 以**較快速的裝置介入 CPU 與 I/O 裝置之間作為緩衝**
 
 
 
@@ -44,21 +45,23 @@ date: 2018-07-10 10:51:00
 
 
 
-不及時的將 CPU 演算完的資料給予讀取或是列印，利用專門的外圍控制機，將低速 I/O 設備上的數據傳送到高速磁碟 ( 磁帶 ) 上；或者相反，CPU 直接對於磁帶讀寫，使電腦加快讀取的速度。
+不即時的將 CPU 演算完的資料給予讀取或是列印，**利用專門的外圍控制機，將低速 I/O 設備上的數據傳送到高速磁碟（磁帶）上；或者相反，CPU 直接對於磁帶讀寫，使電腦加快讀取的速度**
 
 
 
-- 以磁帶機緩解讀卡機( Input )與印表機( Output )造成過慢的等待( idle )：電腦中間以磁帶機的方式加速與讀卡機與印表機的溝通( 讀卡機與印表機不直接由 CPU 直接操作 )。
+- **以磁帶機緩解讀卡機（Input）與印表機（Output）造成過慢的等待（Idle）**
+  - 電腦中間以磁帶機的方式加速與讀卡機與印表機的溝通（讀卡機與印表機不直接由 CPU 直接操作）
 - 磁帶機實作
-  - 以專用的 I/O 裝置對於磁帶讀寫。( CPU 直接控制 )
-  - 以一個小型的子電腦對於磁帶讀寫，習慣稱之為衛星機( salellite processing )，主要負責磁帶拷貝的工作，CPU 不直接參與磁帶機的讀寫運作。
+  - 以專用的 I/O 裝置對於磁帶讀寫（CPU 直接控制）
+  - 以一個小型的子電腦對於磁帶讀寫，習慣稱之為衛星機（Satellite processing），主要負責磁帶拷貝的工作，**CPU 不直接參與磁帶機的讀寫運作**
 - Pros
-  - CPU 不受到讀卡機或是印表機的速度限制( CPU 受到磁碟機的速度限制 )。
-  - 已寫好的程式不必更動，只要把原本直接交付給裝置執行的指令存入磁帶中再給該裝置執行。
-  - 裝置獨立性( Device Independent )：泛指同一程式可以在不同的 I/O 裝置上執行的能力。
+  - CPU 不**受到讀卡機或是印表機的速度限制**（CPU 受到磁碟機的速度限制）
+  - 已寫好的程式不必更動，只要把原本直接交付給裝置執行的指令存入磁帶中再給該裝置執行
+  - 裝置獨立性（Device Independent）
+    - **泛指同一程式可以在不同的 I/O 裝置上執行的能力**
 - Cons
-  - 因為要先讓電腦先將指令載入至磁帶，再交由該機器執行，導致設定時間需求長。
-  - 磁帶只能以循序讀取( Sequential Acess )的方式讀寫。
+  - 因為要先讓電腦先將指令載入至磁帶，再交由該機器執行，導致設定時間需求長
+  - 磁帶只能以循序讀取（Sequential Access）的方式讀寫
 
 
 
@@ -77,11 +80,11 @@ date: 2018-07-10 10:51:00
 
 
 
-#### 假脫機<br>線上同時周邊處理技術( Simultaneous Peripheral Operation On-Line, SPOOL )
+#### 假脫機－線上同時周邊處理技術( Simultaneous Peripheral Operation On-Line, SPOOL )
 
 
 
-又稱為排隊緩存技術。當系統中引入了多道程序技術( Multiprocess )後，完全可以利用其中的一道程序，來模擬脫機輸入時的外圍控制機功能，把低速 I/O 設備上的數據傳送到高速磁碟上；再用另一道程序來模擬脫機( Off-line )輸出時外圍控制機的功能，把數據從磁碟傳送到低速輸出設備上。這樣，便可在主機的直接控制( On-line )下實現脫機輸入、輸出功能。
+又稱為「排隊緩存技術」；當系統中引入了多程序技術（Multiprocess）後，完全可以利用其中的一道程序，**來模擬脫機輸入時的外圍控制機功能**，把低速 I/O 設備上的數據傳送到高速磁碟上；**再用另一道程序來模擬脫機（Off-line）輸出時外圍控制機的功能**，把數據從磁碟傳送到低速輸出設備上。這樣，便可在主機的直接控制（On-line）下實現脫機輸入、輸出功能
 
 
 
@@ -90,27 +93,44 @@ date: 2018-07-10 10:51:00
 
 
 
-- 外圍操作與 CPU 對數據的處理可以同時進行。
-- SPOOL 的需求
-  - 建立在具有多程序( Multiprocess )功能的作業系統。
-  - 高速隨機外存。( 磁碟存儲技術 )
+- 外圍操作與 CPU 對數據的處理可以**同時進行**
+- 「SPOOL」的需求
+  - 建立在具有多程序（Multiprocess）功能的作業系統
+  - **高速隨機外存**（磁碟存儲技術）
 - 組成
-  - 井：在磁碟上開闢的兩個大存儲空間。<br>輸入井：模擬脫機輸入時的磁碟設備，用於暫存I/O 設備輸入的數據。<br>輸出井：模擬脫機輸出時的磁碟，用於暫存用戶程序的輸出數據。
-  - 緩衝區：為了緩解 CPU 和磁碟之間速度不匹配的矛盾，在內存( RAM )中要開闢兩個緩衝區。<br>輸入緩衝區：暫存由輸入設備送來的數據，一旦緩衝區要滿出來了，再傳送到輸入井。<br>輸出緩衝區：暫存從輸出井送來的數據，往後再傳送給輸出設備。
-  - 「輸入程序 $SP_i$ 」 和「輸出程序 $SP_o$」。這裡利用兩個進程來模擬脫機 I/O 時的外圍控制機。<br>「程序 $SP_i$」：模擬脫機輸入時的外圍控制機，將用戶要求的數據從輸入機通過輸入緩衝區再送到輸入井，當CPU 需要輸入數據時，直接從輸入井讀入內存。<br>「程序 $SP_o$」模擬脫機輸出時的外圍控制機，把用戶要求輸出的數據先從內存送到輸出井，待輸出設備空閒時，再將輸出井中的數據經過輸出緩衝區送到輸出設備上。
-- 達到共享 I/O 裝置的目的。
-  - 印表機( 獨占設備 )：當用戶進程請求列印輸出時，SPOOLing系統同意為它列印輸出，但並不真正立即把印表機分配給該用戶進程，而只為它做兩件事：<br>1. 由「輸出程序」在輸出井中為之**申請一個空閒磁碟塊區**，並將要列印的數據送入其中。<br>2. 「輸出程序」再為用戶程序**申請一張空白的用戶請求列印表，並將用戶的列印要求填入其中，再將該表掛到請求列印隊列上**。<br>**如果還有進程要求列印輸出，系統仍可接受該請求，**也同樣為該進程做上述兩件事。如果印表機空閒，輸出進程將從請求列印隊列的隊首取出一張請求列印表，根據表中的要求將要列印的數據，從輸出井傳送到內存緩衝區，再由印表機進行列印。列印完後，輸出進程再查看請求列印隊列中是否還有等待列印的請求表。若有，又取出隊列中的第一張表，並根據其中的要求進行列印，如此下去，直至請求列印隊列為空，輸出進程才將自己阻塞( Blocked )起來。僅當下次再有列印請求時，輸出進程才被喚醒( Wake up )。
+  - 井：**在磁碟上開闢的兩個大存儲空間**
+    - 輸入井：模擬脫機輸入時的磁碟設備，**用於暫存 I/O 設備輸入的數據**
+    - 輸出井：模擬脫機輸出時的磁碟，**用於暫存用戶程序的輸出數據**
+  - 緩衝區：為了緩解 CPU 和磁碟之間速度不匹配的矛盾，**在內存（RAM）中要開闢兩個緩衝區**
+    - 輸入緩衝區：**暫存由輸入設備送來的數據，一旦緩衝區要滿出來了，再傳送到輸入井**
+    - 輸出緩衝區：暫存要送往輸出井送來的數據，往後再傳送給輸出設備
+  - 「輸入程序 $SP_i$ 」 和「輸出程序 $SP_o$」，利用兩個程序來模擬脫機 I/O 時的外圍控制機
+    - 「程序 $SP_i$」：模擬脫機輸入時的外圍控制機，將用戶要求的數據從輸入機通過輸入緩衝區再送到輸入井，當CPU 需要輸入數據時，直接從輸入井讀入內存
+    - 「程序 $SP_o$」模擬脫機輸出時的外圍控制機，把用戶要求輸出的數據先從內存送到輸出井，待輸出設備空閒時，再將輸出井中的數據經過輸出緩衝區送到輸出設備上。
+- **達到共享 I/O 裝置的目的**
+  - 印表機（獨占設備）：當用戶進程請求列印輸出時，「SPOOLing 系統」**同意為它列印輸出，但並不真正立即把印表機分配給該用戶進程，而只為它做兩件事：**
+    - （1） 由「輸出程序」在輸出井中為之**申請一個空閒磁碟塊區**，並將要列印的數據送入其中
+    - （2） 「輸出程序」再為用戶程序**申請一張空白的用戶請求列印表，並將用戶的列印要求填入其中，再將該表掛到請求列印隊列上**
+    - （3）**如果還有進程要求列印輸出，系統仍可接受該請求，**也同樣為該進程做上述兩件事
+    - （4）如果印表機空閒，輸出進程將從請求列印隊列的隊首取出一張請求列印表，根據表中的要求將要列印的數據，從輸出井傳送到內存緩衝區，再由印表機進行列印
+    - （5）列印後，輸出進程再查看請求列印隊列中是否還有等待列印的請求表。若有，又取出隊列中的第一張表，並根據其中的要求進行列印
+    - （6）直至請求列印隊列為空，輸出進程才將自己阻塞( Blocked )，僅當下次再有列印請求時，輸出進程才被喚醒( Wake up )
 - Pros
-  - **提高 I/O 的速度**：從對低速 I/O 設備進行操作，**演變為對輸入井或輸出井中數據的存取，如同脫機輸入輸出一樣**，提高了I/O 速度，緩解了 CPU 與 I/O 設備之間速度不匹配的矛盾。
-  - **將獨占設備視為為共享設備**：SPOOLing 系統中，實際上並**沒為任何進程分配設備**，而只是在輸入井或輸出井中為進程分配一個存儲區和建立一張I/O 請求表。
-  - **實現了虛擬設備功能**：宏觀上，雖然是多個程序在同時使用一台獨占設備，而對於每一個程序會認為自己獨占了一個設備( 邏輯上的設備 )。SPOOLing 系統**實現了將獨占設備變換為若干台對應的邏輯設備的功能。**
+  - **提高 I/O 的速度**
+    - 從對低速 I/O 設備進行操作，**演變為對輸入井或輸出井中數據的存取，如同脫機輸入輸出一樣**，提高了 I/O 使用率，**緩解了 CPU 與 I/O 設備之間速度不匹配的矛盾**
+  - **將獨占設備視為為共享設備**
+    - 「SPOOLing 系統」中，**實際上並沒為任何進程分配設備，而只是在輸入井或輸出井中為進程分配一個存儲區和建立一張「I/O 請求表」**
+  - **實現了虛擬設備功能**
+    - 宏觀上，雖然是多個程序在同時使用一台獨占設備，而對於每一個程序會認為自己獨占了一個設備（ 邏輯上的設備）
+    - 「SPOOLing 系統」**實現了將獨占設備變換為若干台對應的邏輯設備的功能**
 
 
 
-**＜Note＞：**Spool 與 Buffer 的差異性。
-
-- Spool 允許有程序在執行 CPU 運算時，可以有其他的程序的 I/O 運算同時進行( overlay execution )
-- Buffer 允許有程序執行 CPU 運算時同時運算( overlay execution )該程序的 I/O 運算。
+> Spool 與 Buffer 的差異性
+>
+> - Spool 允許有程序在執行 CPU 運算時，**可以有其他的程序的 I/O 運算同時進行（Overlay execution）**
+> - Buffer 允許有**程序執行 CPU 運算時同時運算（Overlay execution）該程序的 I/O 運算**
+>
 
 
 
@@ -120,28 +140,26 @@ date: 2018-07-10 10:51:00
 
 ### 多元程序系統 - Multiprogramming System
 
+**允許系統 ( 或在記憶體 ) 中存在多個 Process ( 處理程序 ) 同時執行**；透過 CPU Scheduling 技術，當某個 Process 取得 CPU 執行時，若因為某些事件發生（如：Wait for I/O completed 、Resource Not Available...）而無法往下執行時，作業系統可將 CPU 切換給其他 Process 使用，則 CPU 在各個 Processes 切換，可以使 CPU 的使用率提升
+
+- 主要用於避免 CPU 的空等（Idle），提高 CPU 效能（Utilization）
+
+- Multiprogramming Degree
+  - **系統中存在執行的 Process 個數**
+  - 通常 Multiprogramming Degree 越高，**且非為 Thrashing 狀態**，則 CPU 效能越高
+
+多個 Process 同時執行的方法：
+
+- Concurrent ( 並行 )：**一個 CPU，多個 Processes 共同使用**
 
 
-
-**允許系統 ( 或在記憶體 ) 中存在多個 Process ( 處理程序 ) 同時執行**。透過 CPU Scheduling 技術，當某個 Process 取得 CPU 執行時，若因為某些事件發生 ( 如：Wait for I/O completed 、Resource Not Available... ) 而無法往下執行時，作業系統可將 CPU 切換給其他 Process 使用，則CPU在各個 Processes 切換，可以使 CPU 總是為忙碌的狀態( Busy )。
-
-- 主要用於避免 CPU 的空等( idle )，提高 CPU 效能( Utilization )。
-
-- Multiprogramming Degree：
-  - **系統中存在執行的 Process 個數。**
-  - 通常 Multiprogramming Degree 越高，且非為 Thrashing 狀態，則 CPU 效能越高。
-
-- 多個 Process 同時執行的方法：
-  - Concurrent ( 並行 )：**一個 CPU，多個 Processes 共同使用。**
-
-  
 ![1530087435637](\willywangkaa\images\1530087435637.png)
 
   
 
-  - Parallel ( 平行 )：**多核心 CPU 共同執行多個 Processes。**
+  - Parallel ( 平行 )：**多核心 CPU 共同執行多個 Processes**
 
-  
+
 ![1530087726413](\willywangkaa\images\1530087726413.png)
 
 
@@ -154,13 +172,13 @@ It's a **logical extension of multiprogramming system, the CPU in this kind of s
 
 
 
-- Multiprogramming 的一種，又可以稱為「Multitasking」。<br>**＜Note＞：與 Multiprogramming 的差異在於 CPU 切換的頻率極高。**
-
-- **排班使用「RR(Round-Robin) 法則」**：作業系統規定一個 CPU Time Quantum ( 區段 )，**若 Process 在取得CPU後，未能於區段內完成工作，則必須被迫放棄CPU，等待下一次輪迴。**
-  - **通常 Quantum 時間很短。( 小於 1 秒 )**
-  - 對每個使用者 ( 程序 ) 是公平的。
-- 適用在User Interactive System ( 互動式作業系統  ) 或 Response Time ( 反應時間 )要求較短的系統。
-- 透過 Resource Sharing 技術 (如：CPU資源 - CPU scheduling、記憶體資源 - Memory sharing、I/O 裝置資源 - Spooling )，使得每個使用者 ( 程序 ) 皆認為享有專屬的資源。
+- Multiprogramming 的一種，又可以稱為「Multitasking」
+  - **與 Multiprogramming 的差異在於 CPU 切換的頻率極高**
+- **排班使用「RR(Round-Robin) 法則」**：作業系統規定一個 CPU Time Quantum，**若 Process 在取得CPU後，未能於區段內完成工作，則必須被迫放棄CPU，等待下一次輪迴**
+  - **通常 Quantum 時間很短**
+  - 對每個使用者 ( 程序 ) 是公平的
+- 適用在「User Interactive System」（互動式作業系統 ）或「Response Time」（反應時間）要求較短的系統
+- 透過「Resource Sharing 技術」（CPU資源 - CPU scheduling、記憶體資源 - Memory sharing、I/O 裝置資源 - Spooling )，**使得每個使用者 ( 程序 ) 皆認為享有專屬的資源**
   - **Virtual Memory 技術，擴展邏輯的記憶體空間 ( Virtual Memory Space )。**
 
 
@@ -382,7 +400,7 @@ It's a **logical extension of multiprogramming system, the CPU in this kind of s
 
 
 
-又稱為 Busy-waitting I/O or programmed I/O 。
+又稱為 Busy-waiting I/O、programmed I/O 。
 
 
 
@@ -408,8 +426,8 @@ It's a **logical extension of multiprogramming system, the CPU in this kind of s
 
 
 - 操作流程
-  1. User process 發出 I/O 要求給作業系統。
-  2. 作業系統收到請求後，( 有可能 )會暫停目前此 process 的執行，並執行對應的 System calls。
+  1. User process 發出 I/O 要求給作業系統
+  2. 作業系統收到請求後，**( 有可能 )**會暫停目前此 process 的執行，並執行對應的 System calls。
   3. Kernel 的「 I/O 子系統 ( subsystem )」會將該請求傳給「裝置驅動程式 ( Device driver )」。
   4. 裝置驅動程式依照此請求設定對應的「 I/O 指令參數( Commands )」給予「裝置控制器 ( Device Controller )」。
   5. 裝置控制器起動，監督 I/O 設備的運作進行，

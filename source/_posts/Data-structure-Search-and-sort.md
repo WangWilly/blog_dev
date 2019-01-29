@@ -3,9 +3,9 @@ author: Willy Wang (willywangkaa)
 tags:
   - Search
   - Sort
-  - ''
 categories:
   - Data Structure
+  - ''
 date: 2018-11-17 19:47:00
 ---
 
@@ -822,6 +822,42 @@ if (i == k) {
 
 
 
+> 計算機科學家 [吉姆·格雷](https://zh.wikipedia.org/w/index.php?title=%E5%90%89%E5%A7%86%C2%B7%E6%A0%BC%E9%9B%B7&action=edit&redlink=1) 的 [Sort Benchmark](http://sortbenchmark.org/) 網站用不同的硬體、軟體環境測試了實現方法不同的多種外排序算法的效率。效率較高的算法具有以下的特徵：
+>
+> - **並行計算**
+>   - 用多個磁碟驅動器**並行處理數據**，可以加速順序磁碟讀寫
+>   - 在**計算機上使用多執行緒**，可在多核心的計算機上得到優化
+>   - 使用異步輸入輸出，可以**同時排序和歸併，同時讀寫**
+>   - 使用多台計算機用高速網絡連接，分擔計算任務
+> - **提高硬體速度**
+>   - **增大內存，減小磁碟讀寫次數，減小歸併次數**
+>   - 使用快速的外存設備，比如15000 RPM的硬碟或固態硬碟
+>   - 使用性能更優良個各種設備，比如使用多核心 CPU 和延遲時間更短的內存
+> - **提高軟體速度**
+>   - 對於某些特殊數據，在第一階段的排序中使用[基數排序](https://zh.wikipedia.org/wiki/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F)
+>   - 壓縮輸入輸出文件和臨時文件
+
+
+
+> - 外歸併排序法並不是唯一的「External sort」，另外有**「外分配排序」**，其原理類似於內排序中的[桶排序（Bucket sort）](https://zh.wikipedia.org/wiki/%E6%A1%B6%E6%8E%92%E5%BA%8F)
+>
+> - 「Merge sort」和「Bucket sort」之間存在數學上的某種對偶性
+>
+>
+>
+> Example（106 清華大學資工基礎計算機科學第 6 題）
+>
+> - 簡述
+>   - 比較兩個「External sort」分別的特性，並且個別適合什麼類型的資料型態
+>     - Merge sort
+>     - Bucket sort
+> - Merge sort
+>   - 因為其特性，適合大量資料的排序，可以將資料從「Second storage」中取得資料存於 RAM 中，再進行排序，歸併後再輸出至「Second storage」
+> - Bucket sort
+>   - 與「Merge sort」一樣，經過調整的演算法可以作為「外分配排序」，同樣可以處理大量資料，但還有包含另一個性質，若資料位數很大時，或是基底很小時，也建議採用「MSD radix sort」
+
+
+
 ### Iterative merge sort (Two way merge)
 
 
@@ -1279,6 +1315,23 @@ Example ( 基底為 10；十進位 )
 1. 將資料轉化成「純小數」
 2. 以各個純小數之小數後第一位值有序的插入「Bucket」中
 3. 由小到大合併所有「Bucket」
+
+
+
+```cpp
+// Pseudo code
+Array bucket-sort(array, n) {
+    Array buckets[n];
+    for i = 0 to (length(array)-1) {
+        buckets[msbits(array[i], k)].insert(array[i]);
+    }
+    for i = 0 to n - 1 
+        next-sort(buckets[i]);
+    return concatenation(buckets[0], ..., buckets[n-1]);
+}
+```
+
+> 在實作裡，可用每個桶內部用連結串列表示，在資料入桶的同時**插入排序**，然後把各個桶中的資料合併
 
 
 

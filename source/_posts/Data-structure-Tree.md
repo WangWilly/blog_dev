@@ -3,7 +3,7 @@ author: Willy Wang (willywangkaa)
 tags:
   - Tree
 categories:
-  - Data structure
+  - Data Structure
 date: 2018-10-28 20:11:00
 ---
 # Binary tree

@@ -421,7 +421,19 @@ Deadlock 是 Unsafe 集合的 Subset。
   - m = 6, $Max_i = 2$。<br>(1)  $1\leq Max_i \leq m \Rightarrow 1\leq 2 \leq 6$，OK。<br>(2)  $\sum_{i = 1}^n Max_i < n+m \Rightarrow 2n < n+6 \Rightarrow n < 6 \Rightarrow$ **最多 5 個 Processes**。
 - $Ex2 . 有 10 部印表機現在正被 Process 使用，每個 process 最多需要 3 部印表機才可以完工，則系統最多允許 **幾個** process 執行以確保 Peadlock free ？
   - $Max_i = 3, m = 10$。<br>$3n < n+10, 2n < 10 \Rightarrow n < 5 \Rightarrow$ $最多 4 個 \; Processes。$
-- Proof<br>假設資源全部配置出去即為 $\sum_{i = 1}^n Allcation_i = m​$，又 $\sum_{i = 1}^n Need_i = \sum_{i = 1}^n Max_i - \sum_{i = 1}^n Allocation_i \Rightarrow \sum_{i = 1}^n (Max_i) - m \Rightarrow \sum_{i = 1}^n Max_i  = \sum_{i = 1}^n Need_i + m​$。<br>因為依照定理第二點 $\sum_{i = 1}^n Max_i < n+m \Rightarrow \sum_{i = 1}^n Need_i + m < n+m​$<br>，所以 $\sum_{i = 1}^n Need_i < n​$，**<br>此式代表至少有大於等於 1 個process 之 Need_i 為 0 代表 Process_i 可以完工，**且 P_i 至少會釋出超過 1 個 Resource (**因為按照定理第一點可以知道每個 process 只少會占用大於 1 個資源 Max_i 大於等於 1**)，使得剩下的 processes 中又會有大於等於 1 個 processes 可以取得資源並完工。
+- Proof<br>假設資源全部配置出去即為 $\sum_{i = 1}^n Allcation_i = m$，又 $\sum_{i = 1}^n Need_i = \sum_{i = 1}^n Max_i - \sum_{i = 1}^n Allocation_i \Rightarrow \sum_{i = 1}^n (Max_i) - m \Rightarrow \sum_{i = 1}^n Max_i  = \sum_{i = 1}^n Need_i + m$。<br>因為依照定理第二點 $\sum_{i = 1}^n Max_i < n+m \Rightarrow \sum_{i = 1}^n Need_i + m < n+m$<br>，所以 $\sum_{i = 1}^n Need_i < n$，**<br>此式代表至少有大於等於 1 個process 之 Need_i 為 0 代表 Process_i 可以完工，**且 P_i 至少會釋出超過 1 個 Resource (**因為按照定理第一點可以知道每個 process 只少會占用大於 1 個資源 Max_i 大於等於 1**)，使得剩下的 processes 中又會有大於等於 1 個 processes 可以取得資源並完工。
+
+
+
+> Example（106 清華大學資工計算機系統）
+>
+> Consider a system consisting of m resources of the same type that are shared by n processes, each of which needs at most k resources. What is the minimum number of **instances of resources** to guarantee that the system is deadlock free?
+>
+>
+>
+> 假設每個「Resource」有 x 個「Instance」，則：
+>
+> $n\times (k-1) < x \times m \Rightarrow x > \frac{n\times(k-1)}{m} \\ \Rightarrow x \geq \lceil\frac{n\times(k-1)}{m}\rceil+1$
 
 
 

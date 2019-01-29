@@ -492,6 +492,20 @@ enable interrupt
 
 
 
+> - Atomic operation
+>   - 在多程序環境下，此指令運算時不得被中斷其運算，或者共用同一個資料區域
+> - Atomic transaction
+>   - 由一系列資料（資料庫）活動構成，包括資料讀取與資料寫入的動作，通常這類的活動都是不可分割的（Atomic）
+>     - 「Transaction」所包含的一連串活動，若無法一次全部執行完畢，則都不執行（All-or-nothing）
+>     - 交易過程中發生錯誤造成系統當機時，這筆交易最後不會執行（Commit），以確保資料正確性
+>   - 除錯（包含「Client」與「Server」的處理）
+>     - 「Server」
+>       - 當程序（Process）出現**錯誤終止**，「Server」會分配另外一個行程來接手，但是原本程序處理的「未完成交易」會被取消，然後**將數值恢復成「交易前的狀態」**
+>     - 「Client」
+>       - 「Server」會給予「Client」每一筆交易一個時間區段，如果在時限內交易未完成，則會取消該筆交易，以預防客戶端無預警當機，造成交易一直無法完成
+
+
+
 - **Critical section**
   - Process 中對於共享變數進行存取的敘述集合。
 - **Remainder section**

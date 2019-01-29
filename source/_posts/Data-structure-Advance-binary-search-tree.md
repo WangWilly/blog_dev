@@ -3,7 +3,7 @@ author: Willy Wang (willywangkaa)
 tags:
   - Binary search tree
 categories:
-  - Data structure
+  - Data Structure
 date: 2018-10-28 20:28:00
 ---
 # AVL tree
@@ -15,7 +15,7 @@ Height balance binary search tree
 
 
 - 性質
-  - $|H_L - H_R| \leq 1$，$H_L、H_R$ 為**樹根節點**左右子樹之高度
+  - $|H_L - H_R| \leq 1$，其中 $H_L、H_R$ 為**樹根節點**左右子樹之高度
   - 左右子樹亦為「AVL tree」
 
 
@@ -392,6 +392,55 @@ Balanced binary search tree
 
 
 目前不討論
+
+
+
+## The height of RB-tree
+
+
+
+- 假設原始紅黑樹為 T
+
+- 假設對於每個**頂點 x**
+  - 其頂點至葉節點之每個路徑的黑色節點數量為 BH(x) （Black node height）
+  - 其樹高為 H(x)
+
+> 其中 H(x)、BH(x) 定義如下：
+>
+> ![theheightofrbtree](\willywangkaa\images\theheightofrbtree.png)
+
+
+
+
+
+- **＜證明＞**任何以 x 頂點為根的子樹 T'，其內部節點（在原本 T 的內部節點）至少有 $2^{BH(x)}-1$
+
+（對 H(x) 做數學歸納法推導）
+
+1. 當 H(x) 為 0 時，則可以知道其為 **Nil 節點**，則**以該節點為子樹 T'**必無存在**內部節點**（T 的內部節點）
+
+   - 因為 BH(x) = 0，則 $2^0-1 = 1-1 = 0$，無內部節點
+
+2. 考慮一個節點 x**（黑節點）**，其樹高為 H(x) = k > 0，則該點為 **T 的一個內部節點**
+
+   - 討論其節點的「兩個子節點」y
+     - 節點 y 至每個葉節點的黑色節點數量為$\left\{\begin{matrix}
+       BH(x),\;若\; y \;為紅色節點 \\ BH(x)-1,\;若\; y \;為黑色節點 \end{matrix}\right.$
+
+   - **假設其「兩個子節點」 成立**，則 y 到葉節點包含 T 的內部節點至少有 $2^{BH(x)-1}-1$
+   - 考慮以 x 節點為子樹 T' ，其包含 T 的內部節點至少有
+     - （左子點包含 T 的內部節點）+（右子點包含 T 的內部節點）+（x 本身就為 T 的內部節點）
+     - $(2^{BH(x)-1}-1)+(2^{BH(x)-1}-1)+1 = 2^{BH(x)}-1$，**命題得證**
+
+
+
+- **＜證明＞**一棵含有 n 個**內部節點**的紅黑樹 T 其樹高最多只有 $2\cdot\lg(n+1)$
+  - 假設 H 為 T 的樹高
+  - 根據紅黑樹的性質「紅色節點不能與另一個紅節點相連」
+    - 從根節點至葉節點（**不包括根節點**）的任何一條簡單路徑，至少有一半的節點為黑節點
+  - 所以從根節點至葉節點的 $BH \geq \frac{H}{2}$ 
+  - 再根據上述定理，$n \geq 2^{BH}-1 \geq 2^{\frac{H}{2}}-1$
+  - 則 $2^\frac{H}{2} \leq n+1 \Rightarrow \frac{H}{2} \leq \lg(n+1) \Rightarrow H \leq 2\lg(n+1)$
 
 
 

@@ -3,7 +3,7 @@ author: Willy Wang (willywangkaa)
 tags:
   - Graph
 categories:
-  - Data structure
+  - Data Structure
 date: 2018-12-02 19:41:00
 ---
 # The structure of graph

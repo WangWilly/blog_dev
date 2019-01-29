@@ -3,7 +3,8 @@ author: Willy Wang (willywangkaa)
 tags:
   - Orthogonal complement
 categories:
-  - Linear algebra
+  - Linear Algebra
+  - ''
 date: 2018-10-27 11:30:00
 ---
 # Minimal solution

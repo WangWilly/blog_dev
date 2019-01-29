@@ -778,6 +778,15 @@ $$
 
 (1)；(3)；(5)；**(10)：更差**
 
+
+
+- Example（106清華大學資工計算機系統）
+  - Is it possible for a process to have two working sets, one representing data and another representing code? Explain your answer.
+
+「Working set」是由多個**正在執行的**「Virtual memory page」組成，**且並不包含不用執行的「Page」**，所以不可能有兩個「Working set」分別記錄「Data」與「Code」
+
+
+
 ###### ☆Locality model
 
 > 

@@ -114,10 +114,15 @@ date: 2018-07-10 22:14:00
   - Ready-Active ( Swap-in )：當 memory 有空時，**medium-term scheduler 可將process swap-in memory 之中(Ready)準備被執行。**
   - Running-Suspend( Swap-out )：*這是一個不好的設計，但仍可以支持*主要是因為若有一個高優先權process 從 「Blocked/suspend」變為「Ready/suspend」時，則作業系統可以強迫**低優先權的process放掉 CPU 及 memory，供高優先權的 process 使用。**
 
-  
 
 
 ![1526883114200](\willywangkaa\images\1526883114200.png)
+
+
+
+> Queuing diagram
+>
+> ![Queuingdiagram](\willywangkaa\images\queuingdiagramforprocessmodel.png)
 
 
 
@@ -1065,9 +1070,8 @@ $$
 
   - **排班效益最佳( Optimal ) 即 Avg. waiting/turnaround time 最小。**<br>Proof：
 
-  
 
-  
+
 ![1527473571408](\willywangkaa\images\1527473571408.png)
 
   - 由上圖可知<br>Waiting time for long job：$0 \rightarrow CPU \; execution \; time_{short \; job}$<br>Waiting time for short job：$CPU \; execution \; time_{long \; job} \rightarrow 0$<br>Avg. waiting ime：$\frac{(CPU \; execution \; time_{short \; job}-0)+(0-0)}{2} < \frac{(0-0)+(CPU \; execution \; time_{long \; job}-0)}{2}$
@@ -1096,16 +1100,15 @@ $$
 
   - ***SRTF**
 
-  
 
-  
+
 ![1527477828916](\willywangkaa\images\1527477828916.png)
 
-  
-  $$
+
+$$
   \frac{ ((0-0)+(10-1)) + (1-1) + (17-2) + (5-3) }{ 4 } = 6.5
-  $$
-  
+$$
+
 
   - **SJF**
 
@@ -1115,11 +1118,11 @@ $$
 ![SJF](\willywangkaa\images\SJF_correct.png)  
 
 
-  
-  $$
+
+$$
   \frac{ (0-0)+(8-1)+(12-3)+(17-2) }{4} = 7.75
-  $$
-  
+$$
+
 
   - FIFO
 
@@ -1336,6 +1339,30 @@ $$
 
 
 
+#### Round robin with priority
+
+如果想在不改變 Round robin 排程演算法的情況下，欲使某寫 Process 有更多的 CPU 使用優先權
+
+
+
+- 「Ready queue」的**內容**（協助 Round robin 演算法的排程）
+  - 指向各個 Process 之「Process control block」（PCB）的指標
+
+
+
+所以，直覺的想法就是讓「高優先權」的 Process，在「Ready queue」中能插入更多指向自己 PCB 的指標
+
+- 可以讓該 Process 有更多次的 CPU 使用權
+- 優點
+  1. 可以讓使用者給予某寫 Process 更高的優先權
+  2. 因為 Round robin 排程演算法原本的性質（FCFS；無法被中斷），所以可以**防止某些低優先權的 Process 發生「Starvation」**
+  3. 不必改變原始演算法的結構
+- 缺點
+  1. 因為每當「Time quantum」時間結束後，「Time interrupt」會隨之觸發，無論前後的 Process 是否相通**皆需要做「Context switch」**，而隨之而來的「Overhead」也會增加
+  2. 當一個 Process 結束時，其**原本位於「Ready queue」的其餘指標也要隨之刪除**，但是由於「Queue」結構的特性，必須要將全部的元素都比對後才能確保將剩餘的指標完全移除
+
+
+
 ### Multilevel Queues
 
 
@@ -1412,14 +1439,14 @@ $$
 
 - 0 < S < T << Q
 
-    
+
 ![1527838126019](\willywangkaa\images\1527838126019.png)
 
 所以 $\frac{T}{T+S}$
 
 - 0 < S < Q << T
 
-    
+
 ![1527838656554](\willywangkaa\images\1527838656554.png)
 
 所以 $\frac{Q}{Q+S}$

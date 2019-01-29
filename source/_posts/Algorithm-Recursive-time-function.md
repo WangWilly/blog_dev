@@ -5,7 +5,7 @@ tags:
   - Time complexity
   - Recursive
 categories:
-  - Data structure
+  - Data Structure
 date: 2018-10-21 13:12:00
 ---
 # Substution method

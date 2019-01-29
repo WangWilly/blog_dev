@@ -1,7 +1,9 @@
 title: Operating System - Basic Concept 3
 author: Willy Wang
-date: 2018-07-10 21:44:53
-tags:
+tags: []
+categories:
+  - Operating System
+date: 2018-07-10 21:44:00
 ---
 # System Call
 

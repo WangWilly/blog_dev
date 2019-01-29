@@ -3,7 +3,8 @@ author: Willy Wang (willywangkaa)
 tags:
   - Heap
 categories:
-  - Data structure
+  - Data Structure
+  - ''
 date: 2018-10-31 13:37:00
 ---
 # Binary heap
