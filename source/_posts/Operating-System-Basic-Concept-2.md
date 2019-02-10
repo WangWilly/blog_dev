@@ -49,9 +49,20 @@ date: 2018-07-10 11:20:00
 
 ![1526805611478](\willywangkaa\images\1526805611478.png)
 
+1. **驅動程序（CPU）**
+   1. 作業系統中的「裝置驅動程序」**提出要求**，欲將存於硬碟的資料傳輸至 RAM，並指定地址位在 x 的「Buffer」
+   2. 「裝置驅動程序」接著**命令「硬碟控制器」（Disk controller）**傳輸 C Byte 到指定的位置
+2. **硬碟控制器（Disk）**
+   1. **對「DMA 控制器」作初始化設定**
+   2. 「硬碟控制器」使用「PCI bus」將每個位元組資料傳輸給「DMA 控制器」
+      - **原先不使用「DMA 控制器」的情況下，要將資料交給 CPU 再傳輸到 RAM 中**
+3. **DMA 控制器**
+   1. 在接受自「硬碟控制器」傳來的資料後，將資料**以「CPU memory bus」傳送到指定 RAM 中的位置 x**；接著將 x 值遞增，C 值遞減直到成為 0
+   2. 傳輸完成後，**「DMA 控制器」觸發「Interrupt」以通知 CPU 中的驅動程序**
 
 
-- Life cycle of I/O request (via Tnterrupted I/O) (P.3-65) (原文書P.612)
+
+- Life cycle of I/O request (via Interrupted I/O) (P.3-65) (原文書P.612)
 
 
 

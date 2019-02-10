@@ -481,7 +481,7 @@ Qsort(A[], l, u) {
 
 Example
 
-排序：5*, 5, 5, 5, 5
+排序：$5^＊, 5, 5, 5, 5$
 
 ![1541218724819](\willywangkaa\images\1541218724819.png)
 
@@ -493,13 +493,19 @@ Example
     - $T(n) = O(n) + T(\frac n2) + T(\frac n2)$：**Partition time + 左右邊作「Quick sort」**
     - $T(n) = 2T(\frac n2) + cn\\ =nT(1) +c\cdot n\log n = O(n \log n)$
   - **Avg. case：O( n log n ) (下圖二)**
-    - $T(n) = c\cdot n + \frac 1n\cdot \sum_{s = 1}^n (T(s) + T(n-s))$：**Partition time + 全部狀況之平均**
-    - $\Rightarrow nT(n) = c \cdot n^2 + \sum_{s = 1}^n(T(s) + T(n-s))\\ \Rightarrow nT(n) = [(T(1)+T(n-1)) + (T(2)+T(n-2)) + \ldots + (T(n)+ T(0))] + cn^2 \\ = 2 \cdot[T(1)+T(2)+\ldots+T(n-1)] + T(n) + cn^2 ......(1) \\ (n-1) 代入\; (1) \; \\ \Rightarrow (n-1)T(n-1) = 2\cdot[T(1)+ T(2)+\ldots+T(n-2)]+T(n-1)+c\cdot(n-1)^2 ......(2) \\ (1) - (2) \Rightarrow nT(n) - (n-1)T(n-1) = 2T(n-1)+T(n)-T(n-1)+c\cdot(n^2 - (n-1)^2) \\ \Rightarrow nT(n) - nT(n-1) + T(n-1) = T(n-1) + T(n) + c(n^2-(n-1)^2) \\ \Rightarrow (n-1)T(n) = nT(n-1) + c(n^2- (n-1)^2) \\ \Rightarrow \frac{T(n)}{n} = \frac{T(n-1)}{n-1} + c (\frac{2n-1}{n(n-1)}) \Rightarrow \frac{T(n)}{n} = \frac{T(n-1)}{n-1} + c (\frac 1n + \frac{1}{n-1}) \\ \Rightarrow \frac{T(n)}{n} = c(\frac 1n+\frac 1{n-1} + \ldots+\frac 12) + c (\frac 1{n-1} + \frac 1{n-2} + \ldots + \frac 11) \\ \frac{T(n)}{n} = c(H_n -1) + c(H_n + \frac 1n) \\ \Rightarrow T(n) = 2 c\cdot n \cdot H_n - cn -c \\ = 2\cdot c \cdot n \log n - cn -c = O(n\log n)$ 
-    - 上述之遞迴時間表示式**忽略了「Partition」後右邊還會少一筆資料**(下圖二)
-      所以該表示應該為 $T(n) = \frac 1n \sum_{s = 0}^{n-1}(T(s) + T(n-1-s)) + c\cdot n$
+    - $T(n) = c\cdot n + \frac 1n\cdot \sum_{s = 1}^n (T(s) + T(n-s))$
+      - **Partition time + 全部狀況之平均**
+    - **（1）**$\Rightarrow nT(n) = c \cdot n^2 + \sum_{s = 1}^n(T(s) + T(n-s))\\ = [(T(1)+T(n-1)) + (T(2)+T(n-2)) + \ldots + (T(n)+ T(0))] + cn^2 \\ = 2 [T(1)+T(2)+\ldots+T(n-1)] + T(n) + cn^2 $
+    - **以 (n-1) 代入式（1）成為式（2） ** 
+    - **（2）**$\Rightarrow (n-1)T(n-1) = 2[T(1)+ T(2)+\ldots+T(n-2)]+T(n-1)+c(n-1)^2 $
+    - **式（1）— 式（2）**
+    - $\Rightarrow nT(n) - (n-1)T(n-1) = 2T(n-1)+T(n)-T(n-1)+c(n^2 - (n-1)^2) \\ \Rightarrow nT(n) - nT(n-1) + T(n-1) = T(n-1) + T(n) + c(n^2-(n-1)^2) \\ \Rightarrow (n-1)T(n) = nT(n-1) + c(n^2- (n-1)^2) \\ \Rightarrow \frac{T(n)}{n} = \frac{T(n-1)}{n-1} + c (\frac{2n-1}{n(n-1)}) \Rightarrow \frac{T(n)}{n} = \frac{T(n-1)}{n-1} + c (\frac 1n + \frac{1}{n-1}) \\ \Rightarrow \frac{T(n)}{n} = c(\frac 1n+\frac 1{n-1} + \ldots+\frac 12) + c (\frac 1{n-1} + \frac 1{n-2} + \ldots + \frac 11) \\ \Rightarrow\frac{T(n)}{n} = c(H_n -1) + c(H_n + \frac 1n) \\ \Rightarrow T(n) = 2 c\cdot n \cdot H_n - cn -c \\ = 2\cdot c \cdot n \log n - cn -c = O(n\log n)$ 
+    - 上述遞迴時間表示式**忽略執行「Partition」後，右邊會多少一筆資料**（下圖二）
+      - 完整表示應該為 $T(n) = \frac 1n \sum_{s = 0}^{n-1}(T(s) + T(n-1-s)) + c\cdot n$
   - **Worst case：O(** $n^2$ **) (下圖三)**
-    - 當 pivot 恰為最小最大值時，作「Partittion」不會使「Devide and conquer」的優點顯現，所以當**整體資料為「由小到大」或「由大到小」時會有「Worst case」**
-    - $T(n) = O(n) + T(n-1) \\ = T(1) + (2 + 3 + \ldots + n) \cdot c \\ = c \cdot \frac{(n+2)(n-1)}{2} = O(n^2)$
+    - **當 Pivot 恰為最小最大值時**，作「Partition」不會使「Divide and conquer」的優點顯現
+      - **整體資料為「由小到大」或「由大到小」時會發生「Worst case」**
+      - $T(n) = O(n) + T(n-1) \\ = T(1) + (2 + 3 + \ldots + n) \cdot c \\ = c \cdot \frac{(n+2)(n-1)}{2} = O(n^2)$
 
 
 
@@ -526,19 +532,19 @@ Example
 >
 > 避免 Pivot 為最小值或最大值
 >
-> Randomized quicksort
+> **Randomized quicksort**
 >
 > - 亂數挑一個數作為 Pivot
-> - **還是有可能發生「Worst case」( 無法完全解決問題 )**
+> - **仍有可能發生「Worst case」( 無法完全解決問題 )**
 >
 >
 >
-> Middle of three (下圖)
+> **Middle of three** （下圖）
 >
 > - 做法
 >    1. $M = \frac {L+U}{2}$
->    2. 比較 A[L], A[M], A[U] 找出三者中之中間值，以此**中間值**與 A[l] 交換
->    3. 選擇 A[L] 作為 Pivot (中間值) ，作「Quicksort partition」
+>    2. 比較 A[L], A[M], A[U] 找出三者中之中間值，以**此中間值與 A[l] 交換**
+>    3. 選擇 A[L] 作為 Pivot（中間值），作「Quicksort partition」
 > - 可以解決「Worst case」問題
 >
 >
@@ -547,13 +553,13 @@ Example
 >
 >
 >
-> Median of medians
+> **Median of medians**
 >
-> ＜下方細述＞
+> **＜下方細述＞**
 
 
 
-- Space complexity ( 遞迴所需的「Stack space」 )
+- **Space complexity（遞迴所需的「Stack space」）**
   - Best case (下圖一)：O( log n )
   - Worst case (下圖二)：O( n )
 
@@ -571,7 +577,7 @@ Example
 
 
 
-### Quicksort2 ( 「Algotithm」書中版本 )
+### Quicksort2 ( 「Algorithm」書中版本 )
 
 
 
@@ -612,7 +618,7 @@ Partition(A[], p, r) {
 
 Example
 
-the output of quicksort pass1
+The output of quicksort pass1
 
 - 1 2 3 4 5
 
@@ -630,7 +636,9 @@ the output of quicksort pass1
 
 
 
--  **5 5 5 5 5* ( 在「Quicksort 2」演算的情況下會是「Worst case」（O(**$n^2$**)），但是在「Quicksort 1」演算的情況下會是「Best case」 )**
+-  $5 \;5 \;5 \;5 \;5^＊$
+   -  **在「Quicksort 2」演算情況下會是「Worst case」**（O(**$n^2$**)）
+   -  **在「Quicksort 1」演算情況下會是「Best case」**
 
 
 
@@ -638,10 +646,10 @@ the output of quicksort pass1
 
 
 
-> 如何改善上述問題？
+> **改善上述問題**
 >
-> 1. 在「Partition」前先檢查該陣列是否相同：O( n )
-> 2. 改採用「 Hoare partition」：Best case O( n log n )
+> 1. 在「Partition」執行前**檢查該陣列中元素是否相同**：O( n )
+> 2. 改採用「 Hoare partition」：「Best case」O( n log n )
 
 
 
@@ -659,25 +667,39 @@ the output of quicksort pass1
      - 總**比較**次數：(n-1) + (n-2) = **2n-3 次比較**
 
 - 改良解法
-  1.  A[1] 與 A[2] **比較一次**知道兩數大小，令兩者之大數為 m 、小數為 n
-  2. 針對後面 n-2 筆資料以**遞迴**找出**最大值**與**最小值**，並且令 n-2 筆資料的最大值為 x、最小值為 y
-  3. m 與 x **比較一次**找出最大值；n 與 y **比較一次**找出最小值
-     - 總**比較**次數：$T(0) = T(1) = 0,  T(2) = 1 \\T(n) = T(n-2) + 3 \\  =  T(n-4) + 6 \\= T(n-6) + 9 \\\vdots = T(0) + 3 \cdot \frac n2 < 2n-3$ 
-     - 稍微在比較上可以減少比較次數
+  1.  **A[1] 與 A[2] 比較一次知道兩數大小**
+      - 令兩者之大數為 m 、小數為 n
+  2.  針對**後面 n-2 筆資料以遞迴找出最大值與最小值**（A[3]、A[4]、A[n-4]）
+      - 令 n-2 筆資料的最大值為 x、最小值為 y
+  3.  『m 與 x **比較一次**找出最大值』、『n 與 y **比較一次**找出最小值』
+     - 初值
+       - T(0) = T(1) = 0
+       - T(2) = 1
+     - 總**比較**次數
+       - T(n) = T(n-2) +（**A[i] 與 A[i+1] 比較一次** + **m 與 x 比較** + **n 與 y 比較一次**）
+       - $T(n) = T(n-2) + 3 \\  =  T(n-4) + 6 \\= T(n-6) + 9 \\ \vdots \\= T(0) + 3 \cdot \frac n2 < 2n-3$
+     - **稍微減少比較次數**
 
 
 
 ### 問題與討論—Select i-th item among n unsorted data array
 
+**在未排序的陣列中找到第 i 小的資料**
 
 
-問題概要：在未排序的陣列中找到第 i 小的資料
 
-> **想法**：以學過的算法中，若不知道其值域則只能使用「Quick sort」等算法來求取資料各個大小的資訊（O(nlogn)），倘若知道資料範圍，可以「Radix sort」等算法求取資料的大小資訊（O(n)）
+> 學過的演算法中：
 >
-> **如果要以「Comparsion based」來解決這個問題有無更快的算法？**
-
-**利用「Quick sort」中的「Partition」為此算法基底**
+> - 不知道其值域
+>   - 以「Quick sort」等算法求取資料各個大小的資訊
+>   - **O(n log n)**
+> - 知道資料範圍
+>   - 以「Radix sort」等算法求取資料的大小資訊
+>   - **O(n)**
+>
+> **如果以「Comparison based」來解決這個問題有無更快的算法？**
+>
+> - **利用「Quick sort」中的「Partition」為此算法基底**
 
 
 
@@ -703,19 +725,21 @@ Select(A[], p, r, i) {
 **Time complexity**
 
 - Best case：**Pivot 的定位恰將資料切為兩等分**
-  - $T(n) = T(\frac n2) + cn \\  = c(n + \frac n2 + \frac n4 + \ldots+1) = \Theta(n)$ （對左半或是右半作「selection」+ 「Partition」）
+  - 對左半或是右半作「Selection」+ 「Partition」
+  - $T(n) = T(\frac n2) + cn \\  = c(n + \frac n2 + \frac n4 + \ldots+1) = \Theta(n)$ 
 
 
 
-- Avg. case
+- Average case
   - $T(n) = \frac 1n\sum_{s = 0}^{n-1} T(s)+ cn = O(n)$
 
 
 
 - Worst case
-  - 當 pivot 恰為最大或是最小值
+  - **當 Pivot 恰為最大或是最小值**
   - $T(n) = T(n-1) + cn\\ = n + (n-1) + (n-2) + \dots + 1 = O(n^2)$
-  - **解決：採取「Median of medians」選擇 pivot ，將 worst case 弭平為 O(n)**
+  - **解決辦法**
+    - **採取「Median of medians」選擇 Pivot ，將 Worst case 弭平為 O(n)**
 
 
 
@@ -727,30 +751,43 @@ Select(A[], p, r, i) {
 
 
 
-步驟：
+步驟
 
 1. 先將 n 筆資料分成 $\lceil \frac n5 \rceil$ 個群組，每個群組有**五筆資料**（可能有一群組不足 5 筆資料）
-   - 時間複雜度：O(n)
+   - 時間複雜度
+     - O(n)
 
 
 
-2. 針對每個群組各自排序（Eg. Insertion sort）
-   - 時間複雜度：每個群組最多花費 O(25) 次比較，共有 $\lceil \frac n5 \rceil$ 個群組，所以總共需 O(n)
+2. 針對每個群組各自排序（如：Insertion sort）
+   - 時間複雜度
+     - 每個群組最多花費 O(25) 次比較
+     - 共有 $\lceil \frac n5 \rceil$ 個群組
+     - 總共需 O(n)
 
 
 
-3. 每個已排序群組中第三個資料為該群組之中間值，針對 $\lceil \frac n5 \rceil$ 個群組的中間值，作「Select」，找出這些中間值中的中間值即為**「Median of medians」**
-   - 時間複雜度：遞迴呼叫「Select」函式，在中間值中找第 $\frac{\lceil\frac{n}{5}\rceil}{2}$ 小的中間值；需要 $T(\lceil\frac n5\rceil)$
+3. 每個已排序群組中**第三個資料為該群組之中間值**
+
+   - 對 $\lceil \frac n5 \rceil$ 個群組的中間值作「Selection with median」
+     - **這些中間值中的中間值即為「Median of medians」**
+
+   - 時間複雜度
+     - 遞迴呼叫「Selection with median」函式
+     - 在中間值中找第 $\frac{\lceil\frac{n}{5}\rceil}{2}$ 小的中間值
+       -  $T(\lceil\frac n5\rceil)$
 
 
 
 4. 以「Median of medians」作為「Pivot」進行「Partition」
-   - 時間複雜度：O(n)
+   - 時間複雜度
+     - O(n)
 
 
 
 5. 繼續尋找 i 大小的值
-   - 時間複雜度：O(s)，取決於「Median of medians」作為「Pivot」將資料切割之程度
+   - 時間複雜度
+     - **取決於「Median of medians」作為「Pivot」將資料切割之程度**
 
 ```cpp
 k = q-p+1;
@@ -763,43 +800,39 @@ if (i == k) {
 }
 ```
 
-
-
-
-
-- (下圖)扣除「Pivot」所在的群組以及不滿五筆資料之群組，**約有一半的群中組必有 3 筆資料** ≧ 「Pivot」
-
-  - 比「Pivot」大的資料個數 $(\frac 12 \cdot \lceil \frac n5\rceil -2) \cdot 3 = \lceil\frac {3n}{10} \rceil-6 $ 
-
-  - 相反的會有 $\lceil \frac{7n}{10}\rceil +6$ 筆資料 ≦ 「Pivot」
-
-
-
-![1542450245855](\willywangkaa\images\1542450245855.png)
-
-
+> - 扣除「Pivot」所在的群組以及不滿五筆資料之群組
+>   - **約有一半的群中組必有 3 筆資料** ≧「Pivot」
+>   - 比「Pivot」大的資料個數 $(\frac 12 \cdot \lceil \frac n5\rceil -2) \cdot 3 = \lceil\frac {3n}{10} \rceil-6 $ 
+>
+>   - 相反的會有 $\lceil \frac{7n}{10}\rceil +6$ 筆資料 ≦「Pivot」
+>
+> ![1542450245855](\willywangkaa\images\1542450245855.png)
+>
 
 - Time comlexity
-  - (下圖)在資料比較多的地方作「Select」以代表最糟糕的情況，所以在 $\lceil \frac{7n}{10}\rceil +6$ 中遞迴找出目標值，所以第五步的遞迴最壞需要 $T(\lceil \frac{7n}{10}\rceil + 6)$
-  - $T(n) = T(\lceil\frac n5\rceil) + T(\lceil \frac{7n}{10}\rceil+6)+O(n) \\ = T(\frac 15n)+ T(\frac 7{10}n) + cn = O(n)$ ( 以樹狀結構解決 )
-
-
+  - （下圖）最糟糕的情況
+    - **在資料比較多的地方作「Select」**
+    - 在 $\lceil \frac{7n}{10}\rceil +6$ 中遞迴找出目標值
+      - 第五步的遞迴最壞需要 $T(\lceil \frac{7n}{10}\rceil + 6)$
+  - $T(n) = T(\lceil\frac n5\rceil) + T(\lceil \frac{7n}{10}\rceil+6)+O(n) \\ = T(\frac 15n)+ T(\frac 7{10}n) + cn = O(n)$（以樹狀結構解此遞迴）
 
 ![1542451499380](\willywangkaa\images\1542451499380.png)
 
 
 
-> - (下圖)如果以 7 筆資料為一群組
->   - 至少有 $(\frac 12\cdot\lceil\frac n7\rceil -2)\cdot 4$ 筆資料 ≧ 「Pivot」
->   - 即 $\frac{2n}{7}-8$ 筆 ≧ 「Pivot」，則 $\lceil \frac {5n}{7}\rceil+8$ 筆 ≦ 「Pivot」
+> - （下圖）如果以**七筆資料為一群組**
+>   - 至少有 $(\frac 12\cdot\lceil\frac n7\rceil -2)\cdot 4$ 筆資料 ≧「Pivot」
+>     - $\frac{2n}{7}-8$ 筆 ≧「Pivot」
+>     - $\lceil \frac {5n}{7}\rceil+8$ 筆 ≦「Pivot」
 >   - $T(n) = O(n) + O(n) + T(\lceil\frac n7\rceil) +O(n) + T(\lceil \frac{5n}{7}\rceil+8) \\ = T(\frac n7)+ T(\frac 57n)+cn = O(n)$
 >
 >
 > ![1542450561714](\willywangkaa\images\1542450561714.png)
 >
-> - (下圖)如果以 3 筆資料為一群組
+> - （下圖）如果以**三筆資料為一群組**
 >   - 至少有 $(\frac 12\cdot\lceil\frac n3\rceil -2)\cdot 2$ 筆資料 ≧ 「Pivot」
->   - 即 $\frac{n}{3}-4$ 筆 ≧ 「Pivot」，則 $\lceil \frac {2n}{3}\rceil+4$ 筆 ≦ 「Pivot」
+>     - $\frac{n}{3}-4$ 筆 ≧「Pivot」
+>     - $\lceil \frac {2n}{3}\rceil+4$ 筆 ≦「Pivot」
 >   - $T(n) = O(n) + O(n) + T(\lceil\frac n3\rceil) +O(n) + T(\lceil \frac{2n}{3}\rceil+4) \\ = T(\frac n3)+ T(\frac 23n)+cn = O(n\log n)$ 
 >
 > ![1542450928741](\willywangkaa\images\1542450928741.png)
@@ -807,8 +840,6 @@ if (i == k) {
 
 
 ## Merge sort
-
-
 
 適用於「External sort」，所以可以又稱為「External merge sort」；其特性可讀入一些能放在內存內的數據量，在內存中排序後輸出為一個順串（即是內部數據有序的臨時文件），處理完所有的數據後再進行歸併
 
@@ -858,7 +889,7 @@ if (i == k) {
 
 
 
-### Iterative merge sort (Two way merge)
+### Iterative merge sort（Two way merge）
 
 
 
@@ -870,7 +901,7 @@ Example
 
 
 
-- Algorithm ( Merge 2 runs )
+- Algorithm（Merge 2 runs）
 
 ```cpp
 // A[l....m]: 子陣列「順串一」
@@ -903,11 +934,13 @@ Merge(A[], l, m, n) {
 
 - Time complexity：O( n log n )
   - 「順串一」的長度為 m、「順串二」的長度為 n，合併兩順串：
-    - $\left\{\begin{matrix}最少比較次數： & m \;or \;n\\ 最多比較次數 (有一方先掃描完)： & m+n-1\end{matrix}\right.$ 
-  - (下圖一) 所以假設整體要排序的資料總量為 n ，合併一次所有的順串需 O(n)
+    - $\left\{\begin{matrix}最少比較次數： & m \;or \;n\\ 最多比較次數（有一方先掃描完）：& m+n-1\end{matrix}\right.$ 
+  - （下圖一）所以假設整體要排序的資料總量為 n ，合併一次所有的順串需 O(n)
     - n 筆資料作「2-way merge sort」
-    - (下圖二) 可以看成一棵「Completed binary search tree」
-    - $\because 「Merge」回合數 = 樹高 -1 \\ \Rightarrow 2^{k-1} = n \Rightarrow k = \lceil \lg n\rceil +1 \\ \Rightarrow 「Merge」回合數 = \lceil \lg n\rceil \\ \because 每個回合作「Merge」需\; O(n) \; \\ \therefore 總共的時間複雜度為\; O(n \log n)$
+    - （下圖二）可以看成一棵「Completed binary search tree」
+    - 因為**「Merge」回合數 = 樹高 - 1**
+      - $\Rightarrow 2^{k-1} = n \Rightarrow k = \lceil \lg n\rceil +1$
+      - $\Rightarrow 「Merge」回合數 = \lceil \lg n\rceil \\ \because 每個回合作「Merge」需\; O(n) \; \\ \therefore 總共的時間複雜度為\; O(n \log n)$
 
 
 
@@ -919,9 +952,7 @@ Merge(A[], l, m, n) {
 
 圖二
 
-### Recursive merge sort (Two way merge)
-
-
+### Recursive merge sort（Two way merge）
 
 採用「Devide and conquer」的技巧
 
@@ -929,7 +960,7 @@ Merge(A[], l, m, n) {
 
 步驟：
 
-1. 一律切割成兩等分之「子串列」( Sublist )
+1. 一律切割成兩等分之「子串列」（Sublist）
 
    - O( 1 )
 2. 左右子串列各自作「Merge sort」，算出左右之「順串」
@@ -938,7 +969,10 @@ Merge(A[], l, m, n) {
 3. 對左右順串作「Merge」
    - O( n )
 
-> 與「Quicksort」相比，「Mergesort」把時間（O(n)）花在合併的階段，而「Quicksort」則是把時間（O(n)）花在作分割
+> 「Quicksort」相比
+>
+> - 「Mergesort」把時間（O(n)）**花在合併的階段**
+> - 「Quicksort」把時間（O(n)）**花在分割階段**
 
 
 
@@ -995,15 +1029,15 @@ Mergesort(A[], L, R) {
 
 - Space complexity
   - O( n )
-    - 在作「Merge」的時候為了要暫存合併的結果，所以空間占用大小等於資料量（n），空間需求高
+    - 在作「Merge」的時候為了**暫存合併的結果**
+      - 空間占用大小等於資料量（n）
+      - 空間需求高
 - **Stable**
   - 因為在作「Merge」時，`if(A[p]<=A[q])..` **會讓左順串與右順串在有兩個同樣大小的值時，左順串優先進入新的順串之中**
 
 
 
 ### [輔助結構] Selection tree
-
-
 
 如果在「Mergesort」中一次合併多個順串（k 個順串），稱之為「K-way mergesort」
 
@@ -1019,9 +1053,17 @@ Example
 
 
 
-上圖每次要對 k 個順串作合併時，如果資料總量為 n ，而**每次從 k 個順串中找到最小的值必須花 k-1 次比較**，並且最多要**歷經 n-1 個回合**，**所以作一次「k-way merge」之時間複雜度為 O( n × k )**
+- 每次要對 k 個順串作合併時
+  - 資料總量為 n
+  - **每次從 k 個順串中找到最小的值必須花 k-1 次比較**
+  - 最多要**歷經 n-1 個回合**
+  - **作一次「k-way merge」之時間複雜度為 O(n×k)**
 
-> 為了減少比較的次數，所以以此資料結構輔佐，有兩個資料，「Winner tree」與「Loser tree」，通常在實現上，多採用「Loser tree」
+> 減少比較的次數
+>
+> - 以資料結構輔佐
+>   - 「Winner tree」、「Loser tree」
+> - 在實現上多採用「Loser tree」
 
 
 
@@ -1053,16 +1095,23 @@ Example
 
 ![1542092514867](\willywangkaa\images\1542092514867.png)
 
-( 重複動作直到「新順串」建立完 )
+（重複動作直到「新順串」建立完）
 
 
 
-- Time complexity (假設為「k-way merge」、總資料數為 n)
+- Time complexity（假設為「k-way merge」、總資料數為 n）
   - 建立「Winner tree」：O( k )
-    - 分別從 k 個順串中複製出**最小值**作為「Winner tree」的葉節點：O( k )
-    - 在「Winner tree」中的葉節點，以 k-1 次的比較找出最小值節點作為「根節點」：O( k )
+    - 分別從 k 個順串中複製出**最小值**作為「Winner tree」的葉節點
+      - O( k )
+    - 在「Winner tree」中的葉節點，以 k-1 次的比較找出最小值節點作為「根節點」
+      - O( k )
   - 輸出「根節點」至「新順串」中，被輸出的順串之下一筆資料遞補，重複 n-1 回合：O( n×log k )
-    - 決定根節點 ( 最小值 )，假設 l 為葉節點數量，則目前的「Winner tree」之 l = k =  8，樹高 h 為 $O(\lceil\log l\rceil+1)$ ，所以決定根節點需要歷經 $O(h-1) \equiv O(\lceil\lg(l)\rceil+1-1)$：$O(\log k)$
+    - 決定根節點（最小值）
+      - 假設 $l$ 為葉節點數量
+        - 「Winner tree」之葉節點為$l = k =  8$
+        - 「Winner tree」樹高 h 為 $O(\lceil\log l\rceil+1)$
+      - 決定根節點需要歷經 $O(h-1) \equiv O(\lceil\lg(l)\rceil+1-1)$
+        - $O(\log k)$
     - 輸出根節點：O( 1 )
     - 被輸出之順串下一筆資料遞補：O( 1 )
   - 總體時間複雜度
@@ -1084,17 +1133,22 @@ Example
 
 ![1542093996385](\willywangkaa\images\1542093996385.png)
 
-( 執行直到「新順串」建立完成 )
+（執行直到「新順串」建立完成）
 
 
 
-Time complexity (假設為「k-way merge」、總資料數為 n)
+Time complexity （假設為「k-way merge」、總資料數為 n）
 
 - 建立「Loser tree」：O( k )
-  - 分別從 k 個順串中複製出**最小值**作為「Loser tree」的葉節點：O( k )
+  - 分別從 k 個順串中複製出**最小值**作為「Loser tree」的「葉節點」：O( k )
   - 在「Loser tree」中的葉節點，以 k-1 次的比較找出最小值節點作為「根節點」：O( k )
 - 輸出「根節點」至「新順串」中，被輸出的順串之下一筆資料遞補，重複 n-1 回合：O( n×log k )
-  - 決定根節點 ( 最小值 )，假設 l 為葉節點數量，則目前的「Loser tree」之 l = k =  8，樹高 h 為 $O(\lceil\log l\rceil+1)$ ，所以決定根節點需要歷經 $O(h-1) \equiv O(\lceil\lg(l)\rceil+1-1)$：$O(\log k)$
+  - 決定根節點（最小值）
+    - 假設 $l$ 為葉節點數量
+      - 「Winner tree」之葉節點為$l = k =  8$
+      - 「Winner tree」樹高 h 為 $O(\lceil\log l\rceil+1)$
+    - 決定根節點需要歷經 $O(h-1) \equiv O(\lceil\lg(l)\rceil+1-1)$
+      - $O(\log k)$
   - 輸出根節點：O( 1 )
   - 被輸出之順串下一筆資料遞補：O( 1 )
 - 總體時間複雜度
@@ -1102,21 +1156,36 @@ Time complexity (假設為「k-way merge」、總資料數為 n)
 
 
 
-> 在執行「External merge sort」時，假設欲排序資料為 n ，其中「K-way merging on m runs」的時候，在使用「Selection tree」的情況下，其時間複雜度為 O( n lg m )
+> - 「External merge sort」
+>   - 排序資料：n
+>     - 「K-way merging on m runs」
+>   - 使用「Selection tree」其時間複雜度
+>     - O( n lg m )
 >
 > ![1542095449837](\willywangkaa\images\1542095449837.png)
 >
-> 首先，為了分析假設 m 個順串被 k-way 分成了**兩堆**，由上面的「Selection tree」知道每次作「k-way merge」之時間複雜度為 $O( \frac n2 \times \lg k )$，又因為有兩堆所以總共一次「Merge」需要 O( n lg k )，所以推廣後無論分幾堆作「Merge」之時間複雜度為 O( n lg k )
+> - 假設 m 個順串被 k-way 分成了**兩堆**
+>   - 由「Selection tree」得知
+>     - 作「k-way merge」之時間複雜度
+>       -  $O( \frac n2 \times \lg k )$
+>   - 因為有兩堆所以「Merge」總共需要
+>     - O( n lg k )
+>   - 推廣後無論分幾堆作「Merge」之時間複雜度
+>     - **O( n lg k )**
 >
-> 因為 $回合數 = 樹高 - 1$ (見下圖)，在「Sorting」時需要執行 $\lceil log_km \rceil$ 回合
+> **因為『回合數 = 樹高 - 1』（見下圖），在「Sorting」時需要執行** $\lceil log_km \rceil$ **回合**
 >
 > ![1542097917874](\willywangkaa\images\1542097917874.png)
 >
 >
 >
 > - Time complexity
->   - 由樹來看 Degree = k，Leaf = m $\Rightarrow k^{h-1} = m \\ \Rightarrow h = \lceil\log_k m\rceil +1\\ 回合數 = h -1 = O(\log_k m)$
->   - 總共時間複雜度 $O((n \cdot \lg k) \times \log_k m) \\ = O(n \cdot \frac{\log k}{\log 2}\cdot\frac{\log m}{\log k})\\ = O(n\cdot\lg m)$
+>   - 以樹的觀點
+>     - Degree = k
+>     - Number of leaves = m 
+>       - $\Rightarrow k^{h-1} = m \\ \Rightarrow h = \lceil\log_k m\rceil +1\\ 回合數 = h -1 = O(\log_k m)$
+>   - 總共時間複雜度
+>     -  $O((n \cdot \lg k) \times \log_k m) \\ = O(n \cdot \frac{\log k}{\log 2}\cdot\frac{\log m}{\log k})\\ = O(n\cdot\lg m)$
 
 
 
@@ -1130,7 +1199,8 @@ Time complexity (假設為「k-way merge」、總資料數為 n)
 
 1. 先將 n 筆資料建構成「Max heap」
    - Time complexity：O(n)
-2. 執行「Del-max」並將取出資料放置於陣列最後端資料被移除處 ( 見「Binary heap」之刪除節點 )，重複動作 n-1 回合
+2. 執行「Del-max」並將取出資料放置於陣列最後端資料被移除處（見「Binary heap」之刪除節點）
+3. 動作（2）重複 n-1 回合
 
 
 
@@ -1148,7 +1218,7 @@ Example
 
 ![1542105935299](\willywangkaa\images\1542105935299.png)
 
-(重複動作)
+（重複動作）
 
 ![1542106039971](\willywangkaa\images\1542106039971.png)
 
@@ -1216,14 +1286,10 @@ Example
 
 # Linear time sorting method
 
-
-
-**不採用「Comparsion based」技巧之排序手法**
+**不採用「Comparison based」技巧之排序手法**
 
 
 
-> 注意！
->
 > 在探討線性時間複雜度之排序技術前，要知道這類排序都要有一個前提，**資料值域必須有範圍限制**，才能將排序降低為線性時間
 >
 > - Example：當排序資料只有 0 與 1 兩種類型資料時，最快的排序方法
@@ -1234,8 +1300,6 @@ Example
 
 
 ## Radix sort 基數排序法 ( Data structure 書上版本 )
-
-
 
 又稱為「Bucket sort」，採取「Distribution and merge」之技巧
 
@@ -1250,22 +1314,25 @@ Example
 
 
 
-### LSD radix sort (Least significant digital)
+### LSD radix sort（Least significant digital）
 
 
 
 步驟：
 
-1. 令 r 為基底( Base ) ，準備 r 個「Bucket」編號為 0 ~ (r-1)
+1. 令 r 為基底（Base）
+   - 準備 r 個「Bucket」編號為 0 ~ (r-1)
 2. 令 d 為「Input data」**中所有值以 r 為基底之最大位數個數**：O( n )
    - **之後在執行排序時只需要 d 回合即可完成**
 3. 由最低位元至最高位元執行：
-   1. 分派 ( Distribution )：依各個資料之該位元分派到對應的「Bucket」
-   2. 合併 ( Merge )：將所有「Bucket」由小到大（0 ~ (r-1)）合併
+   1. 分派（Distribution）
+      - 依各個資料之該位元分派到對應的「Bucket」
+   2. 合併（Merge）
+      - 將所有「Bucket」由小到大（0 ~ (r-1)）合併
 
 
 
-Example ( 基底為 10；十進位 )
+Example（基底為 10；十進位）
 
 排序：329、457、657、839、436、720、355
 
@@ -1287,26 +1354,31 @@ Example ( 基底為 10；十進位 )
 
 
 
-### MSD radix sort (Most significant digital)
+### MSD radix sort（Most significant digital）
 
 
 
 步驟：
 
-1. 令 r 為基底( Base ) ，準備 r 個「Bucket」編號為 0 ~ (r-1)
+1. 令 r 為基底（Base） ，準備 r 個「Bucket」編號為 0 ~ (r-1)
 2. 依照「最高位元」的數值分派資料至「Bucket」中
 3. 每個「Bucket」內各自排序
 4. 由小到大合併所有「Bucket」
 
 
 
-> 與「LSD radix sort」最大的區別，「MSD radix sort」只會作「分派」與「合併」各一次，所以若資料位數很大時，或是基底很小時，建議採用「MSD radix sort」
+> 「LSD radix sort」最大的區別
+>
+> - 「MSD radix sort」
+>   - 作「分派」與「合併」各一次
+>   - 若「資料位數很大」或「基底很小」時
+>     - 建議採用「MSD radix sort」
 
 
 
 
 
-#### Bucket sort ( Algorithm 書上版本 )
+#### Bucket sort（Algorithm 書上版本）
 
 
 
@@ -1404,12 +1476,17 @@ Countingsort(A[], n, k) {
 > 探討為何 `O(k)+O(n)+O(k)+O(n)` 為線性時間複雜度
 >
 > - 觀點一
->
-> 若鍵值值域之範圍變化是 O(n) 的，注意！此處的 O(n) 為資料範圍，所以也就是說「Input array」中每一個元素在資料範圍中**均勻分布**；以此觀點來看時間複雜度就為 **O(n+k) => O(n+O(n)) => O(n)**
+>   - 若鍵值值域之範圍變化是 O(n)
+>     - 此處的 O(n) 為資料範圍
+>       - **意旨「Input array」中每一個元素在資料範圍中均勻分布**
+>     - 此觀點來看時間複雜度為
+>       - **O(n+k) => O(n+O(n)) => O(n)**
 >
 > - 觀點二
+>   - 若「Input array」之值域受到限制
+>     - k 可以視為一個常數
+>       - O(n+k) = O(n)
 >
-> 若「Input array」之值域受到限制，則 k 可以視為一個常數，所以 O(n+k) = O(n)
 
 
 
@@ -1424,24 +1501,42 @@ Countingsort(A[], n, k) {
 
 ### Counting sort 問題與探討
 
-
-
 延續上面探討時間複雜度之觀點一，已知「Counting sort」之時間複雜度為 O(n+k)，若**資料範圍** k 為線性等級 O(k) ，則整理排序時間複雜度為 O(n)
 
-倘若**資料範圍** k 為平方等級 O($n^2$) （**也就是說「Input array」中的元素在資料範圍超出原本「Counting sort」可執行排序的資料範圍**），則必須探討其時間複雜度之變化 O(n + O($n^2$))
+- 倘若**資料範圍** k 為平方等級 O($n^2$) 
+  - **意旨「Input array」中的元素在資料範圍超出原本「Counting sort」可執行排序的資料範圍**
+
+- 必須探討其時間複雜度之變化 O(n + O($n^2$))
 
 
 
-Example ( 用例子解釋 )
+Example（用例子解釋）
 
-有一「Counting sort」只能對值域 0 ~ 9 的資料集合**（O(n)）**作排序，那麼該「Counting sort」要如何對一個值域為 0 ~ 99 **（O(**$n^2$**)）**的資料集合作排序
+- 一「Counting sort」只能對值域 0 ~ 9 的資料集合**（O(n)）**作排序
+  - 要如何對一個值域為 0 ~ 99 **（O(**$n^2$**)）**的資料集合作排序？
 
 以**「基數排序法」的想法為基礎**，則可以在兩回合中將排序完成
 
-1. 對每個鍵值作「mod n」（n 為「Countign sort」能夠排序的範圍亦可以想為「基底」）取其作為排序鍵值，對每個資料以新排序鍵值作「Counting sort」，而結果會等同於以「Radix sort」作第一回合後合併之狀態
-   - 因為值域介於 0 ~ (n-1) 之間，所以第一回合使用「Counting sort」的排序時間複雜度為 O(n)
-2. 以第一回合之「Output array」作為「Input array」，對每個鍵值作「÷ n」再作「mod n」取其作為排序鍵值，並對每個資料以新排序鍵值作「Countint sort」，而結果會等同於以「Radix sort」作第二回合後合併之狀態
-   - 若要採用「基數排序法」作為基底，每回合的排序必須是「Stable」才能正確排序，而在這個情況下使用的「Counting sort」亦為「Stable」，所以排序執行得以成功，並且第二回合之時間複雜度一樣為 O(n)
+1. 對每個鍵值作「mod n」
+
+   - n 為「Counting sort」能夠排序的範圍，亦可以視為「基底」
+   - 取其作為排序鍵值，對每個資料以新排序鍵值作「Counting sort」
+     - 將結果以類似**「『Radix sort』每回合最後之合併動作」**收尾
+
+   - 因為值域介於 0 ~ (n-1) 之間
+     - 第一回合使用「Counting sort」的排序時間複雜度為 O(n)
+
+2. 以第一回合之「Output array」作為「Input array」
+
+   - 對每個鍵值作「÷ n」再作「mod n」取其作為排序鍵值
+   - 對每個資料以新排序鍵值作「Counting sort」
+     - 將結果以類似「『Radix sort』每回合最後之合併動作」收尾
+
+   - 採用「基數排序法」作為基礎
+     - 每回合的排序必須是「Stable」才能正確排序
+       - 「Counting sort」為「Stable」
+       - 排序執行成功，
+     - 第二回合之時間複雜度為 O(n)
 
 - **總時間複雜度為 2 × O(n) = O(n) ，仍為線性時間複雜度**
 

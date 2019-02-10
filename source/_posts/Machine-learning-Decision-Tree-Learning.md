@@ -1,4 +1,4 @@
-title: Decision Tree Learning
+title: Machine learning - Decision Tree Learning
 author: Willy Wang
 tags:
   - Decision Tree Lrearning

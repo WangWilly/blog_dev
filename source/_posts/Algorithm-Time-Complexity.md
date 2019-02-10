@@ -304,3 +304,56 @@ date: 2018-08-28 21:57:00
 - **Ex** 比較 $n^{1 + \epsilon}$ 與 $\frac{n^2}{\log n}$ 的等級，其中 $0<\epsilon < 1$。
   - ＜猜測＞：**後者比較大**
   - ＜分析＞：$n^{1+\epsilon} = n^{2-\delta}, 0<\delta<1 \Rightarrow \frac{n^2}{n^\delta} \\ \because \log n  = o(n^\delta) \\ \therefore n^{1 + \epsilon}  = O(\frac{n^2}{\log n})$
+
+
+
+# 補充例題
+
+
+
+Example（101交通大學資料結構與演算法）
+
+Consider the following three problem. **Assume that the only operations allowed on the data are**
+
+- *comparing the values of two floating-point numbers and identifying the larger value*;
+- *comparing the distance between two array entries (the absolute value of the difference between the two array entries) with the distance between two other array entries*;
+- *swapping two entries in the array*.
+
+Further assume that **each allowed operation has unit cost**. What are the worst-case optimal asymptotic running times for algorithms that solve these problems?
+
+- （1）**Nearest neighbors**: given an **unsorted array** of n floating-point numbers as input, return two of the numbers that are closest in value to each other.
+  - （A）$O(n\log n)$
+  - （B）$O(\log n)$
+  - （C）$O(n^2)$
+  - （D）$O(n^3)$
+  - （E）$O(n)$
+
+排序後元素兩兩算出距離 d，再從所有距離裡找出最小值
+
+$\Rightarrow O(n\log n) + O(n) + O(n) = O(n\log n)$
+
+- （2）**Farthest neighbors**: given an **unsorted array** of n floating-point numbers as input, return two of the numbers that are farthest in value from each other.
+
+  - （A）$O(n\log n)$
+  - （B）$O(\log n)$
+  - （C）$O(n^2)$
+
+  - （D）$O(n^3)$
+  - （E）$O(n)$
+
+找最大值、最小值
+
+$\Rightarrow O(n) + O(n) = O(n)$ 
+
+- （3）Given a floating-point number to find a closest value in a **sorted array** of n floating-point numbers.
+
+  - （A）$O(n\log n)$
+  - （B）$O(\log n)$
+  - （C）$O(n^2)$
+
+  - （D）$O(n^3)$
+  - （E）$O(n)​$
+
+使用「Binary search」找到最接近的值
+
+$\Rightarrow O(\log n)$ 

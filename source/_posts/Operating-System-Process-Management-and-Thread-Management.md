@@ -1431,6 +1431,22 @@ $$
 
 
 
+> - Consider a **preemptive priority scheduling algorithm** based on dynamically changing priorities
+>   - **Larger priority numbers imply higher priority**
+>   - When a process is waiting for the CPU (**In the ready queue, but not running**), its priority changes **at a rate α**
+>   - **When it is running**, its priority changes **at a rate β**
+>   - All processes are given a priority of 0 when they enter the ready queue
+>
+> **What is the algorithm that results from β > α > 0 ?**
+>
+> 因為 β 的值比 α 還高，所以隨著該程序不斷在 CPU 執行，其**優先權提升的變化度**會比在「Ready queue」的程序還高，這使得「Ready queue」中的程序其優先權不可能大到可以插斷 CPU 正在執行的程序，所以為「FCFS排班演算法」
+>
+> **What is the algorithm that results from α < β < 0?**
+>
+> 因為「Ready queue」的程序，其**遞減變化度** α 會比在 CPU 執行的程序的**遞減變化度** β 還高，新加入的優先權為零，而**「Ready queue」的程序**與**正在 CPU 執行的程序**優先權總是隨著時間遞減，所以新加入的程序永遠可以插斷目前執行的程序，且因為在 CPU 執行的程序遞減程度較緩，所已不可能被「Ready queue」中的程序插斷，所以為「LIFO排班演算法」
+
+
+
 ### (補充) CPU utilization 計算
 
 - Modern 版

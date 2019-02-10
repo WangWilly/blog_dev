@@ -1,4 +1,4 @@
-title: Supervised learning 監督式學習 - Concept Learning 概念學習
+title: Machine learning - Supervised learning
 author: Willy Wang
 tags:
   - Concept Learning
@@ -8,9 +8,8 @@ categories:
   - Machine Learning
 date: 2018-04-20 16:15:00
 ---
-# Supervised learning 監督式學習 - <br>Concept Learning 概念學習
-
----
+# Supervised learning 監督式學習
+Concept Learning 概念式學習
 
 ![machinelearningconcept](\willywangkaa\images\machinelearningconcept.png)
 

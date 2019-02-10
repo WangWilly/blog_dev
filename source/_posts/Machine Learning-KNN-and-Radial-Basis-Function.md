@@ -1,4 +1,4 @@
-title: KNN and Radial Basis Function - K近鄰算法 與 放射狀基底函數網路
+title: Machine Learning - KNN and Radial Basis Function
 author: Willy Wang
 tags:
   - KNN
@@ -8,13 +8,13 @@ categories:
   - Machine Learning
 date: 2018-05-13 20:59:00
 ---
-# 前言<br>機器學習分兩大類
+# 機器學習性質
 
 ---
 
 
 
-## Eager alogorithm(積極)
+## Eager algorithm(積極)
 
 
 
@@ -22,7 +22,7 @@ date: 2018-05-13 20:59:00
 
 
 
-- 將歷史資料做了很多分析與篩選( Munge )等預處理。
+- 將歷史資料做了很多分析與篩選( Mung )等預處理。
 - 因為訓練出的假說很明確( Explicit )，所以自然判斷也比起 Lazy 方法更迅速。
 
 
@@ -31,7 +31,7 @@ date: 2018-05-13 20:59:00
 
 
 
-- Artifitial neural network
+- Artificial neural network
 - Decision tree
 
 

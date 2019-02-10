@@ -1,8 +1,7 @@
-title: Range query problem
+title: Algorithm - Range query problem
 author: Willy Wang (willywangkaa)
 tags:
   - Sequence
-  - Tree
   - Sparse table
 categories:
   - Algorithm

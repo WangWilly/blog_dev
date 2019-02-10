@@ -722,7 +722,7 @@ Example
 
 步驟：
 
-1. 從各個樹根找出最小值，令存在最小值數根之樹為 T，其餘樹之集合稱為 $H_1$ (Binominal heap)
+1. 從各個樹根找出最小值，令存在最小值數根之樹為 T，其餘樹之集合稱為 $H_1$ （Binominal heap）
 2. 刪 T 的樹根會生成子樹，稱之為 $H_2$
 3. Merge($H_1, H_2$)
 
@@ -860,7 +860,7 @@ Example 刪除節點 12
 > | :-------------: | :--------------------------------------: | :----------------------------: |
 > | Make empty heap |               $\Theta(1)$                |          $\Theta(1)$           |
 > |    Insert x     |             $\Theta(\log n)$             |          $\Theta(1)$           |
-> |   Extract min   |             $\Theta(\log n)$             |        **O( \log n )**         |
+> |   Extract min   |             $\Theta(\log n)$             |         **O( log n )**         |
 > |  Union (Merge)  |         $\Theta(n)$：Build heap          |   $\Theta(1)$：**偷懶合併**    |
 > |  Decrease key   |             $\Theta(\log n)$             |          $\Theta(1)$           |
 > |    Delete x     | $\Theta(\log n)$：視為子 heap 中 Del-min |          **O(log n)**          |
@@ -869,3 +869,58 @@ Example 刪除節點 12
 > - Decrease key in binary heap ( $\Theta(\log n)$ )
 >
 > ![decreasekeyinbinaryheap](\willywangkaa\images\decreasekeyinbinaryheap.png)
+
+
+
+> （參考：[Re: ［理工］ 106交大資演9 - 看板Grad-ProbAsk - 批踢踢實業坊](https://www.ptt.cc/bbs/Grad-ProbAsk/M.1549085126.A.609.html)）
+>
+> - 「Fibonacci Heap」
+>   - DS 與 Algorithm 版實作一樣
+>   - **「Worst case time/amortized time」皆一致**
+> - 「Binomial Heap」
+>   - DS 和 Algorithm 對於 Merge/Insert 的實作不一樣
+>     - DS 版本直接串接**（Lazy Merge）**
+>     - Algorithm 版每次「Insert/Merge」要保證「Binomial Heap」中沒有同 Order 的
+>       「Binomial Tree」**（Hard-working merge）**
+>
+> 時間複雜度整理
+>
+> |                     | Binomial (Algorithm) | Binomial (Algorithm) | Lazy-Binomial (DS) | Lazy-Binomial (DS) | Fibonacci | Fibonacci |
+> | ------------------- | -------------------- | -------------------- | ------------------ | ------------------ | --------- | --------- |
+> | **Operation**       | Worst                | Amortized            | Worst              | Amortized          | Worst     | Amortized |
+> | Make **empty heap** | Θ(1)                 | Θ(1)                 | Θ(1)               | Θ(1)               | Θ(1)      | Θ(1)      |
+> | Insert x            | Θ(lg n)              | Θ(1)                 | Θ(1)               | Θ(1)               | Θ(1)      | Θ(1)      |
+> | Minimum             | Θ(1)                 | Θ(1)                 | Θ(1)               | Θ(1)               | Θ(1)      | Θ(1)      |
+> | Extract-min         | Θ(lg n)              | Θ(lg n)              | Θ(lg n)            | Θ(lg n)            | Θ(lg n)   | Θ(lg n)   |
+> | Union (Merge)       | Θ(lg n)              | Θ(1)                 | Θ(1)               | Θ(1)               | Θ(1)      | Θ(1)      |
+> | Decrease key        | Θ(lg n)              | **O(lg n)**          | Θ(lg n)            | **O(lg n)**        | Θ(n)      | Θ(1)      |
+> | Find min            | Θ(lg n)              | Θ(lg n)              | Θ(lg n)            | Θ(lg n)            | Θ(n)      | Θ(lg n)   |
+>
+> - 「Minimum」
+>   - 假設一個指標指向「Minimum element」
+>     - 進行其他操作時**指標必須進行相對應的更新**
+>       - **「Minimum」可以在 Θ(1) 完成**
+>   - 「Fibonacci Heap」一般都會維護這個指標
+>   - **當「Binomial Heap」不維護這個指標時**
+>     - **「Minimum」之「Worst/amortized」為 Θ(lg n)**
+> - 「Extract-min」
+>   - 課本上一般證明為 O(lg n)
+>     - 但是不可能為 O(lg n)，因為如此一來只要靠 Insert/Extract-min 就可得到 O(n lg n) 排序
+>       - 無論「Worst」或是「Amortized」都必須是 Θ(lg n)
+> - 「Delete」
+>   - 依靠「Decrease-key」與「Extract-min」實作
+>     - 時間複雜度為 Θ(「Decrease-key」+「Extract-min」)
+> - 「Fibonacci heap」的「Decrease-key」
+>   - **「Worst case」： Θ(n)**
+>     - 可藉由一連串 Insert/Decrease-key/Delete 建構出一個「Fibonacci **tree**」並退化成一個串列，**其全部的節點都已被標記（標記節點；用來標示一個非根節點已失去一個子節點，則不得再奪其子節點，可能需要進行其他特別操作）**
+>     - 對**葉節點**作 Decrease-key 時，必須要把所有串列上的點都「Cut」（分離成為一個獨立的「Fibonacci **tree**」），需要 Θ(n)
+> - 「Binomial heap」的「Insert/Union」
+>   - 「Amortized time」：O(1)
+>   - http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.420.43
+>     - 第六小節的第一段最後提到參考文獻
+>   - https://link.springer.com/chapter/10.1007%2F3-540-57568-5_242
+>     - Double-ended binomial queues, by C. M. Khoong and H. W. Leong
+> - 「Binomial heap」的「Decrease-key」
+>   - **「Amortized time」：O(lg n)**
+>   - 找不到下限證明**無法聲明其時間複雜度為 Θ(lg n)**
+>     - （猜測應該很多人都研究過，沒有辦法證明「Amortized time」為 O(lg n)，所以設計「Fibonacci Heap」）

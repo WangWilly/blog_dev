@@ -1,4 +1,4 @@
-title: Integration by parts - 分部積分法以及常用的分部積分
+title: Calculus - Integration
 author: Willy Wang
 tags:
   - Integration

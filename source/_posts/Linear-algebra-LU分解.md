@@ -1,14 +1,13 @@
-title: Linear Algebra - 重點分析 - LU分解
+title: Linear algebra - LU分解
 author: Willy Wang
 tags:
   - LU分解
   - LU Decomposition
-  - 重點
 categories:
   - Linear Algebra
 date: 2018-05-07 16:01:00
 ---
-# Linear Algebra - 重點分析 LU分解
+# Linear Algebra - LU分解
 
 ---
 

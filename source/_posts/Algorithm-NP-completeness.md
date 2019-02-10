@@ -285,3 +285,87 @@ $$
 > $\Rightarrow C$ 通過 G 每節點一次
 >
 > $\Rightarrow C$ 為一個在 G 中的「Hamilton cycle」
+
+
+
+# 補充例題
+
+
+
+Example（107交通大學資料結構與演算法）
+
+- A Hamiltonian path of a graph G is a path that visits each node in G exactly once
+- Suppose that there is an $O(n^7)$-time algorithm that decides HamP(G) for any n-node graph G
+  - HamP(G)
+  - Input：an undirected graph G
+  - Output："Yes", if G has a Hamiltonian path; "No", otherwise
+- Give an $O(n^7)$-time algorithm that decides HamEx(G, x) for any n-node graph G, and prove the correctness of your algorithm
+- Note that your algorithm must have running time $O(n^7)$
+- No partial credit will be given if your algorithm runs asymptotically slowr
+  - HamEx(G, x)
+  - Input：an undirected graph G, and a node x in G
+  - Output："Yes", if G has a Hamiltonian path from node u to v so that u≠x and v≠x; "No", otherwise
+
+（參考：[Re: ［理工］ 107 交大資演10 - 看板Grad-ProbAsk - 批踢踢實業坊](https://www.ptt.cc/bbs/Grad-ProbAsk/M.1548560644.A.EB0.html)）
+
+> 令 G' = (V', E')，其中
+>
+> - V' = V ∪ {s, t, s', t'}
+>   - |V'| = O(|V|)
+> - E' = E ∪ {(s, s'), (t, t')} ∪ {(s', y) | for all y != x)} ∪ {(z, t') | for all z != x)}
+>
+> **證明HamEx(G, x) = "Yes" iff HamP(G') = "Yes"**
+>
+> - If HamEx(G, x) = "Yes", then HamP(G') = "Yes"
+>   - G 中的「Hamiltonian path」頭尾不為 x
+>   - 因為 s' 與 G 中所有不是 x 的點相連且 t' 跟 G 中所有不是 x 的點相連
+>   - 則 ( s, s' ,HP in G, t', t ) 必是一條 G' 上的「Hamiltonian path」
+> - If HamP(G') = "Yes", then HamEx(G, x) = "Yes"
+>   - 令 HP 為 G' 中的「Hamiltonian path」
+>   - 因為 s 和 t 在 G' 中的 Degree 只有 1
+>     - **G' 中的「Hamiltonian path」頭尾必為 s 和 t**
+>   - s 和 t 只分別跟 s' 和 t' 相連
+>     - 「Hamiltonian path」在 G' 中必為 ( s, s', HP in G, t', t )
+>   - s' 和 t' 都不與 x 相連
+>     - **在 G 中的「Hamiltonian path」頭尾必不為 x**
+
+
+
+Example（101交通大學資料結構與演算法）
+
+**Problem I**: Given a graph G=(V,E), is there a minimum-degree spanning tree T of **maximum degree two**, where the minimum-degree means that the maximum degree is maximized?
+
+> 其問題為一個「Hamiltonian path」問題
+
+**Problem II**: Given an undirected graph and a positive integer K, is there a path of length at **most** K, **where each edge has weight 1 and each vertex is visited exactly once（Simple path）**?
+
+> 其問題為一個「Shortest path」問題
+
+**Problem III**: Given an undirected graph and a positive integer K, is there a path of length at **least** K, **where each edge has weight 1 and each vertex is visited at most once（Simple path）**?
+
+> 其問題為一個「Longest path」問題
+
+- Which of the following statements is wrong?
+  - （A）A problem is NP-complete, if it belongs to the class NP and all the other members in NP can be reduced to it in polynomial time.
+  - （B）Problem I belongs to NP.
+  - （C）Problem III belongs to NP.
+  - （D）Problem III is NP-complete.
+  - **（E）If we change the graph in Problem III to directed graph, then it belongs to P.**
+
+
+
+- Which of the followings is wrong?
+  - （A）If a spanning tree has the maximum degree as 2, then it is a Hamiltonian path.
+  - （B）If Problem III can be solved in polynomial time, then we can find a Hamiltonian path in polynomial time.
+  - **（C）Problem I can be solved with the Prim's algorithm.**
+  - （D）A graph can have more than one spanning tree.
+  - （E）If P=NP, then Problem II can be solved in polynomial time.
+
+
+
+- Continuing the previous question, which of the following is wrong?
+  - （A）Problem II can be solved with the Floyd-Warshall algorithm.
+  - （B）*An algorithm for Problem III can be used to find the longest path of a graph.*
+  - （C）If there is an algorithm that can find the longest path in a graph in polynomial time, then Problem III can solved in polynomial time.
+  - **（D）Problem III can be reduced to Problem II by making each weight negative and thus can be solved with the Bellman-Ford algorithm.**
+  - （E）If Problem III can be solved in polynomial time, then P=NP.

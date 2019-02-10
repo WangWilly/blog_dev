@@ -1,4 +1,4 @@
-title: 泰勒級數
+title: Discrete mathematics - 泰勒級數
 author: Willy Wang
 tags:
   - Taylor Series

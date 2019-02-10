@@ -1,4 +1,4 @@
-title: Patent Claim - 專利聲明
+title: Technical Patent Study - Patent Claim
 author: Willy Wang
 tags:
   - Patent

@@ -1,4 +1,4 @@
-title: Patent Applying 專利申請
+title: Technical Patent Study - Patent Applying
 author: Willy Wang
 tags:
   - Patent

@@ -1,10 +1,9 @@
-title: Patent Specification - 專利說明書
+title: Technical Patent Study - Patent Specification
 author: Willy Wang
 tags:
   - Patent
   - Specification
   - 專利說明書
-  - 專利
 categories:
   - Technical Patent Study
 date: 2018-05-05 12:41:00

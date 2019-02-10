@@ -488,6 +488,16 @@ Mst_kruskal(G, W) {
   - O(|V|) + O(|E|log|E|)+O(|E|) = O(|E|log|E|)
   - 因為 |E| ≦ |V|×|V|，所以 **O(|E|log|E|) = O(|E|log|**$V^2$**|) = O(|E|log|V|)**
 
+> Example（102 交通大學資料結構與演算法）
+>
+> - The running time of Kruskal's algorithm for a connected undirected weighted graph G = (V, E) is ＿＿＿.
+>
+> O(∣E∣log∣V∣)
+>
+> - Suppose that all edge weights in a graph G are integers **in the range from 1 to ∣V∣**. How fast can you make Kruskal's algorithm run?
+>
+> O(∣E∣ α(∣V∣))，α 為「[Ackermann function](https://en.wikipedia.org/wiki/Ackermann_function)」反函數
+
 
 
 ### Prim's algorithm [DS 書上版本]
@@ -586,6 +596,15 @@ Mst_prim(G, W, r) {
 1. 針對每棵樹，各自挑出「Minimum cost tree edge」
 2. 刪除重複挑出的邊
 3. 重複第一步與第二步直到成為「最小生成樹」
+
+> - 在循環迭代中
+>   - 每棵樹都會合併成一棵較大的子樹
+>     - 每次**會使子樹的數量至少減少一半**
+>       - 所以循環迭代的總次數為O( log|V| )
+> - 第一步會檢查所有邊以**更新每個連通分量的最小弧**
+>   - O( |E| )
+> - **時間複雜度**
+>   - **O( log|V|×|E| )**
 
 
 
@@ -789,6 +808,58 @@ for(int i = 1; i <= n; i++) {
 
 
 
+Example（102交通大學資料結構與演算法 - **差分約束系統**（System of Difference Constraints））
+
+- Consider the problem of finding a vector $(x_1, x_2, x_3, x_4, x_5)$ satisfying the following constrains such that $x_1+x_2+x_3+x_4+x_5$ is maximized, where $x_i \leq 0$ for i = 1, ..., 5. What are **the maximum value** and the corresponding vector?
+
+$x_1 - x_2 \leq 1 \\x_1 - x_5 \leq -1 \\ x_2 - x_5 \leq 1 \\ x_3 - x_1 \leq 15 \\ x_4 - x_1 \leq 4 \\ x_4 - x_3 \leq -1 \\ x_5 - x_3 \leq -3 \\ x_5 - x_4 \leq 0$
+
+**在此條件下求最大解**可以轉換成「Single source all shortest path problem」
+
+- 觀察 $x_j - x_i \leq b_k$
+  - 圖論中， d[v] ≦ d[u]+w[u,v]
+    - d[v]：為 s 至 v 的最短路徑長
+    - d[u]：為 s 至 u 的最短路徑長
+    - w[u,v]：邊(u,v) 的權重
+    - 所以此式意旨「s 至 v 的最短路徑長」≦「s 至 u 的最短路徑長」+「邊(u,v) 的權重」
+  - 將 $x_j - x_i \leq b_k$ 視為 d[v] - d[u] ≦ w[u,v]
+    - 其中 s 為額外增加的節點
+- 如果 s 點無法到達 $x_i$
+  - 則其路徑為無窮大
+  - 因為不斷作「Relaxation」會使得路徑不斷變小，直到滿足所有條件時其為最大可能
+
+![1549622277405](\willywangkaa\images\1549622277405.png)
+
+![1549627232982](\willywangkaa\images\1549627232982.png)
+
+- 對 s 頂點使用「Bellman-Ford algorithm」
+  - 解出 $(x_1, x_2, x_3, x_4, x_5) = (-4, -2, 0, -1, -3)$
+  - 總和：-10
+
+> ~~**在此條件下求最大解**可以轉換成「Single source all **longest path problem**」~~
+>
+> - 觀察 $-(x_j - x_i) \geq -b_k$
+>   - 圖論中， d[v] ≧ d[u]+w[u,v]
+>     - d[v]：為 s 至 v 的最長路徑長
+>     - d[u]：為 s 至 u 的最長路徑長
+>     - w[u,v]：邊(u,v) 的權重
+>     - 所以此式意旨「s 至 v 的最長路徑長」≧「s 至 u 的最長路徑長」+「邊(u,v) 的權重」
+>   - 將 $x_i - x_j \geq -b_k$ 視為 d[v] - d[u] ≧ w[u,v]
+>     - 其中 s 為額外增加的節點
+> - 如果 s 點無法到達 $x_i$
+>   - 則其路徑為無窮小
+>   - 因為不斷作「Relaxation」會使得路徑不斷變大，直到滿足所有條件時其為最小可能
+>
+> $x_2 - x_1 \geq -1 \\x_5 - x_1 \geq 1 \\ x_5 - x_2 \geq -1 \\ x_1 - x_3 \geq -15 \\ x_1 - x_4 \geq -4 \\ x_3 - x_4 \geq 1 \\ x_3 - x_5 \geq 3 \\ x_4 - x_5 \geq 0$
+>
+> ![1549628472201](\willywangkaa\images\1549628472201.png)
+>
+> ![1549628610514](\willywangkaa\images\1549628610514.png)
+>
+> - ~~對 s 頂點使用「Bellman-Ford algorithm」（Single source all **longest path**）~~
+
+
+
 ## Floyd-Warshell algorithm
 
 
@@ -878,7 +949,7 @@ All pair shortest path problem for **sparse graph**
 
 時間複雜度：（等價於對每個頂點做「Dijkstra's algorithm」，只是需要前置處理）
 
-- $O(|V|) + O(|V|\times|E|) + O(|E|) + |V|\cdot O(|V|\log|V|+|E|) = O(|V|^2\log|V|+|V|\cdot|E|) $ 
+- $O(|V|) + O(|V|\times|E|) + O(|E|) + |V|\cdot O(|V| \log |V|+|E|) = O(|V|^2 \log |V|+|V|\cdot|E|) $ 
 - （新增|V|條邊）+（修正負邊）+（重設權重）+（對每個頂點做「Dijkstra's algorithm」）
 
 

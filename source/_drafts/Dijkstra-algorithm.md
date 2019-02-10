@@ -1,7 +1,8 @@
 title: Dijkstra algorithm
 author: Willy Wang
-date: 2018-05-19 10:00:03
-tags:
+tags: []
+categories: []
+date: 2018-05-19 10:00:00
 ---
 ```cpp
 Graph{

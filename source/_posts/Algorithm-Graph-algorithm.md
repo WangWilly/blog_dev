@@ -324,18 +324,44 @@ $$
 
 
 
-一個**有向圖** G = (V, E) 滿足
+「流量網路圖論模型」為一**有向圖** G = (V, E) 滿足：
 
-1. 只含有唯一一個 **in-degree = 0** 的點 S ( Source )
-2. 只含有唯一一個 **out-degree = 0** 的點 T ( Sink )
-3. 對於 G.E 中每個邊 e ，定義一個**容量** c(e) ≧ 0
+- 含有唯一「**in-degree = 0**」的點 S（Source；源點）
+
+- 含有唯一「**out-degree = 0**」的點 T（Sink；匯點）
+
+- 對於 (u,v) ∈ E
+  - 定義**容量 c：**$E→R^+$
+    - 通常其加權有向邊 (u,v) 代表其**容量**
+  - 定義**流量 f：**$E → R$
+    - **每個點流入水量等於流出水量**
+  - 容量限制（Capacity constraints）
+    - $\forall(u,v )\in  E \Rightarrow f(u,v)\leq c(u,v)$
 
 
 
-另外，定義一個**流量**的函數：f(e)，滿足
+假設一流量網路 G=(V,E)，其「殘餘網路」（Residual network）為
 
-1. 對每個點而言，**流入水量等於流出水量。**
-2. 對每個邊而言，**0 ≦ f(e) ≦ c(e)**
+- 有向圖 $G_f = (V, E_f)$
+  - $E_f = ｛(u,v)︱^{（1）}0<f(u,v)<c(u,v) \;或\; ^{（2）}f(u,v)<0｝$
+  - 上述意旨 $(u,v)\in E_f$ 代表**其邊「尚有容量可以自 u 至 v」**
+    - 假設 $f(u,v)>0$ 代表有流量自 u 至 v，則其邊有容量的可能有二
+      - **（1）其流量尚未達到容量（**$f(u,v) < c(u,v)$**）**
+        - 殘餘容量：$c_f(u,v) = c(u,v)-f(u,v)$
+      - **（2）流量可以使其產生「回推容量」**
+        - 因為 $f(u,v)$ 代表**「u 至 v 有流量通過」**
+          - 則**「v 至 u」**可將通過的流量**回推**，進而產生**容量**
+        - 殘餘容量：$c_f(v,u) = f(u,v) = -f(v,u)$
+  - 「流量網路」的邊在「殘餘網路」中**至多會被拆成兩條邊**
+    - $∣E_f∣ \leq 2∣E∣$
+- 假設在 $G_f$ 中，**從「源點」至「匯點」存在一條路徑**
+  - **代表「源點」至「匯點」尚有容量**
+  - 假設其路徑中可以產生最小流量 $f'$
+    - 原流量網路的流量可增加為 $f+f'$
+
+> **增廣路徑定裡**
+>
+> - **「一個網路達到最大流」**$\Leftrightarrow$ **「其殘餘網路中『源點』至『匯點』沒有路徑」**
 
 
 
@@ -346,7 +372,7 @@ $$
 - Input
   - 一個「Flow network」 G = (V, E)
 - Output
-  - 此網路的最大流量，也就是源頭最大能流出多少水量
+  - 此網路的最大流量（源點最大流至匯點的水量）
 
 
 
@@ -358,25 +384,51 @@ $$
 
 
 
-1. 使用**「Residual network」**表示法
-2. 自 s → t 找一條路徑 P，令 a 為 P 上最小的權重
-   - $\overrightarrow{P}$ 上的每一邊 ← 權重 **- a**
-   - $\overleftarrow{P}$ 上的每一邊 ← 權重 **+ a**
-   - 重複此操作直到找不到最小的權重 a 可以做上述動作。
-3. 將最後指向 S 的邊之權重和輸出
+步驟
+
+1. 先將「流量網路」G 轉換為「殘餘網路」$G_f$
+2. 在 $G_f$ 中自 s → t 找一條增廣路徑 p（隨便的方法找一條路徑，如：DFS）
+   - 令 f 為 p 上最小的權重
+     - $\overrightarrow{P}$ 上每一邊的容量減少 f
+     - $\overleftarrow{P}$上的每一邊容量增加 f**（回推容量）**
+3. 重複第二步直到找不到增廣路徑 p
+4. 指向頂點 s 邊，其容量總和即為「最大流量」
+
+
+
+- Algorithm
+
+```cpp
+Graph fordfulkerson(Graph G, node s, node t) {
+    G_f = residualnetwork(G);
+    path = exist_path(G_f,s,t);
+    while(path) {
+        G_f = add_argumenting_path(G_f, path);
+        path = exist_path(G_f,s,t);
+    }
+    return G_f;
+}
+```
 
 
 
 - Time complexity
-  - $O(|f^＊|\cdot E)$
-    - $|f^＊|$ 為最大流量的值
+  - $O(∣f^＊∣\cdot E)$
+    - $∣f^＊∣$ 為最大流量
     - **效能差**
 
-> **如果每次在第二個步驟找到的最小流量 a 為 1，那勢必要重複** $|f^＊|$ **來找到最後的答案。**
+> - **每次在第二個步找到的最小流量 f 為 1**
+>   - 每次找增廣路徑的時間複雜度為 O(∣V∣+∣E∣)
+>   - **必重複** $∣f^＊∣$ **回合找到最後總流量**
+>     - $O(∣f^＊∣\cdot(∣V∣+∣E∣)) = O(∣f^＊∣\cdot E)$
+>
+> ![1549795349837](\willywangkaa\images\1549795349837.png)
 
 
 
-> 可以利用「已經求取完最大流量」的 Residual network 得到「原本流量網路」的 Minimum cut。
+
+
+> **利用「已經求取完最大流量」的 Residual network 可得到「原本流量網路」的 Minimum cut**
 >
 > - Minimum cut：有 (S, T) 兩個子圖，滿足
 >   - S $\cup$ T = V 且 S $\cap$ T = $\phi$
@@ -395,30 +447,210 @@ $$
 
 
 
-1. 使用**「Residual network」**表示法
-2. 自 s 做 **Breadth first search** ，**當找到 t 時建立一條 s → t 路徑 P，令 a 為 P 上最小的權重**
-   - $\overrightarrow{P}$ 上的每一邊 ← 權重 **- a**
-   - $\overleftarrow{P}$ 上的每一邊 ← 權重 **+ a**
-   - 重複此操作直到找不到最小的權重 a 可以做上述動作。
-3. 將最後指向 S 的邊之權重和輸出
+步驟
+
+1. 先將「流量網路」G 轉換為「殘餘網路」$G_f$
+2. 自 s 作「**Breadth first search**」至 t 找到路徑 p
+   - 令 f 為 p 上最小的權重
+     - $\overrightarrow{P}$ 上每一邊的容量減少 f
+     - $\overleftarrow{P}$上的每一邊容量增加 f**（回推容量）**
+3. 重複第二步直到找不到增廣路徑 p
+4. 指向頂點 s 邊，其容量總和即為「最大流量」
 
 
 
 - Time complexity
-  - $O(VE^2)$：**只和網路的大小有關**
-
-時間複雜度證明：
-
-1. 證明**最短增廣路徑**（Argument path）的長度「非遞減」（利用反證法）
-   - 設 $\delta_f (s, x)$ 為源點 s 到 x 增廣前在 $G_f$ 中的最短路，令 v 頂點是在**某次增廣後** $\delta_{f'} (s, v)$ 長度變小的頂點（$G_{f'} $ 中的最短路徑）
-     - 設 $\delta_{f'} (s, x)$ 表示源點到 x 增廣後在 $G_{f'}$ 中的最短路徑
-     - 所以上述可以寫為 $\delta_{f'}(s,v) < \delta_f (s,v)$
-   - 令 u 頂點為 v 增廣後在 $G_{f'}$ 最短路徑中的前一個節點
-     - 上述可以表示成 $\delta_{f'}(s,v)$ 
+  - 以「Breadth first search」找最多 O(∣V∣∣E∣) 條「增廣路徑」
+    - 「鄰接矩陣」：$O(∣V∣^2∣V∣∣E∣) = O(∣V∣^3∣E∣)$
+    - 「鄰接串列」：$O((∣V∣+∣E∣)(∣V∣∣E∣)) = O(∣V∣∣E∣^2)$
 
 
 
-Example (P.4-80 ex20)
+##### 時間複雜度證明
+
+
+
+**證明最短增廣路徑（Argument path）的長度「非遞減」（利用反證法）**
+
+> $G_f = (V, E_f)$：**某次增廣前的「殘餘網路圖」**
+>
+> $G_{f'} = (V, E_{f'})$：**某次增廣後的「殘餘網路圖」**
+>
+> - $\forall x \in V$
+>   - $\delta_f (s, x)$ 為源點 s 到 x 頂點在 $G_f$ **最短路徑**
+>   - $\delta_{f'} (s, x)$ 為源點 s 到 x 頂點在 $G_f$ **最短路徑**
+
+1. 假設 v 頂點是「在某次增廣後 $\delta_{f} (s, v)$ 長度變小的頂點」
+   - $\Rightarrow \delta_f(s,v) > \delta_{f'}(s,v)$
+
+2. 假設 u 頂點為最短路徑 $\delta_{f'}(s,v)$ 裡 v 的前一個頂點（**在該次增廣後其最短路徑有可能變長或不變**）
+   - $\Rightarrow \delta_{f'}(s,v) = \delta_{f'}(s,u)+1$
+   - 因為「增廣前 s 至 u 的最短路徑」≦「增廣後 s 至 u 的最短路徑」
+     - $\Rightarrow \delta_f(s,u) \leq \delta_{f'}(s,u) $
+       - 則 $\Rightarrow \delta_f(s,u)+1 \leq \delta_{f'}(s,u)+1 = \delta_{f'}(s,v) < \delta_f(s,v)\\ \Rightarrow \delta_f(s,v)> \delta_f(s,u)+1 \;......（1）$
+     - 如果 $(u,v) \in E_f$
+       - 由於三角定裡則「s 至 v 的最短路徑」必小於等於「s 至 u 的最短路徑」加上 (u,v) 邊
+         - $\Rightarrow \delta_f(s,v) \leq \delta(s,u)+1$
+     - 因為（1）則 $(u,v)\notin E_f$
+3. 因為 $(u,v) \in E_{f'}$ 且 $(u,v) \notin E_f$
+   - 所以可以知道**「此次增廣必經過 (v, u)」**
+     - 則「s 至 u 的最短路徑」等於「s 至 v 的最短路徑」+ 1
+       - $\Rightarrow \delta_f(s,u) = \delta_f(s,v)+1 \;.....（2）$
+   - 將（2）帶入（1）中
+     - $\Rightarrow \delta_f(s,v) > (\delta_f(s,v) + 1)+1 $（矛盾）
+4. 所以 v 頂點不存在，證明**「最短增廣路徑」長度非遞減**
+
+
+
+**證明增廣次數為 O(∣V∣∣E∣)**
+
+> - 在一次增廣中
+>   - **定義「Critical edge」為該增廣路徑中容量最小的邊（**若有多條取其一即可）
+
+1. 假設 (u,v) 為 k-th 增廣中的「Critical edge」
+   - 則 k-th 增廣後 $(u,v) \notin E_{f'}$
+   - 若在 k-th 增廣之後的 i-th 增廣後 (u,v) 再度出現（i > k）
+     - 則 i-th 增廣必定沿著 (u,v) 進行增廣
+2. 對 k-th 與 i-th 進行討論
+   - 在 k-th 增廣前，存在 $\delta_{f^{作 \;k–th \; 之前}}(s,v)+1 = \delta_{f^{作 \;k–th \; 之前}}(s,u)$
+   - 在 i-th 增廣前，存在 $\delta_{f^{作 \;i–th \; 之前}}(s,u)+1 = \delta_{f^{作 \;i–th \; 之前}}(s,v)$
+   - 然而已知「最短增廣路徑長度非遞減」
+     - 故 $\delta_{f^{作 \;k–th \; 之前}}(s,v)+2 \leq \delta_{f^{作 \;i–th \; 之前}}(s,u)$
+3. 最短增廣路的長度不超過 ∣V∣-1
+   - 因為一條邊為「Critical edge」時，其增廣路徑會不斷累加 2
+     - 故一條邊成為「Critical edge」的次數不超過 $\frac{∣V∣-1}{2}$
+   - 每次增廣最少有一條「Critical edge」
+     - 由定義可以知道 $∣E_f∣ \leq 2∣E∣$ 
+   - 所以最差的情況就是每條邊都被選成為增廣路徑
+     - $O(\frac{∣V∣-1}{2}\cdot 2∣E∣) =O(∣V∣∣E∣) $
+
+
+
+#### Dinic algorithm
+
+「Shortest augmenting path algorithm」改良版，作一次可以找到所有「一樣長的最短擴充路徑」
+
+
+
+步驟
+
+1. 計算「剩餘網路」各點到源點（匯點）的最短距離
+2. 建立「容許網路」（Admissible network）
+   - 尋找「阻塞流」（Blocking flow），並擴充其流量
+3. 重覆步驟 1、2 最多 V-1 次，直到無法擴充流量
+
+
+
+> - 在「剩餘網路」中
+>   - 以阻塞流擴充流量，就斷絕了所有「一樣長的最短擴充路徑」
+>
+> - 在「容許網路」中
+>   - 所有「由源點到匯點的最短路徑」都被阻塞
+>     - 在「剩餘網路」中，在「Edmond-Karp algorithm」中已證明源點到匯點的最短距離會增加
+>
+> - 「擴充路徑」的長度範圍是 1 到 V-1 （Simple path）
+>   - 故最多找 V-1 次阻塞流
+
+
+
+- 時間複雜度
+  - O(V²E)
+    - 找一個阻塞流：O(VE) 
+    - 最多找：O(V) 
+
+
+
+##### 容許網路
+
+在「剩餘網路」上以源點（匯點）作為起點，計算源點（匯點）到每一點的**最短距離**
+
+
+
+- 在剩餘網路中
+  - 一條由**源點往匯點方向**的邊
+    - 若兩其端點最短距離相差一
+      - 稱作「容許邊」（Admissible edge）
+- 所有容許邊，整體視作一張圖
+  - 稱作「容許網路」（Admissible Network）
+
+
+
+「流量網路」G = (V,E)
+
+![1549793031130](\willywangkaa\images\1549793031130.png)
+
+
+
+其「剩餘網路」$G_f = (V, E_f)$
+
+![1549793298592](\willywangkaa\images\1549793298592.png)
+
+
+
+一種由源點開始的「容許網路」
+
+![1549793355647](\willywangkaa\images\1549793355647.png)
+
+
+
+一種由匯點開始的「容許網路」
+
+![1549793388148](\willywangkaa\images\1549793388148.png)
+
+
+
+> - 容許網路
+>   - 為有向無環圖（DAG）或稱作分層圖（Level graph）
+>     - 容許網路可以畫成一層一層的模樣，只有相鄰的層有邊
+>   - 任意一條由源點到匯點的路徑
+>     - 為最短擴充路徑
+>   - 藉由容許網路，可以迅速找到所有「一樣長的最短擴充路徑」
+>
+> 容許網路就是剩餘網路的「最短路徑圖」
+>
+> ![1549793497499](\willywangkaa\images\1549793497499.png)
+>
+> （左圖為源點開始的「容許網路」分層圖；右圖為匯點開始的「容許網路」分層圖）
+
+
+
+##### 阻塞流
+
+在容許網路中一個源點到匯點的流，無法再擴充流量稱作「阻塞流」（通常會出現許多種選擇，不必選其最大流）
+
+
+
+1. 逐次建立的「容許網路」中
+   - **會找到所有「一樣長的最短擴充路徑」**
+2. 在該「容許網路」中**讓擴充的流量到達瓶頸**
+   - 整體形成「阻塞流」
+
+
+
+![1549794137394](\willywangkaa\images\1549794137394.png)
+
+> - 容許網路上尋找最短擴充路徑
+>   - 不必作溯洄沖減（溯洄沖減會增加路徑長度，最後得到的不是最短擴充路徑）
+>
+> - 源點隨意往匯點走，若遇到死胡同，就重頭開始走，下次避免再走到死胡同
+>   - **改由匯點隨意往源點走，就不會遇到死胡同**
+> - 若順利走到匯點，就形成一條最短擴充路徑，並且擴充流量
+>   - **一條最短擴充路徑**
+>     - 至少有**一條邊**是瓶頸
+> - 容許網路最多只有 E 條邊能作為瓶頸
+>   - 所以一個阻塞流最多只有 E 條最短擴充路徑
+>   - 從源點走到匯點並擴充流量需時 O(V)
+>     - 最多有 O(E) 條最短擴充路徑，所以找出一個阻塞流的時間複雜度為 O(VE)
+
+
+
+
+
+#### 補充例題
+
+
+
+Example（1）（P.4-80 ex20）
 
 **Escape problem**
 
@@ -427,7 +659,8 @@ Example (P.4-80 ex20)
 
 
 
-將問題轉換成「邊與點均有 **Capacity** 的最大流量問題」 ( 將問題「Reduce」至「Flow network」中解決 )
+> 將問題轉換成「邊與點均有 **Capacity** 的最大流量問題」**（將問題「Reduce」至「Flow network」中解決）**
+>
 
 ![escapeproblem_sol](\willywangkaa\images\escapeproblem_sol.png)
 
@@ -459,6 +692,47 @@ Example (P.4-80 ex20)
 
 
 
+**Example（2）（101交通大學資料結構與演算法）**
+
+This question is about the max flow problem
+
+- **Which of the following statements is wrong?**
+  - （A）By the Ford-Fulkerson algorithm we can find the maximum flow.
+  - （B）Given a flow network G=(V,E), Edmond-Karp algorithm has time complexity $O(∣V∣∣E∣^2)$.
+  - （C）The time complexity of Ford-Fulkerson algorithm depend on the capacity.
+  - **（D）If each edge has a different capacity, then there exists a unique minimum cut.**
+  - （E）The maximum flow is equal to the capacity of a minimum cut.
+
+![1549709412486](\willywangkaa\images\1549709412486.png)
+
+- **Which statement is wrong for a flow network G=(V,E)?**
+  - （A）If f is a maximum flow in G, **then the corresponding residual network contains no augmenting path.**
+  - （B）For any cut (S,T), the capacity of the cut is not smaller than the value of the flow crossing this cut.
+  - （C）The value of any flow f in G is bounded above by the capacity of any cut of G.
+  - **（D）If all edges of G have different capacities, then there exists a unique flow f that gives the maximum flow.**
+  - （E）The capacity of each edge of G can be any non-negative number.
+
+
+
+![1549708938056](\willywangkaa\images\1549708938056.png)
+
+
+
+- **Let G=(V,E) be a bipartite graph, where V = L ∪ R. Which statement is wrong about finding a maximum  bipartite matching?**
+  - （A）It can be solved by constructing a corresponding flow network and finding the maximum flow.
+  - （B）The corresponding flow network can be obtained by adding two vertices s, t and edges from s to vertices in L, and edges from vertices in R to t.
+  - （C）The capacity of each edge in the corresponding flow network is set to 1.
+  - **（D）The maximum flow of the corresponding flow network is always integral and the flow value of each edge is integral as well.**
+  - （E）The cardinality of a maximum matching of G is equal to the maximum flow of the corresponding flow network. 
+
+**「Maximum flow」必為整數，但是 Edge 上的「Flow」未必**
+
+![1549709744238](\willywangkaa\images\1549709744238.png)
+
+
+
+
+
 ## 其它問題
 
 
@@ -480,3 +754,68 @@ Example (P.4-80 ex20)
 >
 > 
 ![vertexcover](\willywangkaa\images\vertexcover.png)
+
+
+
+# 補充例題
+
+
+
+Example（100 交通大學資料結構與演算法）
+
+- Suppose there are several cities along a highway (from the left to the right on the map), which has no forks
+- Given the distances between the neighboring cities, we can compute the distance between any two cities
+  - For example, given 4 cities, in order, (A, B, C, D) and the distances between neighboring cities are: distance(A, B) = 1, distance(B, C) = 2, distance(C, D) = 4
+  - Then we can compute the distance matrix
+- In this problem, we consider the reverse problem
+  - Given the distance between all pair of the cities, we want to recover the order of the cities along the highway
+  - Suppose there are N cities and we only know the distances between all pairs of cities, that is, there are $\frac{N(N-1)}{2}$ number in arbitrary order
+  - For convenience, let the leftmost city be the first city and the rightmost city be the last one and order cities accordingly
+
+|      | B    | C    | D    |
+| ---- | ---- | ---- | ---- |
+| A    | 1    | 3    | 7    |
+| B    |      | 2    | 6    |
+| C    |      |      | 4    |
+
+> （中譯）
+>
+> - 假設有數個在「無岔路高速公路」旁的城市（在地圖上為由左至右）
+> - 當每個相鄰城市的距離得知時，我們可以計算出任兩個城市之間的距離
+>   - 舉例來說，依序給定四個城市（A、B、C、D）與每個相鄰城市的距離：
+>     - A 與 B 距離 = 1
+>     - B 與 C 距離 = 2
+>     - C 與 D 距離 = 4
+>   - 則我們可以計算出其距離矩陣
+> - 在此問題中要考慮的是「逆向工程問題」
+>   - 給定任兩個城市之間的距離（未給出是哪兩個城市，只知道距離資訊），欲將原始相鄰城市的距離求出
+>   - 假設知道 N 個城市與城市的距離，也就是說會給定一串大小為 $\frac{N(N-1)}{2}$ 且無序的數字數列
+>   - 為了方便計算，讓最左邊的城市當作第一個城市最右邊的城市為最後一個城市
+
+**Which of the following is false?**
+
+1. The largest value must be the distance of **the first city and last city along the highway**
+2. It can be solved by **searching**
+3. If the input has an answer, **then it is unique**
+4. The second largest value can be the distance of the first city and second to the last city along the highway
+5. The second largest value can be the distance of **the second city and the last city along the highway**
+
+**Ans: (3)**
+
+**Suppose there are 6 cities and the distance between each pair of the cities are: 9, 8, 8, 7, 6, 6, 5, 5, 3, 3, 3, 2, 2, 1, 1. Which of the following is correct ?**
+
+1. There is no solution for this input
+2. The distance of the second city and the third city is 3
+3. The distance of the fourth city and the fifth city is 1
+4. The distance of the third city and the fourth city is 3
+5. The distance of the second city and the third city is 8
+
+|      | 2    | 3    | 4    | 5    | 6    |
+| ---- | ---- | ---- | ---- | ---- | ---- |
+| 1    | 1    | 3    | 6    | 8    | 9    |
+| 2    |      | 2    | 5    | 7    | 8    |
+| 3    |      |      | 3    | 5    | 6    |
+| 4    |      |      |      | 2    | 3    |
+| 5    |      |      |      |      | 1    |
+
+**Ans: (4)**

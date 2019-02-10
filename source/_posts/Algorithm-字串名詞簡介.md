@@ -1,4 +1,4 @@
-title: 有關字串的名詞解釋
+title: Algorithm - 字串名詞簡介
 author: Willy Wang
 tags:
   - String

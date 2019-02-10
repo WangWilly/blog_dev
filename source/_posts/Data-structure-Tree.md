@@ -535,6 +535,8 @@ $E = I + 2n = \sum_{i = 0}^{n-1} i + 2n \\ = \frac {n^2 + 3n}{2} \\ I = \frac{n^
 
 
 - Huffman algorithm
+  - Greedy algorithm
+  - **此樹亦稱為「Optimal 2-way merge tree」**
 
 令 w = ｛n 個外部節點之加權值｝
 

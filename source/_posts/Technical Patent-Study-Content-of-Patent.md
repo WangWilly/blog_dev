@@ -1,4 +1,4 @@
-title: Content of Patent 專利看討
+title: Technical Patent Study - Content of Patent
 author: Willy Wang
 tags:
   - Patent

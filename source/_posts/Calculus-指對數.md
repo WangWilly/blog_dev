@@ -1,4 +1,4 @@
-title: 指對數
+title: Calculus - 指對數
 author: Willy Wang
 tags:
   - Exponent

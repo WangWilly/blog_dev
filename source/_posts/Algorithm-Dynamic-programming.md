@@ -213,6 +213,7 @@ $$
 
 
 
+
 - Algorithm ( Bottom up )
 
 ```
@@ -575,3 +576,40 @@ for l <- 2 to n (「Matrix chain」長度為二以上)
 
 最佳乘法順序：$(A_1\times (A_2 \times A_3)) \times (A_4 \times A_5)$
 
+
+
+# 補充例題
+
+
+
+Example（107交通大學資料結構與演算法）
+
+- We define the maximum subarray of an array A to be the nonempty, contiguous subarray of A whose value have the largest sum
+- Fill in the blank (a), (b) in the following c++ function so that it returns value are placed in A[1], A[2], …, A[n-1]
+
+```cpp
+int maxSubarray(int A[], int n) {
+    for(int i = 1; i<n; ++i) {
+        A[i] += A[i-1];
+    }
+    int ans = A[0];
+    int k = 0;
+    
+    for(int i = 0; i<n; ++i) {
+        ans = max(ans,  (a)  );
+        k = min(k,      (b)  );
+    }
+    return ans;
+}
+```
+
+> 考慮一個「Maximum subarray」為 A[x…y]
+>
+> - A[x…y] = A[1…y] - A[1…x]
+> - 若欲使 A[x…y] 最大化
+>   - A[1…y] 必為最大
+>   - A[1…x] 必為最小
+>
+> (a)：`A[i]-k`
+>
+> (b)：`A[i]`

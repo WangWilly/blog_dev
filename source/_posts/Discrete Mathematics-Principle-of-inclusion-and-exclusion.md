@@ -1,4 +1,4 @@
-title: Principle of inclusion and exclusion - 排容原理
+title: Discrete Mathematics - Principle of inclusion and exclusion（排容原理）
 author: Willy Wang (willywangkaa)
 tags:
   - Algorithm
@@ -7,7 +7,7 @@ categories:
   - Discrete Mathematics
 date: 2018-09-11 10:51:00
 ---
-# Principle of inclusion and exclusion - 排容原理
+# Principle of inclusion and exclusion（排容原理）
 
 
 
@@ -175,4 +175,3 @@ $$
 - S(m+1, n)：m+1 個相異物**分成 n 堆**，固定一物 A
   - A 為邊緣人$\Rightarrow S(m, n-1)$
   - A 有孤單病，所以在 n 堆中挑一堆進入 $\Rightarrow S(m, n)\times n$
-

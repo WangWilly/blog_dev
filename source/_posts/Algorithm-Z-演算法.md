@@ -1,4 +1,4 @@
-title: Z - algorithm
+title: Algorithm - Z 演算法
 author: Willy Wang
 tags:
   - String
@@ -8,19 +8,28 @@ categories:
   - Algorithm
 date: 2018-03-19 13:27:00
 ---
-這個演算法可以線性時間在一段**文本(text)** 裡面找到所有我們欲求的**段落(pattern)**。
-今天，當我們的文本(text)的長度為 $n$ 且欲求的段落(pattern)為 $m$時 ，搜尋只需要線性長度的時間 $O(m+n)$ 即可，雖然這個演算法需要的空間(space complexity)與時間複雜度(time complexity)都與**KMP algorithm**一致，但是這個演算法比起KMP algoritjm還要*容易了解*。
+# Z 演算法
 
-KMP algorithm：每個前綴與其後綴的次長共同前綴（最長的後綴）<br>
-Z algorithm：每個後綴與母字串的最長共同前綴（單純的長度）
+可以線性時間在一段**文本（Text）** 裡面找到所有我們欲求的**段落（Pattern）**
 
-首先，我們需要一個 $Z$陣列($Z$ array)
+- 文本（Text）的長度為 $n$ 
+- 段落（Pattern）為 $m$ 
 
-# $Z$陣列
+搜尋過程需要線性等級的時間複雜度：$O(m+n)$
+
+> 雖然這個演算法需要的空間（Space complexity）與時間複雜度（Time complexity）都與**KMP algorithm**一致，但是這個演算法比起「KMP algorithm」還要容易了解
+>
+> KMP algorithm：每個前綴與其後綴的次長共同前綴（最長的後綴）
+> Z algorithm：每個後綴與母字串的最長共同前綴（單純的長度）
+>
+> 首先，我們需要一個 $Z$陣列（$Z$ array）
+>
+
+## $Z$ 陣列
 
 
 
-當我們將欲檢索的文本存為一個字串 $ str[0 \\ldots n-1] $ 時，同時也建立一個與字串一樣長的$Z$陣列。
+當我們將欲檢索的文本存為一個字串 $ str[0 \ldots n-1] $ 時，同時也建立一個與字串一樣長的$Z$陣列。
 在$Z$陣列中，第 $i$ 元素紀錄「**最長共同前總和 (Longest Common Prefix)**的長度」，而 *LCP 的長度* 是由「從 $i$ 開始的後總和 (Postfix)」與「該文本」共同決定。
 ( **注意： ** $Z[0]$ **毫無意義可言，因為從第0個開始的後總和(Postfix) 必與原本的文本字串相同。** )
 

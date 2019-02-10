@@ -1,14 +1,10 @@
-title: Chinese Remainder Theorem - 中國剩餘定理專題
+title: Discrete mathematics - Chinese Remainder Theorem
 author: Willy Wang
 tags:
-  - Modular
-  - Mod
-  - Inverse
   - Chinese Remainder Theorem
-  - 模數
-  - 模反元素
 categories:
-  - Number Theory
+  - Discrete Mathematics
+  - ''
 date: 2018-05-08 21:33:00
 ---
 # Modular 反元素 (模反元素、數論倒數)

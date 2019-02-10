@@ -1,4 +1,4 @@
-title: Operating System - Virtual Memory
+title: Operating System - Virtual memory
 author: Willy Wang (willywangkaa)
 tags:
   - Virtual Memory
