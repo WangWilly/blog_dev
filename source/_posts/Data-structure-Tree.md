@@ -568,3 +568,176 @@ Huffman(w, n) {
   - Priority queue (Min-heap)
   - 因為對「Min-heap」作了 n-1 次 Del_min 與 Insert(w, t) $\Rightarrow O(n\log n)$
 
+
+
+# Infix、Prefix、Postfix expression
+
+
+
+**Infix to postfix**
+
+- 優先權表
+
+|              Operator              | 優先權 |
+| :--------------------------------: | :----: |
+|      在「Stack」**外**的 "("       | **高** |
+|                負號                |        |
+| 在「Stack」**外**的 "^" （左結合） |        |
+| 在「Stack」**內**的 "^"（左結合）  |        |
+|              "*"、"/"              |        |
+|              "+"、"-"              |        |
+|     "＞"、"＜"、"=="、"≧"、"≦"     |        |
+|                Not                 |        |
+|              AND、OR               |        |
+| 在「Stack」**外**的 "="（Assign）  |        |
+| 在「Stack」**內**的 "="（Assign）  |        |
+|      在「Stack」**內**的 "("       | **低** |
+
+
+
+```cpp
+string infix_to_postfix(string input) {
+    output = new string;
+    s      = new stack;
+    
+    while(x = Next_token(input)) {
+        if(is_operand(x)) {
+            output.append(x);
+        } else {
+            if(x==")") {
+                do{
+                    tmp = pop(s);
+                    if(tmp!="(") {
+                        output.append(tmp);
+                    }
+                } while(tmp!="(")
+            } else {
+                switch( compare_priority(x,s.top()) ) {
+                    case great:
+                        push(x,s);
+                        break;
+                    case lessandequal:
+                        do{
+                            tmp = pop(s);
+                            output.append(tmp);
+                        } while(comparepriority(tmp,s.top())==great)
+                        push(x,s);
+                        break;
+                }
+            }
+        }
+    }
+    
+    while(!isempty(s)) {
+        output.append(pop(s));
+    }
+    return output;
+}
+```
+
+
+
+**Infix to postfix**
+
+- 優先權表
+
+|              Operator              | 優先權 |
+| :--------------------------------: | :----: |
+|      在「Stack」**外**的 ")"       | **高** |
+|                負號                |        |
+| 在「Stack」**外**的 "^" （左結合） |        |
+| 在「Stack」**內**的 "^"（左結合）  |        |
+|              "*"、"/"              |        |
+|              "+"、"-"              |        |
+|     "＞"、"＜"、"=="、"≧"、"≦"     |        |
+|                Not                 |        |
+|              AND、OR               |        |
+| 在「Stack」**外**的 "="（Assign）  |        |
+| 在「Stack」**內**的 "="（Assign）  |        |
+|      在「Stack」**內**的 ")"       | **低** |
+
+```cpp
+string infix_to_prefix(string input) {
+    output  = new string;
+    a       = new stack;
+    b       = new stack;
+    outputs = new stack;
+    
+    while(x = Next_token(input)) {
+        push(x,a);
+    }
+    
+    while(x = pop(a)) {
+        if(is_operand(x)) {
+            push(x,outputs);
+        } else {
+            if(x=="(") {
+                do{
+                    tmp = pop(b);
+                    if(tmp!=")") {
+                        push(tmp,outputs);
+                    }
+                } while(tmp!=")")
+            } else {
+                switch( compare_priority(x,b.top()) ) {
+                    case great:
+                        push(x,b);
+                        break;
+                    case lessandequal:
+                        do{
+                            tmp = pop(b);
+                            push(tmp,outputs);
+                        } while(comparepriority(tmp,b.top())==great)
+                        push(x,b);
+                        break;
+                }
+            }
+        }
+    }
+    
+    while(!isempty(b)) {
+        push(pop(b),outputs);
+    }
+    while(!isempty(outputs)) {
+        output.append(pop(outputs));
+    }
+    return output;
+}
+```
+
+
+
+**Postfix evaluation algorithm**
+
+```cpp
+int evaluation(string postfix) {
+    output = new int;
+    s      = new stack;
+    while(x=next_token(postfix)) {
+        if(isoperand(x)) {
+            push(x,s);
+        } else {
+            if(is_unary(x)) {
+                tmp = pop(s);
+                push(s, operator(tmp,x));
+            } else {
+                tmp1 = pop(s);
+                tmp2 = pop(s);
+                push(s, operator(tmp1,tmp2,x));
+            }
+        }
+    }
+    return pop(s);
+}
+```
+
+
+
+> 求「Stack size」至少需要多少？
+>
+> 1. Infix to postfix：a × (b+c-d)/(e*f)
+> 2. Postfix to value：ab+c*de-/f+
+>
+> （1）：4
+>
+> （2）：3

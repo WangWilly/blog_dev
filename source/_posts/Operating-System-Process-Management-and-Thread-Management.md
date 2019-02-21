@@ -10,8 +10,6 @@ date: 2018-07-10 22:14:00
 ---
 # Process
 
----
-
 
 
 - 定義：A program in execution.
@@ -137,8 +135,6 @@ date: 2018-07-10 22:14:00
 
 # Scheduler
 
----
-
 
 
 ## I/O-bound & CPU-bound
@@ -222,9 +218,7 @@ date: 2018-07-10 22:14:00
 
 
 
-# Dispatcher分派器 & Dispatch Latency 分派延遲
-
----
+# Dispatcher and dispatch latency （分派器與分派延時）
 
 
 
@@ -240,9 +234,7 @@ date: 2018-07-10 22:14:00
 
 # Process control operations
 
----
-
-也就是 process 的建立、終止、暫停、回復執行、設定、修改、讀取 process atteributes ...，**而這些都應是作業系統提供的服務(system call)。**
+也就是 process 的建立、終止、暫停、回復執行、設定、修改、讀取 process attributes ...，**而這些都應是作業系統提供的服務(system call)**
 
 - Process 可以建立自己的 child process，**目的是要 child process 工作。**
 - **Child process 的工作可分為兩類：**
@@ -864,8 +856,6 @@ Ans：
 
 # CPU 排程
 
----
-
 
 
 ## 評估 CPU scheduking 效能之五個準則(criteria) 
@@ -1217,7 +1207,42 @@ $$
 
 
 
-**為 Time sharing system 所採用**，作業系統會規定一個 CPU time Quantum (Slice) ，當 Process 取得 CPU 執行後，若未能在此 Quantum 完成工作，則「Timer」會發出一個「Time-out interrupt」通知作業系統強迫回收 CPU 並將此 Process 送回「Ready queue」中等待下一輪再取得 CPU 執行，**每一輪之中，是採以 FIFO 的排班法則規劃**。
+- **為「Time sharing system」的實踐手段**
+- 作業系統規定一個「CPU time quantum」（Slice）
+  - 若 Process 未能在此 Quantum 以 CPU 完成工作
+    - 原文：「The time quantum of the process has expired」
+    - 則「Timer」產生一個「Time-out interrupt」通知作業系統強迫回收 CPU
+    - 將此 Process 送回「Ready queue」中等待下一輪再取得 CPU 執行
+  - **每一回合皆採 FIFO 排班法則規劃**
+
+> **Timer**（參考自：[CMSC 412 Project 3: Multiprogramming, Part II](https://www.cs.umd.edu/~hollings/cs412/s96/project/proj3/proj3.html)）
+>
+> - **D**isk **O**perating **S**ystem（DOS；磁碟作業系統）
+>   - 為了處理器中的「倒錶器」（Timer）硬體
+>     - 提供各個程序「倒錶中斷服務程序」（Timer ISR）**個別使用**
+>     - 各個程序其私有的「倒錶中斷服務程序」會記錄「Time quantum」
+>       - 取得 CPU 的新程序會重設「Time quantum」
+>
+> - 「新程序」要使用 CPU 時
+>   - 替換「目前程序」與「新程序」的「倒錶中斷服務程序」
+>     - 將作業系統裡「倒錶器」的中斷向量替換「目前程序」為「新程序」的「倒錶中斷服務程序」之記憶體位址
+> - **當「倒錶器」硬體觸發中斷時**，有三種情形發生：
+>   - **若「Time quantum」尚有值存在**
+>     - 「Time quantum」 ≠ 0
+>       - 代表此程序還有權力可用 CPU
+>     - 對此程序的「倒錶中斷服務程序」紀錄的「Time quantum」遞減
+>   - **若為「USER mode」程序且「Time quantum」耗盡**
+>     - 「Time quantum」 = 0
+>       - 代表此程序無權限使用 CPU
+>     - 將此程序移至「Ready queue」以搶斷 CPU 的使用權
+>     - 執行排程程序以找到下個執行的「新程序」
+>   - **若為「KERNEL mode」程序且「Time quantum」耗盡**
+>     - 「Time quantum」 = 0
+>       - 代表此程序無權限使用 CPU
+>     - 設定 `preempt` 變數為 1 
+>       - 在 `System_service` 結束後此變數會被系統檢查
+>     - 將此程序移至「Ready queue」以搶斷 CPU 的使用權
+>     - 執行排程程序以找到下個執行的「新程序」
 
 
 
@@ -1230,10 +1255,10 @@ $$
 
 
 
-- 到達時間為 0。
-- 順序為：P1～P4。
-- Quamtum = 4。
-- Avg. waiting time。
+- 到達時間為 0
+- 順序為：P1～P4
+- Quantum = 4
+- Avg. waiting time
 
 
 
@@ -1253,8 +1278,8 @@ $$
 |   P3    |       7       |    3     |
 |   P4    |      13       |    8     |
 
-- Quamtum = 4。
-- Avg. waiting time。
+- Quantum = 4
+- Avg. waiting time
 
 
 
@@ -1278,7 +1303,7 @@ $$
 |    P3    |       8       | 3 CPU + 10 I/O + 9 CPU |
 |    P4    |      14       |         8 CPU          |
 
-- Quantum = 5 **(Ref p.4-111)**。
+- Quantum = 5 **(Ref p.4-111)**
 
 
 
@@ -1751,8 +1776,6 @@ P1 滿足 deadline，P2 滿足 deadline。
 
 # Thread management
 
----
-
 
 
 - Thread：又稱之為「Lightweight proces」，為作業系統分配 CPU time 之基本單位 (It's a basic unit of CPU utilization)。( Process 是分配資源如：I/O, memory，的最基本單位 )
@@ -2164,29 +2187,65 @@ void *runner(void *param) {
 
 
 
-# 問題
-
----
+# 補充例題
 
 
+
+**Example**
 
 - Which following is **shared by thread ?**
   - Static local variable **共享**
   - Program text/executable binary (code section) **共享**
   - Registers value of CPU **私有**
-  - Heap memory (code + data scetion memory space) **共享**
+  - Heap memory (code + data section memory space) **共享**
   - Programming counter **私有**
   - Stack memory **私有**
   - Open files **共享**
-  - I/O-resourses **共享**
+  - I/O-resources **共享**
   - Local variables **私有**
   - Global variables **共享**
 
 
 
-# 參考
+**Example（104 成功大學計算機組織與系統）**
 
----
+- Assume that a process currently runs in the user mode of **x86 system**
+
+- Which of the following situation(s) always cause a transition from the user mode to the kernel mode?
+- Please briefly explain your answer
+  - （a）A timer occurs and the time quantum has not expired
+    - 直接使用「倒錶服務程序」將「Time quantum」遞減
+  - **（b）A timer occurs and the time quantum has expired**
+    - 系統執行排程器尋找下個程序
+  - （c）TLB hits
+  - （d）TLB miss
+  - （e）The process executes a memory access instruction
+    - **執行記憶體存取的指令只需經過 MMU 以確認是否越界**
+
+> **TLB miss**
+>
+> - **硬體式管理 TLB**
+>   - **x86 架構採用**
+>   - CPU 自行遍歷「Page table」，檢視是否存在「包含指定的虛擬位址」之有效分頁表條目
+>     - **存在於分頁表**
+>       - 將此分頁表條目存入 TLB 
+>       - 重新執行 TLB 存取
+>         - 此次存取必尋中，程序可正常執行
+>     - **不存在於分頁表**
+>       - 觸發「Page fault interrupt」，使作業系統必須對應處理
+>         - 處理分頁錯誤通常是**把被請求的資料載入實體記憶體中**，並將該分頁表條目對映正確的實體位址，並重新啟動程式（詳見[分頁錯誤](https://zh.wikipedia.org/wiki/%E5%88%86%E9%A0%81%E9%8C%AF%E8%AA%A4)）
+> - **軟體管理式 TLB**
+>   - **MIPS 架構採用**
+>   - 觸發「TLB miss interrupt」
+>     - 作業系統會遍歷「Page table」，以軟體方式進行虛實位址轉譯
+>     - **存在於分頁表**
+>       - 作業系統將分頁表中對應的條目載入 TLB
+>       - 從「觸發 TLB miss interrupt 」之指令處重新啟動該程序
+>     - **不存在於分頁表**
+>       - 觸發「Page fault interrupt」，使作業系統必須對應處理
+>         - 處理分頁錯誤通常是**把被請求的資料載入實體記憶體中**，並將該分頁表條目對映正確的實體位址，並重新啟動程式（詳見[分頁錯誤](https://zh.wikipedia.org/wiki/%E5%88%86%E9%A0%81%E9%8C%AF%E8%AA%A4)）
+
+# 參考
 
 
 

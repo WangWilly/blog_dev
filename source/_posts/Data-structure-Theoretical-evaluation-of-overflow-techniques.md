@@ -107,7 +107,7 @@ date: 2019-02-02 20:18:00
   - 探測過程中
       - **恰兩次**探測找到可用空間的機率
           - $\alpha \times(1-\alpha)$
-    - **恰 K 次**探測找到可用空間的機率
+        - **恰 K 次**探測找到可用空間的機率
       - $\alpha^{k-1}(1-\alpha)$
 - **探測失敗**（$U(\alpha)$）
   - **觀點一**
@@ -137,3 +137,40 @@ date: 2019-02-02 20:18:00
   - 當第 n 個識別字要插入到「Hash table」時
     - 每個串列的預期大小為 $\frac{n-1}{m}$
   - 
+
+
+
+# 補充試題
+
+
+
+Example（105 交通大學資料結構與演算法）
+
+Given a hash table of size m, please answer following questions.
+
+- Under the uniform hashing assumption, if we use the hash table with open addressing to hash 3 keys, the probability that the third inserted key needs exactly three probes before being inserted into the table ts exactly
+  - （A）$\frac 2m$
+  - （B）$\frac 2{m-1}$
+  - **（C）**$\frac 2{m(m-1)}$
+  - （D）$\frac 1{m-1}$
+  - （E）$\frac 1{m(m-1)}$
+
+> - 第三個鍵值插入時
+>   - 碰撞到兩個已插入的機率： $\frac 2{m}$
+>   - 假設不會再撞到第一次碰撞的值，作探測後再次碰撞的機率： $\frac 1{m-1}$
+
+- We use the hash table with open addressing to hash n keys, where n is less than m. Under the uniform hashing assumption, the expected cost to insert another element into the table is at most
+  - （A）$1+\frac nm$
+  - **（B）**$\frac 1{1-\frac nm}$
+  - （C）$\frac nm$
+  - （D）$\frac 1{\frac nm}$
+  - （E）$1-\frac nm$
+
+
+
+- After hashing n keys into the hash table that uses chaining to handle collisions, we hash two new keys $k_1$ and $k_2$. Under the simple uniform hashing assumption, the probability that $k_1$ and $k_2$ are hashed into the same table location is exactly
+  - （A）$\frac 1n​$
+  - **（B）**$\frac 1m$
+  - （C）$\frac 1{nm}$
+  - （D）$\frac nm$
+  - （E）$\frac mn$
