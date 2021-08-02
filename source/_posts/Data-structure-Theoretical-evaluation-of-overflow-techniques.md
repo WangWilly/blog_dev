@@ -174,3 +174,10 @@ Given a hash table of size m, please answer following questions.
   - （C）$\frac 1{nm}$
   - （D）$\frac nm$
   - （E）$\frac mn$
+
+
+
+**Example（106 成功大學程式設計；翻譯）**
+
+- Suppose there 11 slots available from 250, please give the hashing function to insert the keys, 42, 77, 85, 113, 315, 433, 474, 479, 574, 582, 698, to the 11 slots without collision by using the division method, and show the hashing table.
+- （中譯）假設從編號 250 後有連續 11 格可用的空間在此雜湊表，依序插入 42、77、85、113、315、433、474、479、574、582、698 到此 11 可用空間中，求出一使用除法的雜湊函數，使這些插入值不會碰撞，並展示插入完成的雜湊表

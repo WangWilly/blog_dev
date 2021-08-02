@@ -1214,6 +1214,47 @@ Example
 
 
 
+> **Topological sort + Strongly connected component**
+>
+> **（判斷「Semi-connected graph」）**
+>
+> Example（106 成功大學程式設計）
+>
+> - A directed graph G=(V,E) is semi-connected if, for all pairs of vertices u,v ∈ V, u is reachable from v through a directed path, or v is reachable from u through a directed path. Given a linear-time algorithm to determine whether or not G is semi-connected.
+>
+>
+>
+> 1. 用「Topological sort」找出 G 的所有「Strongly connected component」（SCC）
+>
+>    - 將每個 SCC 視為一頂點組成集合 V'
+>      - 假設共有 k 個 SCC
+>    - 各個 SCC 在 G 相連的邊組成集合 E'
+>      - $E'=｛(V_1,V_2) ∣ \exist v_1 \in V_1 , v_2 \in V_2 \ni (v1,v2) \in E)｝$
+>
+> 2. 令 G'=(V',E')
+>
+>    - 必為「Directed acyclic graph」（DAG）
+>      - 若兩點存在環路
+>        - 則該兩點必成為一個 SCC
+>
+>    - 對 G' 執行「Topological sort」
+>      - 找出序列 $T=(v_1,\ldots,v_k )$
+>      - 若 $(V_i, V_{i+1}) \in E' ,i = 1,\ldots,k-1$ 成立
+>        - G 為「Semi-connected graph」
+>
+> **正確性證明**
+>
+> 假設 G=(V,E) 為「Semi-connected graph」
+>
+> - 對所有 $v_1, v_2\in V$ 存在路徑
+>   - 不失一般性假設為 $(v_1\rightarrow \ldots\rightarrow v_2)$
+> - 假設 $v_1 \in V_1, v_2 \in V_2$
+>   - $V_1, V_2$ 為 G 的兩個 SCC
+>   - 若 $(V_1, V_2)\in E'$
+>     - $v_1, v_2$ 必有路徑
+
+
+
 > **有向無環路圖（Direct acyclic graph）**上求「Single source all shortest paths」
 >
 > 可以利用「Topological sort」（O(|V|+|E|)）來減少維護「Fibonacci heap」需要的時間複雜度（每回合的Delete-min：O(|V|log|V|)）
@@ -1411,3 +1452,4 @@ Example
      - （7）之子頂點（8）、（9）：`dfn(7)>low(8)&&dfn(7)>low(9)`，非「Articulation point」
    - 針對**葉頂點**：皆非「Articulation point」
      - （0）、（4）、（8）、（9）
+

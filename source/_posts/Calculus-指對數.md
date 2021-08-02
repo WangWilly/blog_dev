@@ -1,6 +1,7 @@
 title: Calculus - 指對數
 author: Willy Wang
 tags:
+
   - Exponent
   - ''
   - Logarithm
@@ -8,167 +9,118 @@ categories:
   - Calculus
 date: 2018-03-15 16:40:00
 ---
-# "$e^{x}$"
+# $e^x$
 
----
+
+
+![exp](\willywangkaa\images\exp.png)
+
+
 
 ## 緣起
 
-首先，要先從複利的公式開始說明：
 
-$$
-一年後的本利和 = \left(1+\frac{年利率}{期數} \right)^{期數}
-$$
 
-其中期數就是看多久複利一次。一個月複利一次的話期數就是12。
-
-依上述所說，設 1 份借貸有 x 年利率，逐月複利話，則每月增加當前值的 $\frac{x}{12}$ 倍，每月總值都要乘以 $1 + \frac{x}{12}$，一年的總值為 $\left(1 + \frac{x}{12} \right)^{12}$，逐日複利的話，就是 $\left (1+ \frac{x}{365} \right)^{365}$。設年中時段數可為無限，則有如下最初由歐拉提出的指數函數定義：
-
-$$
-\\lim_{n \to \infty}\left ( 1 + \frac{x}{n} \right )^{n}
-$$
-
-然後才真正的導出e這個數字，一開始存1元，如果年利率是100%，如果每分每秒都算利息，那麼一年後會得到的利息大約是2.71828，如果把算利息的區間縮到無限小，也就是期數變成無限大的話，就會得到
-
-$$
-\lim_{n \to \infty}\left ( 1 + \frac{1}{n} \right )^{n} = e
-$$
-
-由上式我們則可以得到,
-
-$$
-\lim_{n \to \infty}\left ( 1 + \frac{x}{n} \right )^{n} = \lim_{n \to \infty} \left ( \left ( 1 + \frac{1}{\frac{n}{x}} \right )^{\frac{n}{x}} \right )^{x} \approx e^{x}
-$$
-
-其中，
-
-$$
-\lim_{n \to \infty} \left ( 1 + \frac{1}{\frac{n}{x}} \right )^{\frac{n}{x}} \approx e^{1} = e
-$$
-
-而這是它寫為 $e^{x}$ 的原因。
+- 複利公式
+  - 一年後的本利和 = $(1+\frac{年利率}{期數})^{期數}$
+    - **期數：一年期間內複利次數**
+      - 若為「逐月複利」則期數為 12
+  - 若有 1 份借貸以「x 年利率」並**「逐月複利」**
+    - 則**每個月為前一月**總值乘以 $1 + \frac{x}{12}$，**一年**的總增值為 $(1 + \frac{x}{12})^{12}$
+  - 若有 1 份借貸以「x 年利率」並**「逐日複利」**
+    - 則**每天為前一天**總值乘以 $1 + \frac{x}{365}$，**一年**的總增值為 $\left (1+ \frac{x}{365} \right)^{365}$
+- 歐拉數 $e$ 進而被提出
+  - 若一開始存 1 元、年利率是100%、**「逐秒複利」**
+    - 則一年後的利息約為 2.71828 元（1 年 = 31,556,926 秒）
+  - 若一開始存 1 元、年利率是100%、**複利期數期數無限大**
+    - 則一年後的利息為 $e = \lim_{n \to \infty}\left ( 1 + \frac{1}{n} \right )^{n}$ 元
+- **當複利期數為無限大時，為歐拉提出「指數函數」的定義**，由上式可以知道
+  - $\lim_{n \to \infty}\left ( 1 + \frac xn \right )^n = \lim_{n \to \infty} \left ( \left ( 1 + \frac{1}{\frac nx} \right )^{\frac nx} \right)^x \approx e^x$
+    - 對 n 與 x 進行探討，當 n **趨近於無限大**時 x 相對來說為一定值，所以 $\frac nx$ 亦**趨近無限大**
+      - $\lim_{n \to \infty} \left ( 1 + \frac{1}{\frac nx} \right )^{\frac nx} \approx e^1 = e$
 
 
 
-![wiki-exponential](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Exp.svg/260px-Exp.svg.png)
+> **指數函數基本恆等式**
+>
+> - 下方兩式等價
+>   - $e^{x+y} = e^{x} \cdot e^{y}$
+>   - $\exp\left ( x + y \right ) = \exp\left ( x \right ) \cdot \exp\left ( y \right )$ 
 
 
-
-所以指數函數有基本的恆等式：
-
-$$
-e^{x+y} = e^{x} \cdot e^{y}
-$$
-
-$$
-\parallel
-$$
-
-$$
-\exp\left ( x + y \right ) = \exp\left ( x \right ) \cdot \exp\left ( y \right )
-$$
 
 ## 性質
 
-所以，正常指數該有的性質 $e$ 也都有具備，令 $\forall x, y\in \mathrm{R}$ ，則：<br>
-$e^{0}=1$<br>
-$e^{1}=e$<br>
-$e^{x+y}=e^{x}e^{y}$<br>
-$e^{x \cdot y}=\left(e^{x}\right)^{y}$<br>
-$e^{-x}={1 \over e^{x}}$<br>
+- 歐拉數 $e$ 的性質，對 $\forall x, y\in \mathrm{R}$
+  - $e^{0}=1$
+  - $e^{1}=e$
+  - $e^{x+y}=e^{x}e^{y}$
+  - $e^{x \cdot y}=\left(e^{x}\right)^{y}$
+  - $e^{-x}={1 \over e^{x}}$
+
+
 
 ## 微分
 
-微分的時候需要下面這個式子：
 
-$$
-\lim_{n \to \infty} \left(1 + \frac{1}{n}\right)
- =\lim_{n \to \infty}\left(\left(1 + \frac{1}{\frac{n}{1}}\right)^{\frac{n}{1}}\right)^{\frac{1}{n}} \approx  \lim_{n \to \infty} e^{\frac{1}{n}} \Rightarrow e^{\Delta x} \approx (1 + \Delta x)
-$$
 
- 其中，<br>
-$\lim_{n \to \infty} \left ( 1 + \frac{1}{\frac{n}{1}} \right )^{\frac{n}{1}} \approx e^{1} = e$
-
-當$n \to \infty$時 $\frac{1}{n}$ 可視為一個很小的量 $\Delta x$ ，也就是：
-
-$$
-\lim_{m \to 0} (1 + m ) \approx \lim_{m \to 0} e^{m}
-$$
-
-$$
-(1 + 很小 ) \approx e^{很小}
-$$
-
-$$
-(1 + \Delta x ) \approx e^{\Delta x}
-$$
-
-### 微分推導
-
-$$
-\Delta y = e^{x+\Delta x} - e^{x} = e^{\Delta x}\cdot e^{x} - 1\cdot e^{x} = (e^{\Delta x} - 1) e^{x}
-$$
-
-又因：
-
-$$
-e^{\Delta x} \approx (1 + \Delta x)
-$$
-
-所以：
-
-$$
-\Delta y \approx e^{x}\Delta x \rightarrow dy = e^{x}\cdot dx
-$$
-
-#### 小結：
-
-$$
-de^{□} = e^{□}d□
-$$
-
-$ex.$
-
-$$
-de^{-x^2} = e^{-x^2}\cdot d(-x^2) = (-2x)\cdot e^{-x^2}\cdot dx
-$$
-
-### 一般化：
-
-$y = a^x $<br>$\Rightarrow y = e^{\ln{a^{x}}} = e^{x\cdot\ln{a}} \Rightarrow $ (對 $y$ 作微分)<br>$\Rightarrow dy= e^{x\cdot\ln{a}} \cdot \left ( x\cdot\ln{a} \right )$<br>$\Rightarrow dy=a^x\cdot \ln a \cdot dx$
-
-# "$e^{x}$" 的反函數
-
----
-
-對數函數，就是 $e^{x}$ 的反函數，也就是
-
-$$
-y = \log_{e}{x} = \ln{x} \quad x = e^{y}
-$$
+1. 假設 $y = e^x$ 可微
+   - 根據其定義**「應變數的微分」**$\mathrm dy = f'(x) \cdot \mathrm dx$
+     - 其中 $f(x) = e^x$，而 $f'(x)$ 為**「導函數」**
+     - $\mathrm dx$ 為**「自變數的微分」**
+2. 探討 $\Delta x$ 與 $\Delta y$ 的「比例」以求其**「導函數」**
+   - 根據定義 $\Delta y = f(x+\Delta x) - f(x)$
+     - $\Rightarrow \Delta y = e^{x+\Delta x} - e^{x}\\ =  e^x \cdot e^{\Delta x} - e^x \\ = (e^{\Delta x} - 1) e^{x} \quad .......（1） $ 
+   - 當 $\Delta x$ 很小時，對 $e^{\Delta x}$ 進行探討
+     - $e^{\Delta x} \Rightarrow \lim_{n \to \infty} e^{\frac 1n} \approx \lim_{n \to \infty}\left(\left(1 + \frac1n\right)^n\right)^{\frac 1n} \\ = \lim_{n \to \infty} \left(1 + \frac1n\right) = 1 + \Delta x \quad ......（2）$
+3. 將式（2）帶入式（1）可得知其**「導函數」**
+   - $\Delta y = (e^{\Delta x} - 1) e^{x} \approx (1+\Delta x -1)e^x = e^x\Delta x$
+     - 則 $f'(x) = \lim_{\Delta x \to \infty} \frac {\Delta y}{\Delta x} = e^x$
+     - $\Rightarrow \frac {\mathrm dy}{\mathrm dx} = e^x \\ \Rightarrow dy = e^{x}\cdot dx$
 
 
 
-![img](https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Log.svg/250px-Log.svg.png)
+**Example**
+
+- 對 $y = e^{-x^2}$ 微分
+  - $\mathrm dy = (e^{-x^2}) \cdot \mathrm d(-x^2)$
+  - $\mathrm dy= (-2x e^{-x^2}) \cdot dx$ 
 
 
 
+**Example**
 
-## 定義
+- 對 $y = a^x $ 微分
+  - $\Rightarrow y = e^{\ln{a^x}} = e^{x\cdot\ln a}$
+  - 對 $y$ 作微分
+    - $\Rightarrow \mathrm dy= e^{x\cdot\ln a} \cdot \mathrm d(x \ln a )$
+    - $\Rightarrow \mathrm dy= (\ln a\cdot a^x) \cdot \mathrm dx$
 
-尤拉定義自然對數為序列的極限：
 
+
+> **求 $y = a^x$ 之「導函數」**
+>
+> - $\frac{\mathrm dy}{\mathrm dx} = \lim_{\Delta x \to 0} \frac {a^{x+\Delta x}-a^x}{\Delta x} = (\lim_{\Delta x \to 0} \frac {a^{\Delta x}-1}{\Delta x})a^x$
+>
+> 其「導函數」為「原函數」乘上**與自己成正比**之值
+>
+> - 對 $\lim_{\Delta x \to 0} \frac {a^{\Delta x}-1}{\Delta x}$ 進行探討，將 $a$ 以 $e$ 代入可得
+>   - $\lim_{\Delta x \to 0} \frac {e^{\Delta x}-1}{\Delta x} \approx \lim_{\Delta \to 0} \frac {(1+ \Delta x)-1}{\Delta x} = \lim_{\Delta \to 0} \frac {\Delta x}{\Delta x} = 1$
+>     - 推估此式為反函數：$\log_e x = \lim_{n \to 0} \frac {x^n-1}{n} \equiv \lim_{n\to\infty} n(x^{\frac 1n}-1)$
+>     - 亦為**「歐拉對自然對數的定義」**
+
+
+
+# $\ln x$
+
+ 
+
+![log](\willywangkaa\images\log.png)
 
 
 $$
-\ln (x) = \lim_{x\rightarrow \infty} n(x^{\frac{1}{n}}- 1)
+y = \log_{e}{x} = \ln{x} \quad, x = e^{y}
 $$
-
-
-
-正式的定義為積分$\ln (a)$：
-
-
 
 $$
 \ln (a) = \int_1^a \frac{1}{x} dx
@@ -176,88 +128,68 @@ $$
 
 
 
-## 對 "$\ln{x}$" 做微分 
-
-簡單地，我們可以推得：
-$y = \ln x $<br> $\Rightarrow x = e^y $<br> $\Rightarrow dx = e^y dy $<br>$\Rightarrow dy = \frac{1}{e^y} dx = \frac{1}{x} dx $  (移" $e^{y}$ "項)
+![log2](\willywangkaa\images\log2.png)
 
 
 
-![img](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Log-pole-x_1.svg/250px-Log-pole-x_1.svg.png)
+**Proof**：$\ln x = \int_1^x \frac{1}{x} dx$
 
-- Proof $\ln x = \int_1^x \frac{1}{x} dx$
+1. $\frac{\mathrm d}{\mathrm dx}(\ln x) = \lim_{\Delta x \to 0} (\frac{\ln(x+\Delta x) - \ln x}{\Delta x})$
+   - $\Leftrightarrow \lim_{\Delta x \to 0} (\frac 1{\Delta x}\cdot \ln(\frac{x+\Delta x}{x})) \\ \Leftrightarrow \lim_{\Delta x \to 0} (\ln (1+\frac{\Delta x}{x})^{\frac{1}{\Delta x}})$
+2. 令 $u = \frac {\Delta x}{x}、\Delta x = ux$
+   - 欲使 $\Delta x \to 0$ 時
+     - 則必使 $u \to 0$
+   - $\Rightarrow \lim_{u \to 0} (\ln (1+u)^{\frac{1}{u x}} ) = \lim_{u \to 0} (\ln(((1+u)^{\frac{1}{u}})^\frac{1}{x}))\\ \Leftrightarrow \lim_{u \to 0} (\frac 1x \cdot ln (1+u)^{\frac 1u}) \\ \Leftrightarrow \frac 1x \lim_{u \to 0} (\ln(1+u)^{\frac 1u})$
+3. 令 $n = \frac 1u$
+   - 欲使 $u \to 0$
+     - 則必使 $n \to \infty$
+   - $\Rightarrow \frac 1x lim_{n \to \infty} (\ln (1 + \frac 1n)^n) \\ \Leftrightarrow \frac 1x \ln( \lim_{n \to \infty} (1 + \frac 1n)^n ) \\ \Leftrightarrow \frac 1x \ln e \Leftrightarrow \frac 1x$
+     - 則 $\frac{\mathrm d}{\mathrm dx}(\ln x) = \frac 1x = \frac{\mathrm d}{\mathrm dx} \int_1^x \frac 1t \mathrm dt$
+     - 根據「微積分第一基本定理」，表明不定積分是微分的逆運算，其保證某連續函數之原函數的存在性
+       - $\frac{\mathrm d}{\mathrm dx} (\ln x) = \frac{\mathrm d}{\mathrm dx} (\int_1^x \frac{1}{t} \mathrm dt) \\ \Leftrightarrow \ln x = \int_1^x \frac{1}{t} \mathrm dt$
 
-$\frac{d}{dx}\ln x = \lim_{h \rightarrow 0} (\frac{\ln(x+h) - \ln x}{h})$
-
-$\Leftrightarrow \lim_{h \rightarrow 0} (\frac{1}{h}\cdot \ln(\frac{x+h}{x}))$
-
-$\Leftrightarrow \lim_{h \rightarrow 0} (\ln (1+\frac{h}{x})^{\frac{1}{h}})$
-
-**＜Note＞：**$Let \; u = \frac{h}{x} , h = u\cdot x \rightarrow h \; gose \; to \; 0 \; then \; u \; gose \; to \; 0$
-
-$\Rightarrow \lim_{u \to 0} (\ln (1+u)^{\frac{1}{u\cdot x}} ) \Rightarrow \lim_{u \to 0} (\ln(1+u)^{\frac{1}{u}^\frac{1}{x}})$
-
-$\Leftrightarrow \lim_{u \to 0} (\frac{1}{x} \cdot ln (1 + u)^{\frac{1}{u}})$
-
-$\Leftrightarrow \frac{1}{x} \lim_{u \to 0} (\ln(1+u)^{\frac{1}{u}})$
-
-**＜Note＞：**$Let \; n = \frac{1}{u} \rightarrow u \; gose \; to \; 0 \; then \; n \; gose \; to \; \infty $
-
-$\Rightarrow \frac{1}{x} lim_{n \to \infty} (\ln (1 + \frac{1}{n})^n)$
-
-$\Leftrightarrow \frac{1}{x} \ln( \lim_{n \to \infty} (1 + \frac{1}{n})^n )$
-
-$\Leftrightarrow \frac{1}{x} \ln e \Leftrightarrow \frac{1}{x}$
+> $\ln x$ **的微分**
+>
+> - $y = \ln x $
+>   - $\Rightarrow x = e^y $
+>   - $\mathrm dx = e^y \mathrm dy $
+>     - （對 $e^{y}$ 作移項）
+>     - $\Rightarrow \mathrm dy = \frac{1}{e^y} \mathrm dx = \frac{1}{x} \mathrm dx $
 
 
 
-$\Leftrightarrow \frac{d}{dx} \int_1^x \frac{1}{t} dt $（微積分第一基本定理）
+**Example**
 
-$$
-\frac{d}{dx} \ln x = \frac{d}{dx} \int_1^x \frac{1}{t} dt \Leftrightarrow \ln x = \int_1^x \frac{1}{t} dt
-$$
-
-
-
-### 一般化：
-$y=\log_a x $<br>
-$\Rightarrow y = \frac{\ln{x}}{\ln{a}}$<br>
-$\Rightarrow dy=\frac{1}{x}\cdot \frac{1}{\ln a} \cdot dx$
+- 對 $y=\log_a x $ 作微分
+  - $ y = \frac{\ln x}{\ln a}$
+    - $\Rightarrow dy= (\frac{1}{\ln a} \cdot  \frac 1x) \cdot dx$
 
 
-# " $f \left( x\right) = x^x$ "的微分
 
----
 
-## 兩側取 "$\ln$"
+# 補充例題
 
-$$
-\ln \left( f \left( x\right) \right) = x \cdot \ln{x}
-$$
 
-## 對兩側微分
 
-$$
-\frac{f'(x)}{f(x)} = \left( 1 \cdot \ln{x} \right) + \left( x \cdot \frac{1}{x}\right)
-$$
+**Example**
 
-## 對兩側乘上 "$f(x)$"
+- 對 $y = f \left( x\right) = x^x$ 作微分
+  - **兩側取自然對數函數**
+    - $\ln ( f ( x ) ) = x \cdot \ln x$
+  - **對兩側取微分**
+    - $\frac{f'(x)}{f(x)} = \left( 1 \cdot \ln{x} \right) + \left( x \cdot \frac{1}{x}\right)$
+  - **對兩側乘上** $f(x)$
+    - $f'(x) = \left( \left( 1 \cdot \ln{x} \right) + \left( x \cdot \frac{1}{x}\right) \right) \cdot f(x) \\ \Rightarrow f'(x) = \left( \ln{x}  + 1 \right) \cdot  \left( x^x \right)$ 
 
-$$
-f'(x) = \left( \left( 1 \cdot \ln{x} \right) + \left( x \cdot \frac{1}{x}\right) \right) \cdot f(x)
-$$
 
-$$
-\Rightarrow f'(x) = \left( \ln{x}  + 1 \right) \cdot  \left( x^x \right)
-$$
 
 # 參考
 
----
 
-[成大微積分指對數函數的微分(第四週共筆)](http://moodle.ncku.edu.tw/mod/wiki/view.php?pageid=363)
 
-[維基百科 - e (數學常數)](https://zh.wikipedia.org/wiki/E_%28%E6%95%B0%E5%AD%A6%E5%B8%B8%E6%95%B0%29)
+[成大微積分指對數函數的微分（第四週共筆）](http://moodle.ncku.edu.tw/mod/wiki/view.php?pageid=363)
+
+[維基百科 - e （數學常數）](https://zh.wikipedia.org/wiki/E_%28%E6%95%B0%E5%AD%A6%E5%B8%B8%E6%95%B0%29)
 
 [維基百科 - 指數函數](https://zh.wikipedia.org/wiki/%E6%8C%87%E6%95%B0%E5%87%BD%E6%95%B0)
 

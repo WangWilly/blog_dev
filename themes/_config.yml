@@ -4,9 +4,9 @@
 
 # Site
 title: WillyWangkaa
-subtitle: The higher up, the greater the fall.
-description: Coding and computer related.
-author: Wang Yu Li
+subtitle: Live more like human
+description: coding, computer relate
+author: Willy Wang (willywangkaa)
 language:
     - zh-tw
     - en
@@ -105,6 +105,12 @@ search:
     field: post
     format: html
     limit: 10000
-
+        
+# hexo-admin authentification
+admin:
+    username: willywangkaa
+    password_hash: $2a$10$9f8cr2uswqa0Qp8zaYT3POT5ZFfexO9XRedhrdtiCYZzNd0Y5XMHS
+    secret: 0960747838
+  
 sitemap: 
     path: sitemap.xml
